@@ -1,69 +1,59 @@
-import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
 
-export default function Hero() {
+export default async function Hero() {
+  const t = await getTranslations('hero');
+
   return (
-    <section className="relative bg-[#0f172a] text-white overflow-hidden" style={{ minHeight: '60vh' }}>
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a8a] via-[#0f172a] to-[#0f172a]" />
-
-      {/* Decorative circles */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[#1e3a8a]/20 translate-x-1/3 -translate-y-1/3" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#ea580c]/10 -translate-x-1/3 translate-y-1/3" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <section className="bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#1e40af] text-white py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-[#ea580c]/20 border border-[#ea580c]/30 text-orange-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#ea580c] animate-pulse" />
-            ISO 9001 · CE Certified · 15+ Years Export Experience
+          <div className="flex flex-wrap gap-3 mb-6">
+            <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-xs font-semibold px-3 py-1.5 rounded-full">
+              <span className="w-2 h-2 bg-green-400 rounded-full" />
+              {t('badge_iso')}
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-xs font-semibold px-3 py-1.5 rounded-full">
+              <span className="w-2 h-2 bg-blue-300 rounded-full" />
+              {t('badge_ce')}
+            </span>
           </div>
 
-          {/* H1 */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Shoe Sole Injection{' '}
-            <span className="text-[#ea580c]">Moulding Machines</span>
-            <br />
-            <span className="text-blue-200 text-3xl sm:text-4xl lg:text-5xl">
-              Made in Wenzhou, China
-            </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+            {t('title')}
           </h1>
-
-          {/* Subtitle */}
-          <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl leading-relaxed">
-            TPU · PVC · TR · Rubber — single color to four colors. Complete turnkey solutions
-            for shoe factories across 15 countries. 15+ years of global export experience.
+          <p className="text-lg text-blue-100 mb-8 max-w-2xl leading-relaxed">
+            {t('subtitle')}
           </p>
 
-          {/* CTAs */}
           <div className="flex flex-wrap gap-4">
             <Link
               href="/contact"
-              className="bg-[#ea580c] hover:bg-orange-700 text-white font-semibold px-8 py-4 rounded-md transition-colors text-lg"
+              className="bg-[#ea580c] hover:bg-orange-700 text-white font-semibold px-7 py-3.5 rounded-md transition-colors text-base"
             >
-              Get a Free Quote
+              {t('cta_quote')}
             </Link>
             <Link
               href="/products"
-              className="border-2 border-white/50 hover:border-white text-white font-semibold px-8 py-4 rounded-md transition-colors text-lg"
+              className="border-2 border-white/50 hover:border-white text-white font-semibold px-7 py-3.5 rounded-md transition-colors text-base"
             >
-              View All Machines
+              {t('cta_browse')}
             </Link>
           </div>
+        </div>
 
-          {/* Stats */}
-          <div className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-white/10">
-            {[
-              { value: '15+', label: 'Years Experience' },
-              { value: '15', label: 'Countries Served' },
-              { value: '100+', label: 'Machine Models Delivered' },
-              { value: 'ISO·CE', label: 'Certified' },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div className="text-2xl font-bold text-[#ea580c]">{stat.value}</div>
-                <div className="text-sm text-blue-200">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-white/20 pt-10">
+          {([
+            ['stat_years', 'stat_years_sub'],
+            ['stat_countries', 'stat_countries_sub'],
+            ['stat_models', 'stat_models_sub'],
+            ['stat_certified', 'stat_certified_sub'],
+          ] as const).map(([valKey, labKey]) => (
+            <div key={valKey}>
+              <div className="text-2xl lg:text-3xl font-bold text-white">{t(valKey)}</div>
+              <div className="text-sm text-blue-200 mt-1">{t(labKey)}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

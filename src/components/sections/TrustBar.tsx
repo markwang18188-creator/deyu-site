@@ -1,17 +1,21 @@
-const trustItems = [
-  { icon: '🏆', label: 'ISO 9001:2000', sub: 'Quality Certified' },
-  { icon: '✅', label: 'CE Certified', sub: 'EU Market Ready' },
-  { icon: '📅', label: '15+ Years', sub: 'Export Experience' },
-  { icon: '🌍', label: '15 Countries', sub: 'Customers Worldwide' },
-  { icon: '🏭', label: 'Factory Direct', sub: 'Wenzhou, China' },
-];
+import { getTranslations } from 'next-intl/server';
 
-export default function TrustBar() {
+export default async function TrustBar() {
+  const t = await getTranslations('trustBar');
+
+  const items = [
+    { icon: '🏆', label: t('iso_label'), sub: t('iso_sub') },
+    { icon: '✅', label: t('ce_label'), sub: t('ce_sub') },
+    { icon: '📅', label: t('years_label'), sub: t('years_sub') },
+    { icon: '🌍', label: t('countries_label'), sub: t('countries_sub') },
+    { icon: '🏭', label: t('factory_label'), sub: t('factory_sub') },
+  ];
+
   return (
     <section className="bg-[#f1f5f9] border-y border-[#e2e8f0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
-          {trustItems.map((item) => (
+          {items.map((item) => (
             <div key={item.label} className="flex items-center gap-3">
               <span className="text-2xl">{item.icon}</span>
               <div>

@@ -1,28 +1,29 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
 import { products, categoryLabels, type ProductCategory } from '@/data/products';
 import CtaSection from '@/components/sections/CtaSection';
 
-export const metadata: Metadata = {
-  title: 'Shoe Sole Injection Moulding Machines | Full Product Range | DEYU',
-  description:
-    'Browse DEYU\'s complete range of shoe sole injection moulding machines: single color, dual color, multi color, air blowing and industrial parts machines. Factory direct from Wenzhou China.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('productsPage');
+  return {
+    title: `${t('title')} | DEYU`,
+    description: t('subtitle'),
+  };
+}
 
-const categories: { key: ProductCategory; description: string }[] = [
-  { key: 'single-color', description: 'PVC, TPR and TPU single-color sole machines. Up to 20 stations, 180+ pairs/hour.' },
-  { key: 'dual-color', description: 'TPU / TR dual-color rotary machines with premium color separation.' },
-  { key: 'multi-color', description: '3–4 color rotary machines for complex designer soles.' },
-  { key: 'air-blowing', description: 'Lightweight slipper and sandal sole production.' },
-  { key: 'industrial', description: 'Adapted machines for dumbbells, weight plates and automotive parts.' },
+const categoryKeys: ProductCategory[] = [
+  'single-color', 'dual-color', 'multi-color', 'air-blowing', 'industrial',
 ];
 
-export default function ProductsPage({
+export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: { category?: string };
+  searchParams: Promise<{ category?: string }>;
 }) {
-  const activeCategory = searchParams.category as ProductCategory | undefined;
+  const t = await getTranslations('productsPage');
+  const { category } = await searchParams;
+  const activeCategory = category as ProductCategory | undefined;
   const filtered = activeCategory
     ? products.filter((p) => p.category === activeCategory)
     : products;
@@ -31,12 +32,8 @@ export default function ProductsPage({
     <>
       <div className="bg-[#1e3a8a] text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl lg:text-4xl font-bold mb-3">
-            Shoe Sole Injection Moulding Machines
-          </h1>
-          <p className="text-blue-200 text-lg max-w-2xl">
-            15+ models covering single color, dual color, multi color, air blowing and industrial applications.
-          </p>
+          <h1 className="text-3xl lg:text-4xl font-bold mb-3">{t('title')}</h1>
+          <p className="text-blue-200 text-lg max-w-2xl">{t('subtitle')}</p>
         </div>
       </div>
 
@@ -52,19 +49,19 @@ export default function ProductsPage({
                   : 'bg-white text-[#334155] border border-[#e2e8f0] hover:border-[#1e3a8a]'
               }`}
             >
-              All Machines
+              {t('all_machines')}
             </Link>
-            {categories.map((cat) => (
+            {categoryKeys.map((key) => (
               <Link
-                key={cat.key}
-                href={`/products?category=${cat.key}`}
+                key={key}
+                href={`/products?category=${key}` as '/products'}
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
-                  activeCategory === cat.key
+                  activeCategory === key
                     ? 'bg-[#1e3a8a] text-white'
                     : 'bg-white text-[#334155] border border-[#e2e8f0] hover:border-[#1e3a8a]'
                 }`}
               >
-                {categoryLabels[cat.key]}
+                {categoryLabels[key]}
               </Link>
             ))}
           </div>
@@ -74,10 +71,9 @@ export default function ProductsPage({
             {filtered.map((product) => (
               <Link
                 key={product.slug}
-                href={`/products/${product.slug}`}
+                href={`/products/${product.slug}` as '/products'}
                 className="group bg-white rounded-lg border border-[#e2e8f0] hover:border-[#1e3a8a] hover:shadow-lg transition-all overflow-hidden"
               >
-                {/* Image placeholder */}
                 <div className="aspect-[4/3] bg-[#e2e8f0] flex items-center justify-center">
                   <span className="text-[#94a3b8] text-sm font-mono">{product.model}</span>
                 </div>
@@ -92,7 +88,7 @@ export default function ProductsPage({
                     {product.shortDescription}
                   </p>
                   <div className="text-sm font-semibold text-[#3b82f6] group-hover:text-[#ea580c] transition-colors">
-                    View Details →
+                    {t('view_details')}
                   </div>
                 </div>
               </Link>
@@ -101,10 +97,7 @@ export default function ProductsPage({
         </div>
       </section>
 
-      <CtaSection
-        title="Need Help Choosing the Right Machine?"
-        subtitle="Tell us your sole type, material and target output — our engineers will recommend the best model and send a detailed quote."
-      />
+      <CtaSection />
     </>
   );
 }

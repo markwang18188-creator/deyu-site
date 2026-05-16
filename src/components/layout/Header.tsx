@@ -1,37 +1,39 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { Menu, X, Phone } from 'lucide-react';
 import { products } from '@/data/products';
-
-const navLinks = [
-  { label: 'Products', href: '/products' },
-  { label: 'Equipment', href: '/equipment' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
+import LanguageSwitcher from './LanguageSwitcher';
 
 const productGroups = [
   {
-    title: 'INJECTION MACHINES',
+    key: 'injection_machines',
     items: products.filter((p) =>
       ['single-color', 'dual-color', 'multi-color'].includes(p.category)
     ).slice(0, 6),
   },
   {
-    title: 'AIR BLOWING',
+    key: 'air_blowing',
     items: products.filter((p) => p.category === 'air-blowing'),
   },
   {
-    title: 'INDUSTRIAL PARTS',
+    key: 'industrial_parts',
     items: products.filter((p) => p.category === 'industrial'),
   },
 ];
 
 export default function Header() {
+  const t = useTranslations('nav');
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
+
+  const navLinks = [
+    { label: t('products'), href: '/products', hasMega: true },
+    { label: t('about'), href: '/about', hasMega: false },
+    { label: t('contact'), href: '/contact', hasMega: false },
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-[#1e3a8a] text-white shadow-md">
@@ -51,7 +53,7 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) =>
-              link.label === 'Products' ? (
+              link.hasMega ? (
                 <div
                   key="products"
                   className="relative"
@@ -59,19 +61,18 @@ export default function Header() {
                   onMouseLeave={() => setMegaOpen(false)}
                 >
                   <button className="px-4 py-2 text-sm font-medium hover:text-orange-300 transition-colors flex items-center gap-1">
-                    Products
+                    {link.label}
                     <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                     </svg>
                   </button>
 
-                  {/* Mega Menu */}
                   {megaOpen && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 w-[640px] bg-white text-gray-900 shadow-xl rounded-b-lg border-t-2 border-[#ea580c] p-6 grid grid-cols-3 gap-6">
                       {productGroups.map((group) => (
-                        <div key={group.title}>
+                        <div key={group.key}>
                           <h3 className="text-xs font-bold text-[#1e3a8a] uppercase tracking-wide mb-3 border-b pb-2">
-                            {group.title}
+                            {t(group.key as 'injection_machines' | 'air_blowing' | 'industrial_parts')}
                           </h3>
                           <ul className="space-y-1">
                             {group.items.map((product) => (
@@ -85,12 +86,12 @@ export default function Header() {
                               </li>
                             ))}
                           </ul>
-                          {group.title === 'INJECTION MACHINES' && (
+                          {group.key === 'injection_machines' && (
                             <Link
                               href="/products"
                               className="text-xs font-semibold text-[#ea580c] hover:underline mt-2 block"
                             >
-                              ALL MODELS →
+                              {t('all_models')}
                             </Link>
                           )}
                         </div>
@@ -101,7 +102,7 @@ export default function Header() {
               ) : (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={link.href as '/about' | '/contact'}
                   className="px-4 py-2 text-sm font-medium hover:text-orange-300 transition-colors"
                 >
                   {link.label}
@@ -110,8 +111,9 @@ export default function Header() {
             )}
           </nav>
 
-          {/* Right side: WhatsApp + Mobile menu */}
-          <div className="flex items-center gap-3">
+          {/* Right: Language switcher + WhatsApp + Mobile menu */}
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
             <a
               href="https://wa.me/8613615778781"
               target="_blank"
@@ -119,10 +121,9 @@ export default function Header() {
               className="hidden sm:flex items-center gap-2 bg-[#ea580c] hover:bg-orange-700 text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors"
             >
               <Phone className="w-4 h-4" />
-              WhatsApp
+              {t('whatsapp')}
             </a>
 
-            {/* Mobile hamburger */}
             <button
               className="lg:hidden p-2"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -141,7 +142,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
+                href={link.href as '/products' | '/about' | '/contact'}
                 className="py-3 text-sm font-medium border-b border-blue-700 hover:text-orange-300"
                 onClick={() => setMobileOpen(false)}
               >
@@ -155,7 +156,7 @@ export default function Header() {
               className="mt-3 flex items-center justify-center gap-2 bg-[#ea580c] text-white text-sm font-semibold px-4 py-3 rounded-md"
             >
               <Phone className="w-4 h-4" />
-              WhatsApp Us
+              {t('whatsapp_us')}
             </a>
           </nav>
         </div>

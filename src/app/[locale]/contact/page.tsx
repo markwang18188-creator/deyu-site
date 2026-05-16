@@ -1,20 +1,23 @@
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Contact DEYU | Get a Quote for Shoe Sole Injection Machines',
-  description:
-    'Contact Wenzhou Deyu Machinery to request a quote, ask a technical question, or enquire about our shoe sole injection moulding machines. We respond within 24 hours.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('contact');
+  return {
+    title: `${t('title')} | DEYU`,
+    description: t('subtitle'),
+  };
+}
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const t = await getTranslations('contact');
+
   return (
     <>
       <div className="bg-[#1e3a8a] text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl lg:text-4xl font-bold mb-3">Contact Us</h1>
-          <p className="text-blue-200 text-lg">
-            Tell us about your production requirements and we will respond within 24 hours.
-          </p>
+          <h1 className="text-3xl lg:text-4xl font-bold mb-3">{t('title')}</h1>
+          <p className="text-blue-200 text-lg">{t('subtitle')}</p>
         </div>
       </div>
 
@@ -24,7 +27,7 @@ export default function ContactPage() {
             {/* Contact info */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-lg font-bold text-[#0f172a] mb-4">Direct Contact</h2>
+                <h2 className="text-lg font-bold text-[#0f172a] mb-4">{t('direct_contact')}</h2>
                 <div className="space-y-4">
                   <a
                     href="https://wa.me/8613615778781"
@@ -38,11 +41,10 @@ export default function ContactPage() {
                       </svg>
                     </span>
                     <div>
-                      <div className="text-sm font-semibold">WhatsApp</div>
-                      <div className="text-sm text-[#64748b]">+86 136 1577 8781</div>
+                      <div className="text-sm font-semibold">{t('whatsapp_label')}</div>
+                      <div className="text-sm text-[#64748b]">{t('whatsapp_number')}</div>
                     </div>
                   </a>
-
                   <div className="flex items-center gap-3 text-[#334155]">
                     <span className="w-10 h-10 bg-[#1e3a8a] rounded-full flex items-center justify-center flex-shrink-0">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -50,11 +52,10 @@ export default function ContactPage() {
                       </svg>
                     </span>
                     <div>
-                      <div className="text-sm font-semibold">Email</div>
+                      <div className="text-sm font-semibold">{t('email_label')}</div>
                       <div className="text-sm text-[#64748b]">info@wzdeyu.cn</div>
                     </div>
                   </div>
-
                   <div className="flex items-start gap-3 text-[#334155]">
                     <span className="w-10 h-10 bg-[#1e3a8a] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -63,120 +64,85 @@ export default function ContactPage() {
                       </svg>
                     </span>
                     <div>
-                      <div className="text-sm font-semibold">Address</div>
-                      <div className="text-sm text-[#64748b]">Wenzhou, Zhejiang Province, China</div>
+                      <div className="text-sm font-semibold">{t('address_label')}</div>
+                      <div className="text-sm text-[#64748b]">{t('address_value')}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="bg-white rounded-lg border border-[#e2e8f0] p-5">
-                <h3 className="font-semibold text-[#0f172a] mb-2 text-sm">Response Time</h3>
-                <p className="text-sm text-[#64748b]">
-                  We respond to all enquiries within <strong>24 hours</strong> during business days (Mon–Sat, 8 AM – 6 PM CST).
-                </p>
+                <h3 className="font-semibold text-[#0f172a] mb-2 text-sm">{t('response_title')}</h3>
+                <p className="text-sm text-[#64748b]">{t('response_body')}</p>
               </div>
             </div>
 
-            {/* Enquiry form — UI only, logic in Phase 4 */}
+            {/* Enquiry form */}
             <div className="lg:col-span-2 bg-white rounded-xl border border-[#e2e8f0] p-8">
-              <h2 className="text-xl font-bold text-[#0f172a] mb-6">Send an Enquiry</h2>
+              <h2 className="text-xl font-bold text-[#0f172a] mb-6">{t('form_title')}</h2>
               <form className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                      Full Name <span className="text-red-500">*</span>
+                      {t('name_label')} <span className="text-red-500">*</span>
                     </label>
-                    <input
-                      type="text"
-                      placeholder="Your name"
-                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
-                    />
+                    <input type="text" placeholder={t('name_placeholder')}
+                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                      Company Name
+                      {t('company_label')}
                     </label>
-                    <input
-                      type="text"
-                      placeholder="Your company"
-                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
-                    />
+                    <input type="text" placeholder={t('company_placeholder')}
+                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
                   </div>
                 </div>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                      Email <span className="text-red-500">*</span>
+                      {t('email_field_label')} <span className="text-red-500">*</span>
                     </label>
-                    <input
-                      type="email"
-                      placeholder="you@company.com"
-                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
-                    />
+                    <input type="email" placeholder={t('email_placeholder')}
+                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                      WhatsApp / Phone
+                      {t('phone_label')}
                     </label>
-                    <input
-                      type="tel"
-                      placeholder="+1 234 567 8900"
-                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
-                    />
+                    <input type="tel" placeholder={t('phone_placeholder')}
+                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
                   </div>
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                    Country
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Your country"
-                    className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
-                  />
+                  <label className="block text-sm font-medium text-[#334155] mb-1.5">{t('country_label')}</label>
+                  <input type="text" placeholder={t('country_placeholder')}
+                    className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                    Machine / Product of Interest
-                  </label>
+                  <label className="block text-sm font-medium text-[#334155] mb-1.5">{t('product_label')}</label>
                   <select className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent bg-white">
-                    <option value="">Select a category (optional)</option>
-                    <option value="single-color">Single Color Machines</option>
-                    <option value="dual-color">Dual Color Machines</option>
-                    <option value="multi-color">Multi Color Machines</option>
-                    <option value="air-blowing">Air Blowing Machines</option>
-                    <option value="industrial">Industrial Parts Machines</option>
-                    <option value="equipment">Supporting Equipment</option>
-                    <option value="other">Other / Not sure</option>
+                    <option value="">{t('product_default')}</option>
+                    <option value="single-color">{t('cat_single')}</option>
+                    <option value="dual-color">{t('cat_dual')}</option>
+                    <option value="multi-color">{t('cat_multi')}</option>
+                    <option value="air-blowing">{t('cat_air')}</option>
+                    <option value="industrial">{t('cat_industrial')}</option>
+                    <option value="equipment">{t('cat_equipment')}</option>
+                    <option value="other">{t('cat_other')}</option>
                   </select>
                 </div>
-
                 <div>
                   <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                    Your Message <span className="text-red-500">*</span>
+                    {t('message_label')} <span className="text-red-500">*</span>
                   </label>
-                  <textarea
-                    rows={5}
-                    placeholder="Describe your production requirements: sole type, material, target output, current equipment, etc."
-                    className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent resize-none"
-                  />
+                  <textarea rows={5} placeholder={t('message_placeholder')}
+                    className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent resize-none" />
                 </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-[#ea580c] hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-md transition-colors"
-                >
-                  Send Enquiry
+                <button type="submit"
+                  className="w-full bg-[#ea580c] hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-md transition-colors">
+                  {t('submit')}
                 </button>
-
-                <p className="text-xs text-[#94a3b8] text-center">
-                  {/* Form submission logic added in Phase 4 */}
-                  We will respond within 24 hours. No spam, no sharing of your details.
-                </p>
+                <p className="text-xs text-[#94a3b8] text-center">{t('privacy')}</p>
               </form>
             </div>
           </div>
