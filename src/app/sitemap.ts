@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { products } from '@/data/products';
+import { getAllPublishedSlugs } from '@/lib/supabase/blog';
 
 const BASE = 'https://deyusolemachine.com';
 const LOCALES = ['en', 'es', 'pt', 'tr', 'ar'] as const;
@@ -16,8 +17,8 @@ function allLocales(path: string) {
   return languages;
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ['/', '/products', '/about', '/contact'];
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const staticPaths = ['/', '/products', '/about', '/contact', '/blog', '/cases'];
 
   const staticEntries: MetadataRoute.Sitemap = staticPaths.flatMap((path) =>
     LOCALES.map((locale) => ({
@@ -39,5 +40,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticEntries, ...productEntries];
+  const blogSlugs = await getAllPublishedSlugs();
+  const blogSeen = new Set<string>();
+  const blogEntries: MetadataRoute.Sitemap = blogSlugs
+    .filter(({ slug }) => {
+      if (blogSeen.has(slug)) return false;
+      blogSeen.add(slug);
+      return true;
+    })
+    .map(({ slug }) => ({
+      url: url('en', `/blog/${slug}`),
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+      alternates: { languages: allLocales(`/blog/${slug}`) },
+    }));
+
+  return [...staticEntries, ...productEntries, ...blogEntries];
 }

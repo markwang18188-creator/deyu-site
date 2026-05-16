@@ -31,6 +31,8 @@ export default function Header() {
 
   const navLinks = [
     { label: t('products'), href: '/products', hasMega: true },
+    { label: t('blog'), href: '/blog', hasMega: false },
+    { label: t('cases'), href: '/cases', hasMega: false },
     { label: t('about'), href: '/about', hasMega: false },
     { label: t('contact'), href: '/contact', hasMega: false },
   ];

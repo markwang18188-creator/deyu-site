@@ -10,7 +10,9 @@
     "injection_machines": "ENJEKSİYON MAKİNELERİ",
     "air_blowing": "HAVA ÜFLEME",
     "industrial_parts": "ENDÜSTRİYEL PARÇALAR",
-    "language": "Dil"
+    "language": "Dil",
+    "blog": "Blog",
+    "cases": "Vakalar"
   },
   "hero": {
     "title": "Wenzhou, Çin'de Üretilen Ayakkabı Tabanı Enjeksiyon Kalıp Makineleri",
@@ -195,5 +197,24 @@
     "address": "Wenzhou, Zhejiang, Çin",
     "copyright": "© {year} Wenzhou Deyu Machinery Co., Ltd. Tüm hakları saklıdır.",
     "tagline": "Ayakkabı tabanı enjeksiyon kalıp makinesi üreticisi. 15+ yıl ihracat deneyimi."
+  },
+  "blog": {
+    "title": "Blog ve Sektör Bilgileri",
+    "subtitle": "Ayakkabı tabanı üretimi, makine seçimi ve üretim optimizasyonu üzerine uzman rehberleri.",
+    "no_posts": "Henüz yayınlanmış makale yok. Yakında tekrar kontrol edin.",
+    "read_more": "Devamını Oku →",
+    "back": "← Blog'a Dön",
+    "published": "Yayınlandı",
+    "related_products": "İlgili Ürünler",
+    "meta_title": "Blog | Taban Makinesi Bilgileri | DEYU",
+    "meta_desc": "DEYU Wenzhou Çin'den ayakkabı tabanı enjeksiyon makineleri hakkında sektör bilgileri ve rehberler."
+  },
+  "cases": {
+    "title": "Müşteri Vakaları",
+    "subtitle": "DEYU makinelerini kullanan dünya genelindeki ayakkabı üreticilerinden gerçek sonuçlar.",
+    "coming_soon_title": "Vaka Çalışmaları Yakında",
+    "coming_soon_desc": "Brezilya, Türkiye, Hindistan, Vietnam ve diğer ülkelerdeki müşterilerimizin başarı hikayelerini belgeliyoruz.",
+    "meta_title": "Müşteri Vakaları | DEYU Machinery",
+    "meta_desc": "15'ten fazla ülkede DEYU taban enjeksiyon makinelerini kullanan ayakkabı üreticilerinden başarı hikayeleri."
   }
 }

@@ -10,7 +10,9 @@
     "injection_machines": "MÁQUINAS DE INJEÇÃO",
     "air_blowing": "SOPRO DE AR",
     "industrial_parts": "PEÇAS INDUSTRIAIS",
-    "language": "Idioma"
+    "language": "Idioma",
+    "blog": "Blog",
+    "cases": "Casos"
   },
   "hero": {
     "title": "Máquinas de Injeção para Solas de Calçado Fabricadas em Wenzhou, China",
@@ -195,5 +197,24 @@
     "address": "Wenzhou, Zhejiang, China",
     "copyright": "© {year} Wenzhou Deyu Machinery Co., Ltd. Todos os direitos reservados.",
     "tagline": "Fabricante de máquinas de injeção para solas de calçado. 15+ anos de experiência em exportação."
+  },
+  "blog": {
+    "title": "Blog e Insights do Setor",
+    "subtitle": "Guias especializados sobre fabricação de solas, seleção de máquinas e otimização de produção.",
+    "no_posts": "Nenhum artigo publicado ainda. Volte em breve.",
+    "read_more": "Ler Mais →",
+    "back": "← Voltar ao Blog",
+    "published": "Publicado",
+    "related_products": "Produtos Relacionados",
+    "meta_title": "Blog | Insights sobre Máquinas de Sola | DEYU",
+    "meta_desc": "Insights do setor e guias sobre máquinas injetoras de solas da DEYU Wenzhou China."
+  },
+  "cases": {
+    "title": "Casos de Clientes",
+    "subtitle": "Resultados reais de fabricantes de calçados de todo o mundo usando máquinas DEYU.",
+    "coming_soon_title": "Estudos de Caso Em Breve",
+    "coming_soon_desc": "Estamos documentando histórias de sucesso de nossos clientes no Brasil, Turquia, Índia, Vietnã e mais.",
+    "meta_title": "Casos de Clientes | DEYU Machinery",
+    "meta_desc": "Histórias de sucesso de fabricantes de calçados usando máquinas DEYU em mais de 15 países."
   }
 }

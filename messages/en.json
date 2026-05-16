@@ -10,7 +10,9 @@
     "injection_machines": "INJECTION MACHINES",
     "air_blowing": "AIR BLOWING",
     "industrial_parts": "INDUSTRIAL PARTS",
-    "language": "Language"
+    "language": "Language",
+    "blog": "Blog",
+    "cases": "Cases"
   },
   "hero": {
     "title": "Shoe Sole Injection Moulding Machines Made in Wenzhou, China",
@@ -195,5 +197,24 @@
     "address": "Wenzhou, Zhejiang, China",
     "copyright": "© {year} Wenzhou Deyu Machinery Co., Ltd. All rights reserved.",
     "tagline": "Shoe sole injection moulding machine manufacturer. 15+ years export experience."
+  },
+  "blog": {
+    "title": "Blog & Industry Insights",
+    "subtitle": "Expert guides on shoe sole manufacturing, machine selection, and production optimization.",
+    "no_posts": "No articles published yet. Check back soon.",
+    "read_more": "Read More →",
+    "back": "← Back to Blog",
+    "published": "Published",
+    "related_products": "Related Products",
+    "meta_title": "Blog | Shoe Sole Machine Insights | DEYU",
+    "meta_desc": "Industry insights, guides and tips on shoe sole injection moulding machines from DEYU Wenzhou China."
+  },
+  "cases": {
+    "title": "Customer Cases",
+    "subtitle": "Real results from shoe manufacturers around the world using DEYU machines.",
+    "coming_soon_title": "Case Studies Coming Soon",
+    "coming_soon_desc": "We are documenting success stories from our customers in Brazil, Turkey, India, Vietnam and more. Contact us to learn how DEYU machines have transformed production lines.",
+    "meta_title": "Customer Cases | DEYU Machinery",
+    "meta_desc": "Success stories from shoe manufacturers using DEYU sole injection moulding machines across 15+ countries."
   }
 }
