@@ -1,14 +1,19 @@
-export default function Home() {
+import Hero from '@/components/sections/Hero';
+import TrustBar from '@/components/sections/TrustBar';
+import ProductCategoryGrid from '@/components/sections/ProductCategoryGrid';
+import WhyDeyu from '@/components/sections/WhyDeyu';
+import GlobalMap from '@/components/sections/GlobalMap';
+import CtaSection from '@/components/sections/CtaSection';
+
+export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center py-24">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-[#1e3a8a]">
-          DEYU Shoe Sole Injection Moulding Machines
-        </h1>
-        <p className="text-lg text-[#334155]">
-          Phase 1 initialized. Phase 2 coming next.
-        </p>
-      </div>
-    </main>
+    <>
+      <Hero />
+      <TrustBar />
+      <ProductCategoryGrid />
+      <WhyDeyu />
+      <GlobalMap />
+      <CtaSection />
+    </>
   );
 }
