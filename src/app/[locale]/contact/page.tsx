@@ -1,16 +1,27 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { getProductBySlug } from '@/data/products';
+import ContactForm from '@/components/forms/ContactForm';
+import { buildAlternates } from '@/lib/metadata';
+
+interface ContactPageProps {
+  searchParams: Promise<{ machine?: string }>;
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('contact');
   return {
     title: `${t('title')} | DEYU`,
     description: t('subtitle'),
+    alternates: buildAlternates('/contact'),
   };
 }
 
-export default async function ContactPage() {
+export default async function ContactPage({ searchParams }: ContactPageProps) {
   const t = await getTranslations('contact');
+  const { machine } = await searchParams;
+
+  const product = machine ? getProductBySlug(machine) : undefined;
 
   return (
     <>
@@ -80,70 +91,10 @@ export default async function ContactPage() {
             {/* Enquiry form */}
             <div className="lg:col-span-2 bg-white rounded-xl border border-[#e2e8f0] p-8">
               <h2 className="text-xl font-bold text-[#0f172a] mb-6">{t('form_title')}</h2>
-              <form className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                      {t('name_label')} <span className="text-red-500">*</span>
-                    </label>
-                    <input type="text" placeholder={t('name_placeholder')}
-                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                      {t('company_label')}
-                    </label>
-                    <input type="text" placeholder={t('company_placeholder')}
-                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                      {t('email_field_label')} <span className="text-red-500">*</span>
-                    </label>
-                    <input type="email" placeholder={t('email_placeholder')}
-                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                      {t('phone_label')}
-                    </label>
-                    <input type="tel" placeholder={t('phone_placeholder')}
-                      className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-[#334155] mb-1.5">{t('country_label')}</label>
-                  <input type="text" placeholder={t('country_placeholder')}
-                    className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-[#334155] mb-1.5">{t('product_label')}</label>
-                  <select className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent bg-white">
-                    <option value="">{t('product_default')}</option>
-                    <option value="single-color">{t('cat_single')}</option>
-                    <option value="dual-color">{t('cat_dual')}</option>
-                    <option value="multi-color">{t('cat_multi')}</option>
-                    <option value="air-blowing">{t('cat_air')}</option>
-                    <option value="industrial">{t('cat_industrial')}</option>
-                    <option value="equipment">{t('cat_equipment')}</option>
-                    <option value="other">{t('cat_other')}</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-[#334155] mb-1.5">
-                    {t('message_label')} <span className="text-red-500">*</span>
-                  </label>
-                  <textarea rows={5} placeholder={t('message_placeholder')}
-                    className="w-full border border-[#e2e8f0] rounded-md px-4 py-2.5 text-sm text-[#0f172a] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent resize-none" />
-                </div>
-                <button type="submit"
-                  className="w-full bg-[#ea580c] hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-md transition-colors">
-                  {t('submit')}
-                </button>
-                <p className="text-xs text-[#94a3b8] text-center">{t('privacy')}</p>
-              </form>
+              <ContactForm
+                prefilledMachine={product?.slug}
+                prefilledMachineName={product?.name}
+              />
             </div>
           </div>
         </div>

@@ -160,7 +160,12 @@
     "cat_air": "Air Blowing Machines",
     "cat_industrial": "Industrial Parts Machines",
     "cat_equipment": "Supporting Equipment",
-    "cat_other": "Other / Not sure"
+    "cat_other": "Other / Not sure",
+    "submitting": "Sending...",
+    "submit_error": "Something went wrong. Please try again or contact us via WhatsApp.",
+    "error_name": "Please enter your name (at least 2 characters).",
+    "error_email": "Please enter a valid email address.",
+    "error_message": "Please describe your requirements."
   },
   "thankYou": {
     "title": "Enquiry Received!",

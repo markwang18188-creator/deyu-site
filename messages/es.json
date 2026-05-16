@@ -160,7 +160,12 @@
     "cat_air": "Máquinas de Soplado de Aire",
     "cat_industrial": "Máquinas para Piezas Industriales",
     "cat_equipment": "Equipos de Apoyo",
-    "cat_other": "Otro / No estoy seguro"
+    "cat_other": "Otro / No estoy seguro",
+    "submitting": "Enviando...",
+    "submit_error": "Algo salió mal. Inténtalo de nuevo o contáctanos por WhatsApp.",
+    "error_name": "Por favor ingresa tu nombre (mínimo 2 caracteres).",
+    "error_email": "Por favor ingresa un correo electrónico válido.",
+    "error_message": "Por favor describe tus requisitos."
   },
   "thankYou": {
     "title": "¡Consulta Recibida!",

@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import CtaSection from '@/components/sections/CtaSection';
+import { buildAlternates } from '@/lib/metadata';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('about');
   return {
     title: `${t('title')} | DEYU`,
     description: t('subtitle'),
+    alternates: buildAlternates('/about'),
   };
 }
 

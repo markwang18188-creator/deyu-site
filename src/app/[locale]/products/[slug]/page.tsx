@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { products, getProductBySlug, categoryLabels } from '@/data/products';
 import CtaSection from '@/components/sections/CtaSection';
+import { buildAlternates } from '@/lib/metadata';
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -18,8 +19,15 @@ export async function generateMetadata({
   const product = getProductBySlug(slug);
   if (!product) return {};
   return {
-    title: `${product.model} ${categoryLabels[product.category]} | DEYU`,
-    description: product.shortDescription,
+    title: `${product.name} | ${product.model} | DEYU`,
+    description: `${product.shortDescription} CE certified. Contact DEYU for pricing and specifications.`,
+    alternates: buildAlternates(`/products/${slug}`),
+    openGraph: {
+      title: `${product.name} | DEYU`,
+      description: product.shortDescription,
+      url: `https://deyusolemachine.com/products/${slug}`,
+      type: 'website',
+    },
   };
 }
 
@@ -34,8 +42,40 @@ export default async function ProductDetailPage({
 
   const t = await getTranslations('productDetail');
 
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.shortDescription,
+    model: product.model,
+    brand: { '@type': 'Brand', name: 'DEYU' },
+    manufacturer: {
+      '@type': 'Organization',
+      name: 'Wenzhou Deyu Machinery Co., Ltd',
+      url: 'https://deyusolemachine.com',
+    },
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'USD',
+      seller: { '@type': 'Organization', name: 'Wenzhou Deyu Machinery Co., Ltd' },
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://deyusolemachine.com' },
+      { '@type': 'ListItem', position: 2, name: 'Products', item: 'https://deyusolemachine.com/products' },
+      { '@type': 'ListItem', position: 3, name: product.name, item: `https://deyusolemachine.com/products/${product.slug}` },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Breadcrumb */}
       <div className="bg-[#f1f5f9] border-b border-[#e2e8f0] py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -152,7 +192,7 @@ export default async function ProductDetailPage({
                   {t('datasheet_desc')} {product.model}.
                 </p>
                 <Link
-                  href={`/contact?product=${product.slug}` as '/contact'}
+                  href={`/contact?machine=${product.slug}` as '/contact'}
                   className="inline-block bg-[#ea580c] hover:bg-orange-700 text-white font-semibold px-5 py-2.5 rounded-md transition-colors text-sm"
                 >
                   {t('datasheet_cta')}

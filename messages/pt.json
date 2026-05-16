@@ -160,7 +160,12 @@
     "cat_air": "Máquinas de Sopro de Ar",
     "cat_industrial": "Máquinas para Peças Industriais",
     "cat_equipment": "Equipamentos de Suporte",
-    "cat_other": "Outro / Não tenho certeza"
+    "cat_other": "Outro / Não tenho certeza",
+    "submitting": "Enviando...",
+    "submit_error": "Algo deu errado. Tente novamente ou entre em contato pelo WhatsApp.",
+    "error_name": "Por favor, insira seu nome (mínimo 2 caracteres).",
+    "error_email": "Por favor, insira um endereço de e-mail válido.",
+    "error_message": "Por favor, descreva seus requisitos."
   },
   "thankYou": {
     "title": "Consulta Recebida!",

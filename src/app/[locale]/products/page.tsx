@@ -3,12 +3,14 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { products, categoryLabels, type ProductCategory } from '@/data/products';
 import CtaSection from '@/components/sections/CtaSection';
+import { buildAlternates } from '@/lib/metadata';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('productsPage');
   return {
     title: `${t('title')} | DEYU`,
     description: t('subtitle'),
+    alternates: buildAlternates('/products'),
   };
 }
 
