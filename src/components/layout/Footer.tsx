@@ -1,11 +1,23 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { Facebook, Youtube } from 'lucide-react';
 
 const SOCIAL_LINKS = {
   facebook: 'https://www.facebook.com/profile.php?id=100092413230082',
   youtube: 'https://www.youtube.com/@deyumachinery', // TODO: confirm exact handle after channel creation
 };
+
+// Brand icons inlined (lucide-react removed social brand icons due to trademark)
+const FacebookIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white" aria-hidden="true">
+    <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z" />
+  </svg>
+);
+
+const YoutubeIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white" aria-hidden="true">
+    <path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814ZM10 15.464V8.536L16 12l-6 3.464Z" />
+  </svg>
+);
 
 export default async function Footer() {
   const t = await getTranslations('footer');
@@ -128,7 +140,7 @@ export default async function Footer() {
                   aria-label="DEYU on Facebook"
                   className="w-9 h-9 flex items-center justify-center rounded-md bg-[#1e293b] hover:bg-[#1877F2] transition-colors"
                 >
-                  <Facebook className="w-4 h-4 fill-white text-white" />
+                  <FacebookIcon />
                 </a>
                 <a
                   href={SOCIAL_LINKS.youtube}
@@ -137,7 +149,7 @@ export default async function Footer() {
                   aria-label="DEYU on YouTube"
                   className="w-9 h-9 flex items-center justify-center rounded-md bg-[#1e293b] hover:bg-[#FF0000] transition-colors"
                 >
-                  <Youtube className="w-4 h-4 fill-white text-white" />
+                  <YoutubeIcon />
                 </a>
               </div>
             </div>
