@@ -1,7 +1,16 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import CtaSection from '@/components/sections/CtaSection';
 import { buildAlternates } from '@/lib/metadata';
+
+const EXHIBITION_BUCKET = 'https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/exhibitions';
+
+const factoryHighlights = [
+  { src: `${EXHIBITION_BUCKET}/exhibition-01.jpg`, caption: 'Customer Visit' },
+  { src: `${EXHIBITION_BUCKET}/exhibition-15.jpg`, caption: 'Trade Show Booth' },
+  { src: `${EXHIBITION_BUCKET}/exhibition-09.jpg`, caption: 'Production Floor' },
+];
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('about');
@@ -83,7 +92,36 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      {/* Our Factory */}
       <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl lg:text-3xl font-bold text-[#0f172a] mb-3">Our Factory</h2>
+            <p className="text-[#64748b] max-w-2xl mx-auto">
+              Based in Wenzhou — the footwear machinery capital of China — our facility produces
+              shoe-sole injection moulding machines for customers across 30+ countries.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {factoryHighlights.map((f) => (
+              <div key={f.src} className="group">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#f1f5f9]">
+                  <Image
+                    src={f.src}
+                    alt={`DEYU factory — ${f.caption}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <p className="mt-3 text-sm font-medium text-[#334155] text-center">{f.caption}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#f1f5f9]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl lg:text-3xl font-bold text-[#0f172a] mb-4">{t('certs_title')}</h2>
           <p className="text-[#64748b] mb-10">{t('certs_subtitle')}</p>

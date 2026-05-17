@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Menu, X, Phone } from 'lucide-react';
@@ -42,14 +43,15 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="bg-[#ea580c] text-white font-bold text-xl px-3 py-1 rounded-md">
-              DY
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-bold text-lg leading-tight">DEYU</div>
-              <div className="text-xs text-blue-200 leading-tight">SHOE-MAKING MACHINERY</div>
-            </div>
+          <Link href="/" className="flex items-center flex-shrink-0" aria-label="DEYU Home">
+            <Image
+              src="https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/deyu-logo.png"
+              alt="DEYU - Shoe-Making Machinery"
+              width={154}
+              height={80}
+              priority
+              className="h-10 w-auto sm:h-11"
+            />
           </Link>
 
           {/* Desktop Nav */}

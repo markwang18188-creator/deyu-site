@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
@@ -97,9 +98,16 @@ export default async function ProductDetailPage({
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Image placeholder */}
-            <div className="aspect-[4/3] bg-[#e2e8f0] rounded-xl flex items-center justify-center">
-              <span className="text-[#94a3b8] text-lg font-mono">{product.model}</span>
+            {/* Product main image */}
+            <div className="relative aspect-[4/3] bg-[#f8fafc] rounded-xl overflow-hidden border border-[#e2e8f0]">
+              <Image
+                src={product.mainImage}
+                alt={`${product.model} - ${product.name}`}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain p-6"
+              />
             </div>
 
             {/* Info */}
@@ -202,6 +210,26 @@ export default async function ProductDetailPage({
           </div>
         </div>
       </section>
+
+      {/* Video section — only if videoUrl is set */}
+      {product.videoUrl && (
+        <section className="py-12 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xl lg:text-2xl font-bold text-[#0f172a] mb-6 text-center">
+              Watch It in Action
+            </h2>
+            <div className="relative aspect-video rounded-xl overflow-hidden bg-black border border-[#e2e8f0]">
+              <iframe
+                src={product.videoUrl}
+                title={`${product.model} demonstration video`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
       <CtaSection />
     </>

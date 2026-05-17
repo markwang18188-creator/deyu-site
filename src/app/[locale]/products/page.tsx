@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { products, categoryLabels, type ProductCategory } from '@/data/products';
@@ -76,8 +77,14 @@ export default async function ProductsPage({
                 href={`/products/${product.slug}` as '/products'}
                 className="group bg-white rounded-lg border border-[#e2e8f0] hover:border-[#1e3a8a] hover:shadow-lg transition-all overflow-hidden"
               >
-                <div className="aspect-[4/3] bg-[#e2e8f0] flex items-center justify-center">
-                  <span className="text-[#94a3b8] text-sm font-mono">{product.model}</span>
+                <div className="relative aspect-[4/3] bg-[#f8fafc] overflow-hidden">
+                  <Image
+                    src={product.mainImage}
+                    alt={`${product.model} - ${product.name}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 <div className="p-5">
                   <span className="inline-block text-xs font-semibold text-[#ea580c] bg-orange-50 px-2 py-1 rounded mb-3">
