@@ -1,5 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { Facebook, Youtube } from 'lucide-react';
+
+const SOCIAL_LINKS = {
+  facebook: 'https://www.facebook.com/profile.php?id=100092413230082',
+  youtube: 'https://www.youtube.com/@deyumachinery', // TODO: confirm exact handle after channel creation
+};
 
 export default async function Footer() {
   const t = await getTranslations('footer');
@@ -108,6 +114,33 @@ export default async function Footer() {
                 </a>
               </li>
             </ul>
+
+            {/* Social links */}
+            <div className="mt-5">
+              <p className="text-xs font-bold uppercase tracking-wider text-blue-300 mb-3">
+                {t('follow_us')}
+              </p>
+              <div className="flex items-center gap-3">
+                <a
+                  href={SOCIAL_LINKS.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="DEYU on Facebook"
+                  className="w-9 h-9 flex items-center justify-center rounded-md bg-[#1e293b] hover:bg-[#1877F2] transition-colors"
+                >
+                  <Facebook className="w-4 h-4 fill-white text-white" />
+                </a>
+                <a
+                  href={SOCIAL_LINKS.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="DEYU on YouTube"
+                  className="w-9 h-9 flex items-center justify-center rounded-md bg-[#1e293b] hover:bg-[#FF0000] transition-colors"
+                >
+                  <Youtube className="w-4 h-4 fill-white text-white" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
