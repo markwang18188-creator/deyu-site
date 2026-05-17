@@ -1,5 +1,5 @@
 // Bump IMG_VERSION when re-uploading product images so Vercel/next-image cache busts.
-const IMG_VERSION = 'v2';
+const IMG_VERSION = 'v3';
 const img = (name: string) =>
   `https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/${name}?${IMG_VERSION}`;
 
