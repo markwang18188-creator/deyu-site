@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, MapPin, ShieldCheck, Phone, Mail, MessageCircle } from 'lucide-react';
 import { products } from '@/data/products';
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -39,7 +39,41 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#1e3a8a] text-white shadow-md">
+    <header className="sticky top-0 z-50 shadow-md">
+      {/* Top info bar — hidden on mobile to keep header compact */}
+      <div className="hidden md:block bg-[#0f172a] text-[#cbd5e1] text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9">
+          <div className="flex items-center gap-5">
+            <span className="flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-[#ea580c]" />
+              {t('address')}
+            </span>
+            <span className="hidden lg:flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#ea580c]" />
+              {t('certifications')}
+            </span>
+          </div>
+          <div className="flex items-center gap-5">
+            <a
+              href="tel:+8613615778781"
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#ea580c]" />
+              +86 136 1577 8781
+            </a>
+            <a
+              href="mailto:info@wzdeyu.cn"
+              className="hidden lg:flex items-center gap-1.5 hover:text-white transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 text-[#ea580c]" />
+              info@wzdeyu.cn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main bar */}
+      <div className="bg-[#1e3a8a] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -119,18 +153,26 @@ export default function Header() {
             )}
           </nav>
 
-          {/* Right: Language switcher + WhatsApp + Mobile menu */}
+          {/* Right: Language switcher + WhatsApp + Send Enquiry + Mobile menu */}
           <div className="flex items-center gap-2">
             <LanguageSwitcher />
             <a
               href="https://wa.me/8613615778781"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="hidden sm:flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white text-sm font-semibold px-3 py-2 rounded-md transition-colors"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span className="hidden xl:inline">{t('whatsapp')}</span>
+            </a>
+            <Link
+              href="/contact"
               className="hidden sm:flex items-center gap-2 bg-[#ea580c] hover:bg-orange-700 text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors"
             >
-              <Phone className="w-4 h-4" />
-              {t('whatsapp')}
-            </a>
+              <Mail className="w-4 h-4" />
+              {t('send_enquiry')}
+            </Link>
 
             <button
               className="lg:hidden p-2"
@@ -141,6 +183,7 @@ export default function Header() {
             </button>
           </div>
         </div>
+      </div>
       </div>
 
       {/* Mobile Menu */}
@@ -161,11 +204,35 @@ export default function Header() {
               href="https://wa.me/8613615778781"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 flex items-center justify-center gap-2 bg-[#ea580c] text-white text-sm font-semibold px-4 py-3 rounded-md"
+              className="mt-3 flex items-center justify-center gap-2 bg-[#25D366] text-white text-sm font-semibold px-4 py-3 rounded-md"
             >
-              <Phone className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4" />
               {t('whatsapp_us')}
             </a>
+            <Link
+              href="/contact"
+              onClick={() => setMobileOpen(false)}
+              className="mt-2 flex items-center justify-center gap-2 bg-[#ea580c] text-white text-sm font-semibold px-4 py-3 rounded-md"
+            >
+              <Mail className="w-4 h-4" />
+              {t('send_enquiry')}
+            </Link>
+
+            {/* Contact info on mobile (replaces top info bar) */}
+            <div className="mt-4 pt-4 border-t border-blue-700 text-xs text-blue-200 space-y-2">
+              <a href="tel:+8613615778781" className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-[#ea580c]" />
+                +86 136 1577 8781
+              </a>
+              <a href="mailto:info@wzdeyu.cn" className="flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5 text-[#ea580c]" />
+                info@wzdeyu.cn
+              </a>
+              <p className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-[#ea580c]" />
+                {t('address')}
+              </p>
+            </div>
           </nav>
         </div>
       )}
