@@ -41,16 +41,20 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-[#1e3a8a] text-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0" aria-label="DEYU Home">
+          <Link
+            href="/"
+            className="flex items-center flex-shrink-0 bg-white rounded-md px-3 py-1.5 shadow-sm hover:shadow-md transition-shadow"
+            aria-label="DEYU Home"
+          >
             <Image
               src="https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/deyu-logo.png"
               alt="DEYU - Shoe-Making Machinery"
-              width={154}
-              height={80}
+              width={231}
+              height={120}
               priority
-              className="h-10 w-auto sm:h-11"
+              className="h-11 w-auto sm:h-12"
             />
           </Link>
 
