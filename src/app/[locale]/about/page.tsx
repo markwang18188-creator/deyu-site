@@ -4,12 +4,12 @@ import { getTranslations } from 'next-intl/server';
 import CtaSection from '@/components/sections/CtaSection';
 import { buildAlternates } from '@/lib/metadata';
 
-const EXHIBITION_BUCKET = 'https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/exhibitions';
+const FACTORY_BUCKET = 'https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/factory';
 
 const factoryHighlights = [
-  { src: `${EXHIBITION_BUCKET}/exhibition-01.jpg`, caption: 'Customer Visit' },
-  { src: `${EXHIBITION_BUCKET}/exhibition-15.jpg`, caption: 'Trade Show Booth' },
-  { src: `${EXHIBITION_BUCKET}/exhibition-09.jpg`, caption: 'Production Floor' },
+  { src: `${FACTORY_BUCKET}/factory-exterior.jpg`, caption: 'Wenzhou Factory' },
+  { src: `${FACTORY_BUCKET}/workshop-01.jpg`, caption: 'Assembly Workshop' },
+  { src: `${FACTORY_BUCKET}/workshop-02.jpg`, caption: 'Production Line' },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
