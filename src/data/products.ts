@@ -1,3 +1,6 @@
+const img = (name: string) =>
+  `https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/${name}`;
+
 export type ProductCategory =
   | 'single-color'
   | 'dual-color'
@@ -50,7 +53,7 @@ export const products: Product[] = [
       'Machine Weight': '≈5,500kg',
     },
     applications: ['Sports shoes', 'Casual shoes', 'Safety shoes', 'Sandals'],
-    mainImage: '/images/products/dy-1120a.jpg',
+    mainImage: img('dy-1120.jpg'),
     gallery: [],
   },
   {
@@ -77,7 +80,7 @@ export const products: Product[] = [
       'Cooling': 'Water-cooling',
     },
     applications: ['Sports shoe soles', 'Running shoe soles', 'Outdoor footwear'],
-    mainImage: '/images/products/dy-1106tr-tpu.jpg',
+    mainImage: img('dy-1106.jpg'),
     gallery: [],
   },
   {
@@ -102,7 +105,7 @@ export const products: Product[] = [
       'Cooling': 'Water-cooling',
     },
     applications: ['Sample making', 'Small-batch production', 'Mould trial'],
-    mainImage: '/images/products/dy-1106.jpg',
+    mainImage: img('dy-1106.jpg'),
     gallery: [],
   },
   {
@@ -127,7 +130,7 @@ export const products: Product[] = [
       'Material': 'PVC / TPR / TPU',
     },
     applications: ['Flat sole shoes', 'Casual footwear', 'House slippers'],
-    mainImage: '/images/products/dy-1102h.jpg',
+    mainImage: img('dy-1102-v.jpg'),
     gallery: [],
   },
   {
@@ -151,7 +154,7 @@ export const products: Product[] = [
       'Material': 'PVC / TPR / TPU',
     },
     applications: ['Flat soles', 'Economy footwear', 'OEM production'],
-    mainImage: '/images/products/dy-1102.jpg',
+    mainImage: img('dy-1102.png'),
     gallery: [],
   },
   {
@@ -176,7 +179,7 @@ export const products: Product[] = [
       'Cooling': 'Water-cooling',
     },
     applications: ['Sports soles', 'Athletic footwear', 'High-volume production'],
-    mainImage: '/images/products/dy-1112tr-tpu.jpg',
+    mainImage: img('dy-1112.jpg'),
     gallery: [],
   },
 
@@ -213,7 +216,7 @@ export const products: Product[] = [
       'Basketball shoes',
       'Two-tone fashion soles',
     ],
-    mainImage: '/images/products/dy-2216tr-tpu.jpg',
+    mainImage: img('dy-2212t.jpg'),
     gallery: [],
   },
   {
@@ -238,7 +241,7 @@ export const products: Product[] = [
       'Colors': '2',
     },
     applications: ['Fashion soles', 'Athletic shoes', 'Casual footwear'],
-    mainImage: '/images/products/dy-2220a.jpg',
+    mainImage: img('dy-2220.jpg'),
     gallery: [],
   },
   {
@@ -263,7 +266,7 @@ export const products: Product[] = [
       'Colors': '2',
     },
     applications: ['Running shoes', 'Trail shoes', 'Technical soles'],
-    mainImage: '/images/products/dy-2212tpu-tr.jpg',
+    mainImage: img('dy-2212t.jpg'),
     gallery: [],
   },
 
@@ -291,7 +294,7 @@ export const products: Product[] = [
       'Material': 'PVC / TPR / TPU',
     },
     applications: ['Premium fashion soles', 'Designer footwear', 'Multi-color sport soles'],
-    mainImage: '/images/products/dy-3220c.jpg',
+    mainImage: img('dy-3220.jpg'),
     gallery: [],
   },
   {
@@ -317,7 +320,7 @@ export const products: Product[] = [
       'Material': 'PVC / TPR / TPU',
     },
     applications: ['High-end fashion soles', 'Complex pattern soles', 'Brand footwear OEM'],
-    mainImage: '/images/products/dy-4212c.jpg',
+    mainImage: img('dy-4212.jpg'),
     gallery: [],
   },
   {
@@ -343,7 +346,7 @@ export const products: Product[] = [
       'Material': 'PVC / TPR / TPU',
     },
     applications: ['Sports soles', 'Fashion footwear', 'Multi-color casual soles'],
-    mainImage: '/images/products/dy-3212b.jpg',
+    mainImage: img('dy-3212.png'),
     gallery: [],
   },
   {
@@ -368,7 +371,7 @@ export const products: Product[] = [
       'Material': 'TR / TPU',
     },
     applications: ['TR soles', 'TPU soles', 'Small production runs'],
-    mainImage: '/images/products/dy-150.jpg',
+    mainImage: img('dy-150.jpg'),
     gallery: [],
   },
 
@@ -395,7 +398,7 @@ export const products: Product[] = [
       'Colors': '1',
     },
     applications: ['Slippers', 'Sandals', 'Lightweight casual footwear'],
-    mainImage: '/images/products/dy-1124b.jpg',
+    mainImage: img('dy-1124.jpg'),
     gallery: [],
   },
   {
@@ -419,7 +422,7 @@ export const products: Product[] = [
       'Colors': '2',
     },
     applications: ['Fashion slippers', 'Dual-color sandals', 'Beach footwear'],
-    mainImage: '/images/products/dy-2224b.jpg',
+    mainImage: img('dy-2220-s.jpg'),
     gallery: [],
   },
   {
@@ -443,7 +446,7 @@ export const products: Product[] = [
       'Colors': '3 (mixed)',
     },
     applications: ['Premium slippers', 'Swirl-pattern sandals', 'Fashion footwear'],
-    mainImage: '/images/products/dy-3124c.jpg',
+    mainImage: img('dy-3124.jpg'),
     gallery: [],
   },
 
@@ -470,7 +473,7 @@ export const products: Product[] = [
       'Material': 'PVC / TPR / TPU',
     },
     applications: ['Dumbbells', 'Barbell weight plates', 'Automotive seat cushions'],
-    mainImage: '/images/products/dy-1106-s.jpg',
+    mainImage: img('dy-1106h.jpg'),
     gallery: [],
   },
   {
@@ -494,7 +497,7 @@ export const products: Product[] = [
       'Material': 'PVC / TPR / TPU',
     },
     applications: ['Dumbbells', 'Barbell plates', 'Car seat cushions'],
-    mainImage: '/images/products/dy-1102-s.jpg',
+    mainImage: img('dy-1102-v.jpg'),
     gallery: [],
   },
 ];

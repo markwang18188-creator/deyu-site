@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   description:
     'Leading shoe sole injection moulding machine manufacturer in Wenzhou, China. 15+ years experience, ISO 9001 & CE certified. TPU, PVC, rubber sole machines for global markets.',
   metadataBase: new URL('https://deyusolemachine.com'),
+  verification: {
+    google: 'b1VWCNF1SFj5L8G39qmE18mrugzqKOs6CX2-MzHIR2U',
+  },
 };
 
 export function generateStaticParams() {
