@@ -1,16 +1,36 @@
 /**
- * 选型矩阵 — 把销售剧本里的"吨位 + 材料 + 模配置"逻辑
- * 映射到 products.ts 里的具体 DEYU 型号。
+ * DEYU 选型矩阵 — 给 AI 客服用的决策表
  *
- * 这是给 AI 客服用的查找表。当客户走完销售剧本 Step 2-4
- * (材料 + 颜色 + 一模一只/一模一双 + 鞋类),
- * AI 调用 recommendModels() 拿到 1-3 个具体的 DEYU 型号 slug,
- * 再去 products.ts 拉规格 + 图片 + slug URL 回答客户。
+ * 知识来源:
+ *   - sales_playbook.xml: 9 步销售剧本(Gemini + Mark 共同设计)
+ *   - products.ts: 19 个标准型号(目录配置, 可定制)
+ *   - Mark 口授知识: 工位数规则、机头结构、TPU 重定位、南美偏好等
  *
- * 来源:
- *   - 销售剧本: src/data/chatbot/sales_playbook.xml
- *   - 产品库: src/data/products.ts
- *   - 维护人: Mark + Claude (有新型号上市要在这里加一条)
+ * 维护: 有新型号/新规则,在这里改 mapping + recommendModels() 逻辑
+ *
+ * ───── 核心认知(AI 系统 prompt 必须知道的)──────────────────
+ * 1. 型号末 2 位 = 工位数 → 推断模具配置:
+ *      02/04/06/08/12 → 一般"一模一双"
+ *      16/20/24       → 一般"一模一只"
+ *
+ * 2. 机头结构 → 决定合模压力上限:
+ *      鹅头(C 字型)   → ≤ 100 吨
+ *      立柱式(3/4 柱) → > 100 吨 (TR/TPU 必须立柱)
+ *
+ * 3. 头数 / 颜色 / 工位 是 3 个独立维度:
+ *      头数 → 决定叠层数 (每层一个头)
+ *      颜色 → 每层最多几种颜色
+ *      工位 → 决定产量
+ *
+ * 4. 双色机吨位 = 副头 + 主头 分别配置 (如 55T/55T、55T/80T、80T/80T)
+ *
+ * 5. ⚠ 3+ 色机器没有"一模一双"配置, 只有"一模一只"
+ *
+ * 6. 目录是标准配置, 非标的吨位/工位可以定制 (走 Mark 报价)
+ *
+ * 7. 区域偏好:
+ *      南美 (委内瑞拉、哥伦比亚): 偏好一模一双
+ *      南美整体: 用铝模(便宜快但只能做哑光)
  */
 
 import type { Product } from '../products';
@@ -20,6 +40,7 @@ export type ColorCount = 1 | 2 | 3 | 4;
 export type MoldConfig = '1-piece-per-mold' | '1-pair-per-mold' | 'flat-sheet';
 export type ProductCategory =
   | 'sole-only'           // 纯鞋底
+  | 'outsole'             // 大底(高强度需求,如足球鞋底)
   | 'one-piece-slipper'   // 一体成型拖鞋
   | 'complete-shoe'       // 完整鞋(含跟/带)
   | 'slipper-sandal'      // 拖鞋/凉鞋(吹气类)
@@ -30,18 +51,24 @@ export interface SelectionCriteria {
   colors: ColorCount;
   moldConfig?: MoldConfig;
   productCategory?: ProductCategory;
+  /** 客户描述提示 — 用于触发特殊推荐(如 "football cleats" → DY-2212T) */
+  hint?: string;
+  /** 客户预算偏好 — 影响 fallback 选择 */
+  budgetTier?: 'tight' | 'standard' | 'premium';
 }
 
 export interface SelectionResult {
   /** 推荐机型 slug (对应 products.ts), 按推荐度排序 */
   productSlugs: string[];
-  /** 计算得出的吨位 */
-  tonnage: number;
+  /** 计算得出的吨位 (副头/主头若是双色) */
+  tonnage: number | string;
   /** 推荐的模具高度 (mm) */
   moldHeight: number;
+  /** 机头结构 */
+  headStructure: 'gooseneck' | 'column';
   /** 销售备注 (AI 可以转述给客户) */
   notes: string[];
-  /** 应该提示的可选升级 (AI 不暴露具体价格,只说"可选升级") */
+  /** 应该提示的可选升级 */
   upgrades: ('triangle-mold' | 'spacer-plates' | 'air-cooling' | 'water-cooling' | 'auto-open' | 'external-robot')[];
 }
 
@@ -49,86 +76,129 @@ export interface SelectionResult {
  * 主选型函数 — AI 调用入口
  */
 export function recommendModels(criteria: SelectionCriteria): SelectionResult {
-  const { materials, colors, moldConfig, productCategory } = criteria;
+  const { materials, colors, moldConfig, productCategory, hint = '', budgetTier = 'standard' } = criteria;
+  const hintLower = hint.toLowerCase();
 
-  // ── 1. 计算吨位 (Materials_and_Tonnage 规则) ──────────────
-  const needsHighClamping = materials.some((m) => m === 'TR' || m === 'TPU');
-  let tonnage: number;
-  if (needsHighClamping) {
-    tonnage = moldConfig === '1-piece-per-mold' ? 100 : 150;
+  const isTPUorTR = materials.some((m) => m === 'TR' || m === 'TPU');
+  const isOutsole = productCategory === 'outsole' || /football|cleat|outsole|大底|足球/.test(hintLower);
+
+  // ── 头部结构判断 (TR/TPU 100T+ 必须立柱式) ──
+  const headStructure: SelectionResult['headStructure'] =
+    isTPUorTR && (moldConfig === '1-pair-per-mold' || isOutsole) ? 'column' : 'gooseneck';
+
+  // ── 吨位计算 ──
+  let tonnage: number | string;
+  if (colors === 2 && !isTPUorTR) {
+    // 双色 PVC/TPR — 副头/主头分档
+    tonnage = budgetTier === 'tight' ? '55T/55T' : budgetTier === 'premium' ? '80T/80T' : '55T/80T';
+  } else if (isTPUorTR) {
+    tonnage = isOutsole ? 150 : 100;
   } else {
     tonnage = moldConfig === '1-piece-per-mold' ? 55 : 80;
   }
 
-  // ── 2. 计算模高 (Mold_Heights_and_Structures 规则) ────────
+  // ── 模高 ──
   let moldHeight = 180;
   if (productCategory === 'one-piece-slipper') moldHeight = 220;
   if (productCategory === 'complete-shoe') moldHeight = 350;
 
-  // ── 3. 推荐机型 ────────────────────────────────────────
+  // ── 推荐机型 ──
   const productSlugs: string[] = [];
 
-  // 工业件 — 独立分类,优先匹配
+  // 规则 1: 工业件
   if (productCategory === 'industrial-part') {
     productSlugs.push('industrial-parts-six-station-machine', 'industrial-parts-two-station-machine');
   }
-  // 吹气类 (拖鞋/凉鞋)
+  // 规则 2: 吹气类拖鞋/凉鞋
   else if (productCategory === 'slipper-sandal') {
     if (colors === 1) productSlugs.push('air-blowing-injection-machine');
     else if (colors === 2) productSlugs.push('dual-color-air-blowing-machine');
     else productSlugs.push('three-color-mixed-air-blowing-machine');
   }
-  // 单色机
+  // 规则 3: 单色
   else if (colors === 1) {
-    if (needsHighClamping) {
+    if (isTPUorTR) {
       // TR/TPU 单色
-      if (moldConfig === '1-pair-per-mold' || productCategory === 'complete-shoe') {
-        productSlugs.push('tr-tpu-water-cooling-sole-machine', 'tpu-tr-vertical-injection-machine');
+      if (budgetTier === 'tight' || /sample|prototype|small.batch|试水|入门/.test(hintLower)) {
+        productSlugs.push('two-station-slide-sole-machine'); // DY-1102 (入门 TPU)
+      }
+      if (moldConfig === '1-pair-per-mold') {
+        productSlugs.push('tr-tpu-water-cooling-sole-machine'); // DY-1112TR/TPU
       } else {
-        productSlugs.push('tpu-single-color-vertical-machine', 'tr-tpu-water-cooling-sole-machine');
+        productSlugs.push('tpu-single-color-vertical-machine'); // DY-1106TR/TPU
       }
     } else {
       // PVC/TPR 单色
-      if (moldConfig === '1-pair-per-mold') {
-        productSlugs.push('pvc-single-color-rotary-machine'); // DY-1120A (20 工位高产)
+      const wantsAirBlow = /air.blow|吹气/.test(hintLower);
+      const isFlatSole = productCategory === 'sole-only' && /flat|片底|薄底/.test(hintLower);
+
+      if (moldConfig === '1-piece-per-mold') {
+        if (wantsAirBlow) {
+          productSlugs.push('air-blowing-injection-machine'); // DY-1124 (兼顾吹气)
+        } else {
+          productSlugs.push('pvc-single-color-rotary-machine'); // DY-1120
+        }
+      } else if (isFlatSole) {
+        // 片底, 一模一双, 需要自动开模
+        productSlugs.push('pvc-six-station-rotary-machine'); // DY-1106 (1108/1112 是定制)
       } else {
-        productSlugs.push('pvc-six-station-rotary-machine', 'automatic-mold-opening-sole-machine', 'two-station-slide-sole-machine');
+        // 一模一双普通鞋底
+        productSlugs.push('pvc-six-station-rotary-machine');
       }
     }
   }
-  // 双色机
+  // 规则 4: 双色
   else if (colors === 2) {
-    if (needsHighClamping) {
-      productSlugs.push('tpu-dual-color-injection-machine', 'tpu-tr-dual-color-12-station');
+    if (isTPUorTR) {
+      if (isOutsole) {
+        productSlugs.push('tpu-tr-dual-color-12-station'); // DY-2212T 大梁水冷 150T
+      } else {
+        productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220 100T
+        if (budgetTier === 'tight') {
+          productSlugs.push('tpu-dual-color-injection-machine'); // DY-2216TR/TPU fallback
+        }
+      }
     } else {
-      productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220A
+      // PVC/TPR 双色
+      if (moldConfig === '1-pair-per-mold') {
+        // 一模一双 (常见南美客户)
+        productSlugs.push('tpu-tr-dual-color-12-station'); // DY-2212 鹅头版(同 slug 复用,看后缀)
+      } else {
+        productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220
+      }
     }
   }
-  // 三色及以上
-  else {
-    if (colors === 3) {
-      productSlugs.push('multi-color-rotary-machine', 'three-color-12-20-station-machine');
+  // 规则 5: 多色 (3+ 永远一模一只)
+  else if (colors === 3) {
+    const wantsFlexibility = /flexible|multi|variety|various|不同款|多种/.test(hintLower);
+    if (wantsFlexibility) {
+      productSlugs.push('three-color-three-head-flexible-machine'); // DY-3324 (3 头灵活之王)
+    } else if (budgetTier === 'premium' || isTPUorTR) {
+      productSlugs.push('three-color-12-20-station-machine'); // DY-3212B 立柱高规
     } else {
-      productSlugs.push('four-color-rotary-sole-machine'); // DY-4212C
+      productSlugs.push('multi-color-rotary-machine'); // DY-3220 走量型
     }
+  }
+  else if (colors === 4) {
+    productSlugs.push('four-color-rotary-sole-machine'); // DY-4212C
   }
 
-  // ── 4. 生成销售备注 ────────────────────────────────────
+  // ── 销售备注 ──
   const notes: string[] = [];
-  notes.push(`Recommended clamping force: ${tonnage} tons`);
+  notes.push(`Recommended clamping force: ${tonnage}T`);
   notes.push(`Recommended mold height: ${moldHeight}mm`);
-  if (needsHighClamping) {
-    notes.push('TR/TPU requires higher clamping force — premium machines selected.');
-  }
+  notes.push(`Machine head type: ${headStructure === 'column' ? 'column-type (>100T)' : 'gooseneck (≤100T)'}`);
+  if (colors >= 3) notes.push('Note: 3+ color machines only support 1-piece-per-mold configuration.');
+  if (isTPUorTR && isOutsole) notes.push('TPU outsoles require water-cooling + 150T (premium config).');
 
-  // ── 5. 升级建议 (不带价格) ────────────────────────────
+  // ── 升级建议 ──
   const upgrades: SelectionResult['upgrades'] = [];
   if (productCategory === 'complete-shoe') upgrades.push('triangle-mold');
   if (productCategory === 'sole-only' && moldHeight !== 180) upgrades.push('spacer-plates');
-  upgrades.push('air-cooling', 'water-cooling'); // 让 AI 询问客户偏好
+  upgrades.push('air-cooling', 'water-cooling');
   if (productCategory === 'sole-only' && moldConfig === 'flat-sheet') upgrades.push('auto-open');
 
-  return { productSlugs, tonnage, moldHeight, notes, upgrades };
+  return { productSlugs, tonnage, moldHeight, headStructure, notes, upgrades };
 }
 
 /**
@@ -169,6 +239,6 @@ export function formatRecommendationForCustomer(
     lines.push(`   View: https://deyusolemachine.com/products/${p.slug}`);
     lines.push('');
   });
-  lines.push(`Technical specs: ~${result.tonnage}T clamping, ${result.moldHeight}mm mold height.`);
+  lines.push(`Technical specs: ~${result.tonnage}T clamping, ${result.moldHeight}mm mold height, ${result.headStructure} head.`);
   return lines.join('\n');
 }
