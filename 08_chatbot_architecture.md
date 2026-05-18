@@ -188,7 +188,32 @@ async function notifyFeishu(lead: Lead) {
 
 ## 前端 UI
 
-**ChatWidget 位置**: 右下角浮动,跟 WhatsApp 浮动按钮**左侧**(避免遮挡)
+### 入口策略 (方案 B, 2026-05-18 决定)
+
+**两个入口并存**:
+
+1. **全站浮动聊天图标** (右下角)
+   - 蓝色圆形 💬 按钮, 在现有 WhatsApp 浮动按钮**上方**
+   - 出现在 deyusolemachine.com 所有页面
+   - 客户主动点击才弹聊天 — 不自动弹出
+
+2. **产品页 banner** (只在 `/products` 和 `/products/[slug]` 显示)
+   - 位置: 产品列表页顶部 / 产品详情页 hero 下方
+   - 文案: "🤖 Not sure which DEYU machine fits your production? Get a 5-minute AI-powered recommendation →"
+   - 样式: 浅橙色背景, 橙色边框, 整体高度 ~60px (不抢戏)
+   - 点击 banner 直接打开聊天窗
+
+**为什么是 B 不是 A/C**:
+- A (只浮动图标): 太被动, 客户发现率低
+- C (替换 Send Enquiry 按钮): 风险高, 想填表单的客户会跳出
+- B 在客户"求助心理"最强的产品页主动推, 其他页面不打扰
+
+**不做的方案**:
+- 不做 30 秒自动弹出 (打扰客户)
+- 不替换现有的 Send Enquiry / WhatsApp 按钮 (多入口并存, 客户选)
+
+### ChatWidget 弹窗本身
+
 **首次打开**: 显示欢迎语 "Hi! I'm the DEYU product advisor. What type of shoe soles do you produce?"
 **进度提示**: 顶部小进度条 "Question 3 of 9 · Mold configuration"
 **快捷退出**: 任何时候可点 "💬 Chat with human on WhatsApp" 退出 AI 走人工
