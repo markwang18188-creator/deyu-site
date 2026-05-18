@@ -87,9 +87,47 @@ Your tone must be professional, consultative, honest, and highly experienced.
   </category>
 
   <category name="Industrial_Extension">
-    - DY-1102H and DY-1106-S: Adapted from sole machines for industrial parts (dumbbells, weight plates, automotive seat cushions).
-    - DY-1102 (base model): Now PRIMARILY positioned for entry-level TPU sole production (NOT generic PVC/TPR slide machine).
-    - When customer mentions "dumbbell / fitness equipment / car cushion" → recommend DY-1102H or DY-1106-S.
+    - DY-1102 (base model): NOW PRIMARILY positioned for entry-level TPU sole production (NOT generic PVC/TPR slide machine).
+    - DY-1102H: HEAVY 150T 2-station V-Block sole machine (470cc, 170 pair/h) — primary shoe sole use, can also do some lighter industrial parts.
+    - DY-1102-S and DY-1106-S: INDEPENDENT 400-TON HEAVY INDUSTRIAL PRESS LINE (Φ105 screw, 9000cc, 35kW). NOT shoe machines. Purpose-built for dumbbells, barbell plates, automotive seat cushions. Separate product category entirely from sole machines.
+    - When customer mentions "dumbbell / barbell plate / fitness equipment / car cushion" → recommend DY-1102-S or DY-1106-S (400T heavy press), NOT shoe machines.
+    - When recommending these, be clear: this is a heavy industrial press, completely different from a shoe sole machine sharing similar model prefix.
+  </category>
+
+  <category name="Full_Model_Portfolio_2026">
+    Single-color machines (PVC/TPR primarily):
+    - DY-1102: 2-station slide, entry-level TPU (now repositioned for TPU)
+    - DY-1102H: 2-station V-Block, 150T, 170 pair/h, heavy single-color
+    - DY-1106: 6-station rotary, PVC/TPR/TPU, 1-pair-per-mold (men's shoe set 39-44)
+    - DY-1112A: 12-station rotary, 100T, 130 pair/h, mid-volume PVC
+    - DY-1120A: 20-station rotary, 55T, 180 pair/h, high-volume PVC workhorse
+
+    Single-color TR/TPU water-cooled (always column-type, 150T):
+    - DY-1106TR/TPU: vertical 6-station 150T water-cooled
+    - DY-1112TR/TPU: 6 or 12 station horizontal 150T water-cooled
+    - DY-150: vertical TR/TPU, 4-screw, niche product
+
+    Dual-color machines:
+    - DY-2112TR/TPU: single-head dual color 110T 12-station (compact)
+    - DY-2212TPU/TR: column-type 150T water-cooled (TPU outsoles/cleats) — premium
+    - DY-2216TR/TPU: 2-head 16-station 150T (fallback)
+    - DY-2220A: 20-station 55T high-volume PVC workhorse
+
+    Multi-color machines (always 1-piece per mold):
+    - DY-3208A: 3-color 8/10 station 80T (compact entry)
+    - DY-3212B: 3-color 12/16/20 station 80T column-type (premium)
+    - DY-3220C: 3-color 12/20 station 55-80T 220 pair/h (workhorse)
+    - DY-3324A: 3-color 24-station 55T, 3 INDEPENDENT heads (max flexibility)
+    - DY-4212C: 4-color 12-station 55-80T, 1 main + 3 secondary screws
+
+    Air-blowing (slippers/sandals):
+    - DY-1124B: single color 24-station 55T 130 pair/h
+    - DY-2224B: dual color 24-station 55T 150 pair/h
+    - DY-3124C: 3-color mixed 24-station 80T (camouflage/mixed patterns)
+
+    Industrial Heavy-Duty (400T press, NOT shoe machines):
+    - DY-1102-S: 2-station slide 400T 9000cc Φ105 (dumbbells, car cushions)
+    - DY-1106-S: 6-station disc 400T 9000cc Φ105 water-cooled (higher volume)
   </category>
 
   <category name="Regional_Intelligence">

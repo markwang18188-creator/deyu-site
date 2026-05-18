@@ -123,9 +123,9 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
         productSlugs.push('two-station-slide-sole-machine'); // DY-1102 (入门 TPU)
       }
       if (moldConfig === '1-pair-per-mold') {
-        productSlugs.push('tr-tpu-water-cooling-sole-machine'); // DY-1112TR/TPU
+        productSlugs.push('tr-tpu-water-cooling-sole-machine'); // DY-1112TR/TPU (6 或 12 工位)
       } else {
-        productSlugs.push('tpu-single-color-vertical-machine'); // DY-1106TR/TPU
+        productSlugs.push('tpu-single-color-vertical-machine'); // DY-1106TR/TPU (立式)
       }
     } else {
       // PVC/TPR 单色
@@ -134,16 +134,20 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
 
       if (moldConfig === '1-piece-per-mold') {
         if (wantsAirBlow) {
-          productSlugs.push('air-blowing-injection-machine'); // DY-1124 (兼顾吹气)
+          productSlugs.push('air-blowing-injection-machine'); // DY-1124B (兼顾吹气)
         } else {
-          productSlugs.push('pvc-single-color-rotary-machine'); // DY-1120
+          productSlugs.push('pvc-single-color-rotary-machine'); // DY-1120A (20 工位 180 pair/h)
         }
       } else if (isFlatSole) {
         // 片底, 一模一双, 需要自动开模
-        productSlugs.push('pvc-six-station-rotary-machine'); // DY-1106 (1108/1112 是定制)
+        productSlugs.push('pvc-six-station-rotary-machine'); // DY-1106
+        productSlugs.push('pvc-single-color-12-station-machine'); // DY-1112A (12 工位 100T)
       } else {
         // 一模一双普通鞋底
-        productSlugs.push('pvc-six-station-rotary-machine');
+        productSlugs.push('pvc-six-station-rotary-machine'); // DY-1106
+        if (budgetTier === 'standard' || budgetTier === 'premium') {
+          productSlugs.push('pvc-single-color-12-station-machine'); // DY-1112A 中产量备选
+        }
       }
     }
   }
@@ -151,9 +155,11 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
   else if (colors === 2) {
     if (isTPUorTR) {
       if (isOutsole) {
-        productSlugs.push('tpu-tr-dual-color-12-station'); // DY-2212T 大梁水冷 150T
+        productSlugs.push('tpu-tr-dual-color-12-station'); // DY-2212TPU/TR 立柱水冷 150T
       } else {
-        productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220 100T
+        productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220A
+        // 单头双色紧凑型(110T 12 工位) — 工厂面积紧或预算偏紧
+        productSlugs.push('single-head-dual-color-tr-tpu-machine'); // DY-2112TR/TPU
         if (budgetTier === 'tight') {
           productSlugs.push('tpu-dual-color-injection-machine'); // DY-2216TR/TPU fallback
         }
@@ -162,9 +168,9 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
       // PVC/TPR 双色
       if (moldConfig === '1-pair-per-mold') {
         // 一模一双 (常见南美客户)
-        productSlugs.push('tpu-tr-dual-color-12-station'); // DY-2212 鹅头版(同 slug 复用,看后缀)
+        productSlugs.push('tpu-tr-dual-color-12-station'); // DY-2212 12 工位
       } else {
-        productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220
+        productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220A 20 工位高产
       }
     }
   }
@@ -172,11 +178,13 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
   else if (colors === 3) {
     const wantsFlexibility = /flexible|multi|variety|various|不同款|多种/.test(hintLower);
     if (wantsFlexibility) {
-      productSlugs.push('three-color-three-head-flexible-machine'); // DY-3324 (3 头灵活之王)
+      productSlugs.push('three-color-three-head-flexible-machine'); // DY-3324A (3 头灵活之王)
+    } else if (budgetTier === 'tight' || /small|compact|入门|小批量/.test(hintLower)) {
+      productSlugs.push('three-color-eight-ten-station-machine'); // DY-3208A 8/10 工位入门
     } else if (budgetTier === 'premium' || isTPUorTR) {
       productSlugs.push('three-color-12-20-station-machine'); // DY-3212B 立柱高规
     } else {
-      productSlugs.push('multi-color-rotary-machine'); // DY-3220 走量型
+      productSlugs.push('multi-color-rotary-machine'); // DY-3220C 走量型(220 pair/h)
     }
   }
   else if (colors === 4) {
