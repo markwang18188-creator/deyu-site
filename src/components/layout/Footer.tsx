@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 
@@ -24,8 +25,30 @@ export default async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0f172a] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="relative bg-[#0f172a] text-white overflow-hidden">
+      {/* 装饰光斑 */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        {/* Brand row */}
+        <div className="flex items-center gap-4 mb-10 pb-8 border-b border-[#1e293b]">
+          <Image
+            src="/deyu-mark.png"
+            alt="DEYU"
+            width={310}
+            height={380}
+            className="h-10 w-auto brightness-0 invert"
+          />
+          <div className="h-8 w-px bg-white/20" />
+          <div>
+            <div className="text-xl font-bold tracking-wide">DEYU</div>
+            <div className="text-[10px] text-blue-200 tracking-[0.2em] uppercase font-medium">
+              Shoe-Making Machinery
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {/* Products */}
           <div>

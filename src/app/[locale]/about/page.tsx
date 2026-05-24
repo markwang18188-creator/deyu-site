@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import CtaSection from '@/components/sections/CtaSection';
+import FadeIn from '@/components/ui/FadeIn';
 import { buildAlternates } from '@/lib/metadata';
 
 // Local public/factory/ — instant load + Vercel edge delivery.
@@ -37,21 +38,27 @@ export default async function AboutPage() {
 
   return (
     <>
-      <div className="bg-[#1e3a8a] text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl lg:text-4xl font-bold mb-4">{t('title')}</h1>
-          <p className="text-blue-200 text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
+      <div className="relative bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#1e40af] text-white py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-industrial-grid animate-grid-shift opacity-50" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <FadeIn>
+            <h1 className="text-3xl lg:text-5xl font-bold mb-4">{t('title')}</h1>
+            <p className="text-blue-200 text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
+          </FadeIn>
         </div>
       </div>
 
       <section className="py-12 bg-white border-b border-[#e2e8f0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <div className="text-4xl font-bold text-[#1e3a8a] mb-2">{s.value}</div>
+            {stats.map((s, i) => (
+              <FadeIn key={s.label} delay={i * 0.1}>
+                <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-br from-[#1e3a8a] to-[#3b82f6] bg-clip-text text-transparent mb-2">
+                  {s.value}
+                </div>
                 <div className="text-sm text-[#64748b]">{s.label}</div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -105,19 +112,22 @@ export default async function AboutPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {factoryHighlights.map((f) => (
-              <div key={f.src} className="group">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#f1f5f9]">
-                  <Image
-                    src={f.src}
-                    alt={`DEYU factory — ${f.caption}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+            {factoryHighlights.map((f, i) => (
+              <FadeIn key={f.src} delay={i * 0.1}>
+                <div className="group">
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#f1f5f9] shadow-md hover:shadow-2xl transition-shadow duration-300">
+                    <Image
+                      src={f.src}
+                      alt={`DEYU factory — ${f.caption}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-110 transition-transform duration-[800ms] ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                  <p className="mt-3 text-sm font-medium text-[#334155] text-center">{f.caption}</p>
                 </div>
-                <p className="mt-3 text-sm font-medium text-[#334155] text-center">{f.caption}</p>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -128,14 +138,13 @@ export default async function AboutPage() {
           <h2 className="text-2xl lg:text-3xl font-bold text-[#0f172a] mb-4">{t('certs_title')}</h2>
           <p className="text-[#64748b] mb-10">{t('certs_subtitle')}</p>
           <div className="flex flex-wrap justify-center gap-6">
-            {['ISO 9001:2000', 'CE Certified'].map((cert) => (
-              <div
-                key={cert}
-                className="bg-[#f1f5f9] border border-[#e2e8f0] rounded-xl px-10 py-8 flex flex-col items-center gap-3"
-              >
-                <div className="text-4xl">🏆</div>
-                <div className="font-bold text-[#0f172a]">{cert}</div>
-              </div>
+            {['ISO 9001:2000', 'CE Certified'].map((cert, i) => (
+              <FadeIn key={cert} delay={i * 0.1}>
+                <div className="group bg-white border border-[#e2e8f0] rounded-2xl px-12 py-8 flex flex-col items-center gap-3 hover:border-orange-400 hover:shadow-2xl hover:shadow-orange-500/10 hover:-translate-y-1 transition-all duration-300">
+                  <div className="text-5xl group-hover:scale-110 transition-transform duration-300">🏆</div>
+                  <div className="font-bold text-[#0f172a] text-lg">{cert}</div>
+                </div>
+              </FadeIn>
             ))}
           </div>
           <p className="text-xs text-[#94a3b8] mt-6">{t('certs_coming_soon')}</p>

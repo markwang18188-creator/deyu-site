@@ -25,9 +25,11 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
   return (
     <>
-      <div className="bg-[#1e3a8a] text-white py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl lg:text-4xl font-bold mb-3">{t('title')}</h1>
+      <div className="relative bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#1e40af] text-white py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-industrial-grid animate-grid-shift opacity-50" />
+        <div className="absolute -top-10 -right-10 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl lg:text-5xl font-bold mb-3">{t('title')}</h1>
           <p className="text-blue-200 text-lg">{t('subtitle')}</p>
         </div>
       </div>
@@ -89,7 +91,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </div>
 
             {/* Enquiry form */}
-            <div className="lg:col-span-2 bg-white rounded-xl border border-[#e2e8f0] p-8">
+            <div className="lg:col-span-2 bg-white rounded-2xl border border-[#e2e8f0] p-8 shadow-xl shadow-blue-900/5">
               <h2 className="text-xl font-bold text-[#0f172a] mb-6">{t('form_title')}</h2>
               <ContactForm
                 prefilledMachine={product?.slug}

@@ -100,9 +100,11 @@ export default async function CasesPage() {
   return (
     <>
       {/* Hero */}
-      <div className="bg-[#1e3a8a] text-white py-14">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl lg:text-4xl font-bold mb-3">{t('title')}</h1>
+      <div className="relative bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#1e40af] text-white py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-industrial-grid animate-grid-shift opacity-50" />
+        <div className="absolute -top-10 -right-10 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl lg:text-5xl font-bold mb-3">{t('title')}</h1>
           <p className="text-blue-200 text-lg">{t('subtitle')}</p>
         </div>
       </div>
@@ -163,9 +165,9 @@ export default async function CasesPage() {
             {markets.map((m) => (
               <div
                 key={m.region}
-                className="bg-white/10 border border-white/20 rounded-lg p-6 text-center backdrop-blur"
+                className="group bg-white/10 hover:bg-white/15 border border-white/20 hover:border-orange-400/50 rounded-xl p-6 text-center backdrop-blur hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="text-4xl mb-3">{m.icon}</div>
+                <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">{m.icon}</div>
                 <h3 className="font-semibold text-sm mb-2">{m.region}</h3>
                 <p className="text-xs text-blue-200 leading-relaxed">{m.countries}</p>
               </div>
