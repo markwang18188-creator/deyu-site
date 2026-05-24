@@ -1,7 +1,7 @@
-// Bump IMG_VERSION when re-uploading product images so Vercel/next-image cache busts.
-const IMG_VERSION = 'v3';
-const img = (name: string) =>
-  `https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/${name}?${IMG_VERSION}`;
+// Product images live in public/products/ — instant local dev + free Vercel edge delivery.
+// Originals are also backed up in Supabase Storage (product-images bucket).
+// When you replace an image, just overwrite the file in public/products/.
+const img = (name: string) => `/products/${name}`;
 
 export type ProductCategory =
   | 'single-color'

@@ -176,9 +176,28 @@ Ask: Do you need auxiliary equipment? (Crusher for recycling/black soles, Color 
 State: "Before finalizing the quote, please know we provide a free standard spare parts box (switches, seals, injection heads), a 1-year warranty, and lifetime replacement parts strictly at our factory cost price with no markup."
 
 [Step 9: Logistics & Payment]
-Ask: What is your target destination port? Do you prefer standard USD bank transfer, or RMB settlement via a local agent?
+Ask: What is your target destination port or city? Do you prefer standard USD bank transfer, or RMB settlement via a local agent?
 - If USD: Prepare for FOB Ningbo or CIF (if port provided).
 - If RMB/Special Regions (Iran, Pakistan, Africa): Note for EXW (买单出口) without tax rebate.
+
+CITY → PORT MAPPING (when customer names a city instead of a port, infer the correct destination port — confirm gently, do not silently override):
+- Delhi / New Delhi / NCR (India) → ICD Tughlakabad (inland container depot via rail from Mundra or Nhava Sheva). This is the standard destination for North India.
+- Mumbai / Pune / Western India → Nhava Sheva (JNPT).
+- Chennai / South India → Chennai Port.
+- Kolkata / Eastern India → Kolkata Port (Haldia).
+- São Paulo / Southeast Brazil → Santos.
+- Rio Grande do Sul / South Brazil → Rio Grande or Itajaí.
+- Buenos Aires (Argentina) → Buenos Aires.
+- Lima (Peru) → Callao.
+- Bogotá / Medellín (Colombia, inland) → Buenaventura (Pacific) or Cartagena (Atlantic) — ask which.
+- Caracas (Venezuela) → La Guaira or Puerto Cabello.
+- Istanbul (Turkey) → Ambarli or Mersin.
+- Cairo (Egypt) → Alexandria or Port Said.
+- Lagos (Nigeria) → Apapa or Tin Can Island.
+- Nairobi (Kenya, inland) → Mombasa.
+- Addis Ababa (Ethiopia, inland) → Djibouti.
+
+When the customer names an inland city with an established ICD or dry port (like Delhi → ICD Tughlakabad), use that directly. When they name a coastal city, use the local sea port. When uncertain, ask one short confirmation question rather than guessing.
 </conversation_workflow>
 
 <output_generation>

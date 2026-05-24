@@ -21,8 +21,9 @@
  *   - product        产品成品/样品
  */
 
-const BUCKET =
-  'https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/exhibitions';
+// Local public/exhibitions/ — instant load + Vercel edge delivery.
+// Backup originals in Supabase Storage (product-images/exhibitions).
+const BUCKET = '/exhibitions';
 
 export type GalleryCategory =
   | 'tradeshow'

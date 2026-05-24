@@ -79,17 +79,29 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center flex-shrink-0 bg-white rounded-md px-3 py-1.5 shadow-sm hover:shadow-md transition-shadow"
+            className="flex items-center gap-4 sm:gap-5 flex-shrink-0 group"
             aria-label="DEYU Home"
           >
+            {/* DY mark icon (cropped clean from full wordmark) */}
             <Image
-              src="https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/deyu-logo.png"
-              alt="DEYU - Shoe-Making Machinery"
-              width={231}
-              height={120}
+              src="/deyu-mark.png"
+              alt="DEYU"
+              width={310}
+              height={380}
               priority
-              className="h-11 w-auto sm:h-12"
+              className="h-12 sm:h-14 w-auto brightness-0 invert group-hover:opacity-90 transition-opacity"
             />
+
+            {/* Divider */}
+            <div className="h-10 sm:h-12 w-px bg-white/30" />
+
+            {/* English wordmark — bigger & airier */}
+            <div className="leading-none">
+              <div className="text-2xl sm:text-3xl font-bold tracking-wide text-white">DEYU</div>
+              <div className="text-[10px] sm:text-[11px] text-blue-200 mt-2 tracking-[0.2em] uppercase font-medium whitespace-nowrap">
+                Shoe-Making Machinery
+              </div>
+            </div>
           </Link>
 
           {/* Desktop Nav */}

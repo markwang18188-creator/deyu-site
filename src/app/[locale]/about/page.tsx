@@ -4,7 +4,9 @@ import { getTranslations } from 'next-intl/server';
 import CtaSection from '@/components/sections/CtaSection';
 import { buildAlternates } from '@/lib/metadata';
 
-const FACTORY_BUCKET = 'https://lrlqtkaxakuobqrsotjl.supabase.co/storage/v1/object/public/product-images/factory';
+// Local public/factory/ — instant load + Vercel edge delivery.
+// Backup originals in Supabase Storage (product-images/factory).
+const FACTORY_BUCKET = '/factory';
 
 const factoryHighlights = [
   { src: `${FACTORY_BUCKET}/factory-exterior.jpg`, caption: 'Wenzhou Factory' },

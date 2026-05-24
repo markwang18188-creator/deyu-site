@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { products, getProductBySlug, categoryLabels } from '@/data/products';
 import CtaSection from '@/components/sections/CtaSection';
+import ChatbotBanner from '@/components/sections/ChatbotBanner';
 import { buildAlternates } from '@/lib/metadata';
 
 export function generateStaticParams() {
@@ -154,6 +155,13 @@ export default async function ProductDetailPage({
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Chatbot banner */}
+      <section className="bg-white pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ChatbotBanner />
         </div>
       </section>
 

@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { products, categoryLabels, type ProductCategory } from '@/data/products';
 import CtaSection from '@/components/sections/CtaSection';
+import ChatbotBanner from '@/components/sections/ChatbotBanner';
 import { buildAlternates } from '@/lib/metadata';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -42,6 +43,9 @@ export default async function ProductsPage({
 
       <section className="py-12 bg-[#f1f5f9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <ChatbotBanner />
+          </div>
           {/* Category filter */}
           <div className="flex flex-wrap gap-3 mb-10">
             <Link

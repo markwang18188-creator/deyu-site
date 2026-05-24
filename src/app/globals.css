@@ -121,3 +121,64 @@
     @apply font-sans;
   }
 }
+
+/* ───── DEYU 动效 ───────────────────────────── */
+
+@keyframes deyu-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes deyu-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes deyu-blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -50px) scale(1.1); }
+  66%      { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+@keyframes deyu-grid-shift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+@keyframes deyu-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-up        { animation: deyu-fade-up 0.8s ease-out both; }
+.animate-fade-up-delay-1 { animation: deyu-fade-up 0.8s ease-out 0.15s both; }
+.animate-fade-up-delay-2 { animation: deyu-fade-up 0.8s ease-out 0.3s both; }
+.animate-fade-up-delay-3 { animation: deyu-fade-up 0.8s ease-out 0.45s both; }
+.animate-fade-in        { animation: deyu-fade-in 1.2s ease-out both; }
+.animate-blob          { animation: deyu-blob 15s ease-in-out infinite; }
+.animate-grid-shift    { animation: deyu-grid-shift 20s linear infinite; }
+
+/* 工业网格背景图案 */
+.bg-industrial-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* 闪光效果 (CTA / badges) */
+.shine-on-hover {
+  position: relative;
+  overflow: hidden;
+}
+.shine-on-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
+}
+.shine-on-hover:hover::before {
+  transform: translateX(100%);
+}

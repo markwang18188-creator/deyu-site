@@ -12,16 +12,24 @@ export default async function TrustBar() {
   ];
 
   return (
-    <section className="bg-[#f1f5f9] border-y border-[#e2e8f0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
-          {items.map((item) => (
-            <div key={item.label} className="flex items-center gap-3">
-              <span className="text-2xl">{item.icon}</span>
+    <section className="bg-white border-y border-[#e2e8f0] shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:gap-x-12">
+          {items.map((item, i) => (
+            <div
+              key={item.label}
+              className="flex items-center gap-3 group"
+            >
+              <span className="text-2xl transition-transform duration-300 group-hover:scale-125">
+                {item.icon}
+              </span>
               <div>
                 <div className="font-semibold text-[#0f172a] text-sm">{item.label}</div>
                 <div className="text-xs text-[#64748b]">{item.sub}</div>
               </div>
+              {i < items.length - 1 && (
+                <div className="hidden lg:block h-8 w-px bg-slate-200 ml-8" />
+              )}
             </div>
           ))}
         </div>
