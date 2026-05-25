@@ -80,7 +80,6 @@ export default function Header() {
           <Link
             href="/"
             className="flex items-center gap-4 sm:gap-5 flex-shrink-0 group"
-            aria-label="DEYU Home"
           >
             {/* DY mark icon (cropped clean from full wordmark) */}
             <Image
@@ -180,7 +179,7 @@ export default function Header() {
             </a>
             <Link
               href="/contact"
-              className="hidden sm:flex items-center gap-2 bg-[#ea580c] hover:bg-orange-700 text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors"
+              className="hidden sm:flex items-center gap-2 bg-[#c2410c] hover:bg-[#9a3412] text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors"
             >
               <Mail className="w-4 h-4" />
               {t('send_enquiry')}
@@ -224,7 +223,7 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="mt-2 flex items-center justify-center gap-2 bg-[#ea580c] text-white text-sm font-semibold px-4 py-3 rounded-md"
+              className="mt-2 flex items-center justify-center gap-2 bg-[#c2410c] hover:bg-[#9a3412] text-white text-sm font-semibold px-4 py-3 rounded-md transition-colors"
             >
               <Mail className="w-4 h-4" />
               {t('send_enquiry')}

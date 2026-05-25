@@ -41,7 +41,7 @@ export default async function Hero() {
             <div className="flex flex-wrap gap-4 animate-fade-up-delay-3">
               <Link
                 href="/contact"
-                className="shine-on-hover bg-[#ea580c] hover:bg-orange-700 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-900/40 text-white font-semibold px-7 py-3.5 rounded-md transition-all duration-300 text-base"
+                className="shine-on-hover bg-[#c2410c] hover:bg-[#9a3412] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-900/40 text-white font-semibold px-7 py-3.5 rounded-md transition-all duration-300 text-base"
               >
                 {t('cta_quote')}
               </Link>

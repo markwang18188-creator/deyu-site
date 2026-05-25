@@ -99,7 +99,6 @@ export default function ChatWidget() {
             onClick={() => setOpen(true)}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            aria-label="Open sales assistant chat"
             className="group relative bg-white hover:bg-slate-50 rounded-full shadow-xl hover:shadow-2xl border border-slate-200 pl-1.5 pr-5 py-1.5 flex items-center gap-3 transition-all duration-300 hover:-translate-y-0.5"
           >
             {/* Pulse ring around avatar */}

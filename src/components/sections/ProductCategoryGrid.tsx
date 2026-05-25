@@ -88,7 +88,7 @@ export default async function ProductCategoryGrid() {
                     {cat.title}
                   </h3>
                   <p className="text-sm text-[#64748b] mb-4 leading-relaxed">{cat.description}</p>
-                  <p className="text-xs text-[#94a3b8] font-mono">{cat.models}</p>
+                  <p className="text-xs text-[#64748b] font-mono">{cat.models}</p>
                   <div className="mt-4 text-sm font-semibold text-[#3b82f6] group-hover:text-[#ea580c] transition-all inline-flex items-center gap-1">
                     {t('view_models')}
                     <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>

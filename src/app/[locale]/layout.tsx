@@ -18,12 +18,61 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Shoe Sole Injection Moulding Machine Manufacturer | DEYU Wenzhou China',
+  title: {
+    default: 'Shoe Sole Injection Moulding Machine Manufacturer | DEYU Wenzhou China',
+    template: '%s | DEYU',
+  },
   description:
-    'Leading shoe sole injection moulding machine manufacturer in Wenzhou, China. 15+ years experience, ISO 9001 & CE certified. TPU, PVC, rubber sole machines for global markets.',
+    'Leading shoe sole injection moulding machine manufacturer in Wenzhou, China. 15+ years experience, ISO 9001 & CE certified. TPU, PVC, TPR, TR sole machines exported to 30+ countries.',
   metadataBase: new URL('https://deyusolemachine.com'),
+  applicationName: 'DEYU Machinery',
+  authors: [{ name: 'Wenzhou Deyu Machinery Co., Ltd', url: 'https://deyusolemachine.com' }],
+  keywords: [
+    'shoe sole injection moulding machine',
+    'PVC sole machine',
+    'TPU sole machine',
+    'TR sole machine',
+    'rotary disc sole machine',
+    'shoe machinery manufacturer',
+    'Wenzhou shoe machinery',
+    'footwear injection machine',
+    'sole injection moulding machine manufacturer',
+    'DEYU Machinery',
+  ],
   verification: {
     google: 'b1VWCNF1SFj5L8G39qmE18mrugzqKOs6CX2-MzHIR2U',
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'DEYU Machinery',
+    title: 'Shoe Sole Injection Moulding Machine Manufacturer | DEYU',
+    description:
+      'PVC · TPR · TPU · TR sole machines from Wenzhou, China. ISO 9001 & CE certified. 15+ years exporting to 30+ countries.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'DEYU — Shoe Sole Injection Moulding Machines, Made in Wenzhou, China',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DEYU — Shoe Sole Injection Moulding Machine Manufacturer',
+    description:
+      'PVC · TPR · TPU · TR sole machines from Wenzhou, China. Exported to 30+ countries.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

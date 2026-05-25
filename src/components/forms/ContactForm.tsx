@@ -177,7 +177,7 @@ export default function ContactForm({ prefilledMachine, prefilledMachineName }: 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-[#ea580c] hover:bg-orange-700 disabled:bg-orange-300 text-white font-semibold py-3 px-6 rounded-md transition-colors"
+        className="w-full bg-[#c2410c] hover:bg-[#9a3412] disabled:bg-orange-300 text-white font-semibold py-3 px-6 rounded-md transition-colors"
       >
         {isSubmitting ? t('submitting') : t('submit')}
       </button>

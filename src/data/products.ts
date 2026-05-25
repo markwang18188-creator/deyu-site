@@ -22,8 +22,24 @@ export interface Product {
   applications: string[];
   mainImage: string;
   gallery: string[];
+  /** YouTube video ID (11-char), e.g. "dQw4w9WgXcQ" — preferred field, just paste the ID after upload. */
+  youtubeId?: string;
+  /** Optional video upload date (ISO), e.g. "2026-05-25". Used for VideoObject schema. */
+  videoUploadDate?: string;
+  /** Generic embed URL fallback (Vimeo / self-hosted). Use youtubeId when possible. */
   videoUrl?: string;
   brochurePdfUrl?: string;
+}
+
+/** Build a privacy-enhanced YouTube embed URL from an 11-char video ID. */
+export function youtubeEmbedUrl(id: string): string {
+  return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+}
+
+/** Get a product's primary watchable video URL (YouTube preferred). */
+export function productVideoEmbed(p: Product): string | undefined {
+  if (p.youtubeId) return youtubeEmbedUrl(p.youtubeId);
+  return p.videoUrl;
 }
 
 export const products: Product[] = [

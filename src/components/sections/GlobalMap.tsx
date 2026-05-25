@@ -23,12 +23,12 @@ export default async function GlobalMap() {
         </div>
 
         <div className="relative bg-[#f1f5f9] rounded-xl overflow-hidden mb-8" style={{ height: '320px' }}>
-          <div className="absolute inset-0 flex items-center justify-center text-[#64748b]">
+          <div className="absolute inset-0 flex items-center justify-center text-[#334155]">
             {/* TODO: Replace with real SVG world map highlighting the 15 countries */}
             <div className="text-center">
               <div className="text-6xl mb-4">🌍</div>
-              <p className="text-lg font-medium">{t('map_label')}</p>
-              <p className="text-sm text-[#94a3b8] mt-1">{t('map_sub')}</p>
+              <p className="text-lg font-medium text-[#334155]">{t('map_label')}</p>
+              <p className="text-sm text-[#475569] mt-1">{t('map_sub')}</p>
             </div>
           </div>
         </div>

@@ -27,24 +27,68 @@ export function generateMetadata(): Metadata {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': 'https://deyusolemachine.com/#organization',
   name: 'Wenzhou Deyu Machinery Co., Ltd',
-  alternateName: 'DEYU',
+  alternateName: ['DEYU', 'DEYU Machinery', '温州德宇机械'],
   url: 'https://deyusolemachine.com',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://deyusolemachine.com/deyu-logo.png',
+    width: 975,
+    height: 507,
+  },
+  image: 'https://deyusolemachine.com/og-image.png',
   description:
-    'Leading shoe sole injection moulding machine manufacturer in Wenzhou, China. 15+ years of experience, exported to 15+ countries.',
+    'Leading shoe sole injection moulding machine manufacturer in Wenzhou, China. 15+ years of experience, ISO 9001 & CE certified, exported to 30+ countries.',
+  foundingDate: '2009',
+  foundingLocation: {
+    '@type': 'Place',
+    name: 'Wenzhou, Zhejiang, China',
+  },
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Wenzhou',
     addressRegion: 'Zhejiang',
     addressCountry: 'CN',
   },
-  contactPoint: {
-    '@type': 'ContactPoint',
-    telephone: '+86-136-1577-8781',
-    contactType: 'sales',
-    availableLanguage: ['English', 'Chinese'],
-  },
-  sameAs: ['https://deyusolemachine.com'],
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: '+86-136-1577-8781',
+      contactType: 'sales',
+      availableLanguage: ['English', 'Spanish', 'Portuguese', 'Turkish', 'Arabic', 'Chinese'],
+      areaServed: ['IN', 'BR', 'TR', 'EG', 'NG', 'AR', 'CO', 'VE', 'PE', 'MX', 'KE', 'ET'],
+    },
+    {
+      '@type': 'ContactPoint',
+      email: 'info@wzdeyu.cn',
+      contactType: 'customer service',
+      availableLanguage: 'English',
+    },
+  ],
+  knowsAbout: [
+    'Shoe Sole Injection Moulding',
+    'PVC Sole Manufacturing',
+    'TPU Sole Manufacturing',
+    'TR Sole Manufacturing',
+    'Rotary Disc Sole Machines',
+    'Footwear Machinery',
+  ],
+  sameAs: [
+    'https://wzdeyu.cn',
+    'https://www.facebook.com/profile.php?id=100092413230082',
+    'https://www.youtube.com/@deyumachinery',
+  ],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://deyusolemachine.com/#website',
+  url: 'https://deyusolemachine.com',
+  name: 'DEYU — Shoe Sole Injection Moulding Machines',
+  inLanguage: ['en', 'es', 'pt', 'tr', 'ar'],
+  publisher: { '@id': 'https://deyusolemachine.com/#organization' },
 };
 
 export default function HomePage() {
@@ -53,6 +97,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <Hero />
       <TrustBar />
