@@ -88,6 +88,7 @@ export const products: Product[] = [
     ],
     mainImage: img('dy-1102.png'),
     gallery: [],
+    youtubeId: 'RGE2Fic2bno',
   },
 
   {
@@ -158,6 +159,8 @@ export const products: Product[] = [
     applications: ['Men\'s shoe sets', 'Small-batch production', 'Mould trial', 'OEM sampling'],
     mainImage: img('dy-1106.jpg'),
     gallery: [],
+    youtubeId: 'ydUyUriENNc',
+    youtubeShortsId: 'YBxiP73CjEY',
   },
 
   {
@@ -343,6 +346,7 @@ export const products: Product[] = [
     applications: ['TR soles', 'TPU soles', 'Specialty vertical-layout production', 'Customers preferring vertical machines'],
     mainImage: img('dy-150.jpg'),
     gallery: [],
+    youtubeShortsId: '7cMchkNhq4U',
   },
 
   // ═══════════════════════════════════════════════════════════════
@@ -423,6 +427,7 @@ export const products: Product[] = [
     applications: ['Soccer cleat outsoles', 'TPU dual-color outsoles', 'Premium running shoe soles', 'Trail shoes', 'Technical performance soles'],
     mainImage: img('dy-2212t.jpg'),
     gallery: [],
+    youtubeId: 'CXLqefs4EAk',
   },
 
   {
@@ -496,6 +501,8 @@ export const products: Product[] = [
     applications: ['Sport shoe soles', 'Casual shoe soles', 'Men\'s and women\'s shoe soles', 'Sandals', 'High-volume dual-color PVC production'],
     mainImage: img('dy-2220.jpg'),
     gallery: [],
+    youtubeId: 'uNTZLSCJAko',
+    youtubeShortsId: 'kNTBYCSFngs',
   },
 
   // ═══════════════════════════════════════════════════════════════
@@ -668,6 +675,7 @@ export const products: Product[] = [
     ],
     mainImage: img('dy-3324.jpg'),
     gallery: [],
+    youtubeId: 'mercLlSpiJI',
   },
 
   {
@@ -756,6 +764,8 @@ export const products: Product[] = [
     applications: ['Slippers', 'Sandals', 'Beach footwear', 'Lightweight casual footwear', 'High-volume slipper production'],
     mainImage: img('dy-1124.jpg'),
     gallery: [],
+    youtubeId: 'lrGZTA-dOwc',
+    youtubeShortsId: 'rS8-gVn3_4E',
   },
 
   {
@@ -795,6 +805,7 @@ export const products: Product[] = [
     applications: ['Fashion slippers', 'Dual-color sandals', 'Cotton shoes', 'Mixed-color straps', 'Beach footwear'],
     mainImage: img('dy-2220-s.jpg'),
     gallery: [],
+    youtubeShortsId: '3P8OJKui39s',
   },
 
   {
@@ -936,6 +947,7 @@ export const products: Product[] = [
     ],
     mainImage: img('dy-1106h.jpg'),
     gallery: [],
+    youtubeShortsId: 'RURcmgsGn1c',
   },
 ];
 

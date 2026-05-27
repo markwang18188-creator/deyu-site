@@ -65,6 +65,43 @@
 
 ---
 
+## 📦 已上传 YouTube ID 映射(2026-05-27 抓取)
+
+| 视频文件 | YouTube ID | 产品 slug | 类型 |
+|---|---|---|---|
+| 1102 TPU | `RGE2Fic2bno` | two-station-slide-sole-machine | 横屏 |
+| 1106 autoopen | `ydUyUriENNc` | pvc-six-station-rotary-machine | 横屏 |
+| 1106 blowPVC (mov) | `YBxiP73CjEY` | pvc-six-station-rotary-machine | Shorts |
+| 1106-H dumbbell | `RURcmgsGn1c` | industrial-parts-six-station-machine | Shorts |
+| 1108 autoopen (mov) | `W0pUaiwUrsE` | (DY-1108, 无专属页) | 横屏 |
+| 1108 africa | `vkDSJiMSumQ` | (DY-1108, 无专属页) | Shorts |
+| 1110 bottomsole | `KTeKE31yU0U` | (DY-1110, 无专属页) | 横屏 |
+| 1124 blowPVCsole | `lrGZTA-dOwc` | air-blowing-injection-machine | 横屏 |
+| 1124 slipper | `rS8-gVn3_4E` | air-blowing-injection-machine | Shorts |
+| 2102 TPU (mov) | `evtp7L0z_vE` | (DY-2102, 无专属页) | Shorts |
+| 2212 TPU | `CXLqefs4EAk` | tpu-tr-dual-color-12-station | 横屏 |
+| 2212 bottomsole | `XbzQjkF_T1g` | tpu-tr-dual-color-12-station (备用) | 横屏 |
+| 2220 TPU 1080P | `kNTBYCSFngs` | dual-color-rotary-sole-machine | Shorts |
+| 2220 (.MOV) | `TGtQfx-byvs` | dual-color-rotary-sole-machine (备用) | Shorts |
+| 2220 birkensole | `uNTZLSCJAko` | dual-color-rotary-sole-machine | 横屏 |
+| 2224 crocs | `3P8OJKui39s` | dual-color-air-blowing-machine | Shorts |
+| 3324 | `mercLlSpiJI` | three-color-three-head-flexible-machine | 横屏 |
+| DY150 | `7cMchkNhq4U` | tpu-tr-vertical-injection-machine | Shorts |
+| simple mould open | `hyh6-x8BsC0` | (通用,不绑产品页) | Shorts |
+
+**已集成到 products.ts 的 9 个产品**:
+- DY-1102 / DY-1106 / DY-1106-S / DY-1124B / DY-2212TPU/TR / DY-2220A / DY-2224B / DY-150 / DY-3324A
+
+**未集成**(原因):
+- DY-1108 / DY-1110 / DY-2102 — 没对应产品页
+- simple mould open — 通用机构演示,不绑产品
+- 1106 blowPVC 已分配给 DY-1106 的 Shorts 位
+- 2212 bottomsole + 2220 (.MOV) + 2220 (.MOV rotated) — 已有同产品的优选视频,这些是备用
+
+**状态**:全部 19 个视频在 YouTube 为**草稿/私密**。Mark 审核后改公开(`https://studio.youtube.com/channel/UCXL5jRUy1O-VzuQyLW_TNTw/videos`)产品页视频立即生效。
+
+---
+
 ## 📋 上传流程（每个视频)
 
 1. [YouTube Studio](https://studio.youtube.com) → **创建** → **上传视频**
