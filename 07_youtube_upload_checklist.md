@@ -4,6 +4,67 @@
 
 ---
 
+## 🎯 双轨上传策略
+
+19 个视频按比例分两路上传:
+
+### A. 9 个横屏 → YouTube 普通视频 + Facebook 视频帖
+
+| 文件 | 分辨率 |
+|---|---|
+| `1102_TPU.mp4` | 1280×720 |
+| `1106_autoopen.mp4` | 1920×1080 |
+| `1110_bottomsole.mp4` | 1920×1080 |
+| `1124_blowPVCsole.mp4` | 960×544 |
+| `2212_TPU.mp4` | 1920×1080 |
+| `2212_bottomsole.mp4` | 1920×1080 |
+| `2220_birkensole.mp4` | 1920×1080 |
+| `3324.mp4` | 1280×720 |
+| `1108_autoopen.mov` | 1920×1080 |
+
+- 上传到 YouTube Studio 默认视频流程
+- 标题模板:`<Model> <Material> Sole Injection Moulding Machine | <Feature> | DEYU`
+- 上传后给我标准 11 字符 ID,我填到 `products.ts` 的 **`youtubeId`** 字段
+- 这些是 SEO 主力,Google "DY-XXXX demo" 搜索会命中
+
+### B. 10 个竖屏 → YouTube Shorts + Facebook Reels
+
+| 文件 | 分辨率 | 时长 |
+|---|---|---|
+| `1106-H_dumbbell.mp4` | 540×960 | 43s |
+| `1108_africa.mp4` | 720×1280 | 73s |
+| `1124_slipper.mp4` | 720×1280 | 16s |
+| `2220_TPU_1080P.mp4` | 1080×1920 | – |
+| `2224_crocs.mp4` | 368×656 | 67s |
+| `simple mould open.mp4` | 544×960 | 32s |
+| `1106_blowPVC.mov` | 1080×1906 | 46s |
+| `2102_TPU.mov` | 1080×1920 | 70s |
+| `DY150.mov` | 1080×1920 | – |
+| `2220_20stations.MOV` | 1080×1920 (旋转) | 52s |
+
+- 上传时 YouTube **自动识别为 Shorts**(竖屏 + ≤3 分钟)
+- 标题末尾加 `#Shorts` 强化分类
+- 描述里加产品页链接引流(`https://deyusolemachine.com/products/<slug>`)
+- 上传后给我 Shorts 的 11 字符 ID,我填到 **`youtubeShortsId`** 字段
+- 这些是流量主力,新频道算法重点推
+
+### 优势对比
+
+| 视频类型 | YouTube 算法 | SEO 抓取 | 嵌入产品页 |
+|---|---|---|---|
+| 横屏常规 | 长尾搜索友好 | ✅ 抓 | 16:9 主播放器(已实现) |
+| 竖屏 Shorts | 新频道推送力度大 | ⚠️ 弱(Shorts 不被 Google 主搜抓) | 9:16 "Quick Demo" 区(已实现) |
+
+两种格式都上传 = **两种流量同时拿到**。
+
+### 同步到 Facebook
+
+- 横屏 → Facebook 视频帖(同标题/描述)
+- 竖屏 → Facebook Reels(同 hashtag)
+- 同一份素材双平台 = 一次素材二次曝光
+
+---
+
 ## 📋 上传流程（每个视频)
 
 1. [YouTube Studio](https://studio.youtube.com) → **创建** → **上传视频**

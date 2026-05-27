@@ -22,8 +22,12 @@ export interface Product {
   applications: string[];
   mainImage: string;
   gallery: string[];
-  /** YouTube video ID (11-char), e.g. "dQw4w9WgXcQ" — preferred field, just paste the ID after upload. */
+  /** YouTube video ID (11-char), e.g. "dQw4w9WgXcQ" — horizontal/regular video. */
   youtubeId?: string;
+  /** YouTube Shorts ID (11-char). Vertical 9:16 video. Rendered as 'Quick Demo' rail. */
+  youtubeShortsId?: string;
+  /** Optional caption shown above the Shorts player. Defaults to "60-Second <Model> in Action". */
+  shortsCaption?: string;
   /** Optional video upload date (ISO), e.g. "2026-05-25". Used for VideoObject schema. */
   videoUploadDate?: string;
   /** Generic embed URL fallback (Vimeo / self-hosted). Use youtubeId when possible. */
@@ -34,6 +38,11 @@ export interface Product {
 /** Build a privacy-enhanced YouTube embed URL from an 11-char video ID. */
 export function youtubeEmbedUrl(id: string): string {
   return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+}
+
+/** Build a YouTube Shorts embed URL (standard /embed/ works — YouTube auto-detects 9:16). */
+export function youtubeShortsEmbedUrl(id: string): string {
+  return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&playsinline=1`;
 }
 
 /** Get a product's primary watchable video URL (YouTube preferred). */
