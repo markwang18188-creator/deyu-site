@@ -1,93 +1,63 @@
-# 06 · 图片素材管理工作流
+# 06 · 媒体素材工作流
 
-> 给 Mark 用 — 如何告诉 Claude "改哪张图"
+> **视频处理(水印、字幕、BGM 混音)已搬到独立项目:**
+> **`~/CRMsystem/deyu-media-studio/`**
+>
+> 网站这边只放网页直接显示的图片(logo、产品图、工厂图、OG 图等)。
+> 视频处理脚本和水印素材一律去 Studio。
+
+---
+
+## Studio 常用命令
+
+```bash
+cd ~/CRMsystem/deyu-media-studio
+
+# 视频加 DEYU 水印 + BGM
+bash scripts/watermark.sh inbox/foo.mp4
+
+# 中文视频自动配西/葡/土/阿/英字幕
+bash scripts/subtitle.sh inbox/foo.mov es
+bash scripts/subtitle.sh inbox/foo.mov pt
+bash scripts/subtitle.sh inbox/foo.mov tr
+
+# 详细见 ~/CRMsystem/deyu-media-studio/README.md
+```
+
+## 资产分工
+
+| 类型 | 位置 | 说明 |
+|---|---|---|
+| 网页 logo / 工厂图 / 产品图 / 展会图 / OG 图 | `deyu-site/public/` | 网页直接展示 |
+| 水印 logo / 扫光 / 文字 PNG | `deyu-media-studio/assets/logos/` | 视频用 |
+| BGM mp3 (5 首工业风) | `deyu-media-studio/assets/bgm/` | 视频用 |
+| 原视频(待处理) | `deyu-media-studio/inbox/` | gitignored |
+| 成品视频 | `deyu-media-studio/output/` | gitignored |
+| Whisper 模型 (1.5GB) | `~/.whisper-models/` | 共享 |
+| DeepSeek API key | `deyu-media-studio/.env` | 翻译用 |
+
+## 网站图片素材管理(原版本)
+
+> 网页图怎么改、命名约定、何时换 Supabase 等——保留下面这个旧手册
+
+---
+
+# 图片素材管理工作流 (原版本,Mark 用)
 
 ## 目前网站上的图片来源
 
-| 类型 | 数据源 | Supabase 路径 |
-|---|---|---|
-| 产品白底图(18 个机型) | [src/data/products.ts](src/data/products.ts) `mainImage` | `product-images/dy-*.{jpg,png}` |
-| Header Logo | [src/components/layout/Header.tsx](src/components/layout/Header.tsx) | `product-images/deyu-logo.png` |
-| About 页 "Our Factory"(3 张厂房) | [src/app/[locale]/about/page.tsx](src/app/[locale]/about/page.tsx) `factoryHighlights` | `product-images/factory/*.jpg` |
-| Cases 页(展会+客户+车间+发货) | [src/data/gallery.ts](src/data/gallery.ts) `gallery` 数组 | `product-images/exhibitions/*.jpg` |
+1. **branding/** — DEYU 官方品牌素材(logo / favicon / YouTube banner / 头像设计)
+2. **public/** — 网站直接展示的图(产品图、工厂图、首页大图、OG 图)
+3. **Supabase Storage `product-images/` bucket** — 远端备份,本地 dev 已不直接拉
 
----
+## 改图的方式
 
-## 怎么告诉 Claude 你要改哪张?
+- **加新图**: 把新图丢到 `public/` 对应子目录(`products/` `factory/` `exhibitions/`),代码引用相对路径 `/products/xxx.jpg`
+- **换现有图**: 同名覆盖即可(下次 dev 重启或 next build 生效)
+- **删图**: 从 `public/` 删 + 改引用代码
 
-**每张图都有一个稳定 `id`**(在 gallery.ts 里),对话中直接引用 id 就能精确定位:
+## 重要规则
 
-✅ **好的指代方式**:
-- 「`tradeshow-3d-display` 这张换成 NAS 里的 xxx.jpg」
-- 「`customer-pink-shirt-mold` 这张去掉,不太合适」
-- 「在 customer 分类下新加一张,放在 NAS 的 ...」
-- 「Header 的 logo 想换新版」
-- 「About 页 `workshop-01` 换成新的车间图」
-
-✅ **也可以用描述**:
-- 「那张足球鞋鞋底的图」 → Claude 在 manifest 里看到 caption "Soccer Cleat Soles" 就能找到
-- 「带 3D 屏幕的那个展台」 → 对应 `tradeshow-3d-display`
-
-❌ **不好的指代方式**:
-- 「Cases 页第 5 张」(顺序可能变)
-- 「左下角那张」(响应式布局会变)
-
----
-
-## 常见操作
-
-### 1️⃣ 增加一张新图(展会/车间/客户/发货)
-
-**你要做的**:把图放进 NAS,告诉 Claude 三件事:
-- 文件名 (例: `2024-canton-fair.jpg`)
-- 分类 (`tradeshow` / `customer` / `workshop` / `shipment` / `product`)
-- 简短描述 (例: "Canton Fair 2024 Booth")
-
-**Claude 会**:上传到 Supabase + 在 `gallery.ts` 加一条 entry。
-
-### 2️⃣ 替换某张图
-
-**你说**:「`tradeshow-deyu-2220a-booth` 这张换成 NAS 里的新图 xxx.jpg」
-
-**Claude 会**:用同文件名覆盖上传(Supabase 缓存会自动刷新)或换 `filename` 字段。
-
-### 3️⃣ 删掉某张图
-
-**你说**:「把 `product-soccer-cleat-soles` 从 Cases 页去掉」
-
-**Claude 会**:在 manifest 里把那条加上 `published: false`(保留 entry,以后随时恢复),或直接删除。
-
-### 4️⃣ 改文案/分类
-
-**你说**:「`tradeshow-3d-display` 的 caption 改成 'Canton Fair 2024 — DY-2220A Demo'」
-
-**Claude 会**:直接改 `gallery.ts` 里那条 entry 的 caption/location/year 字段。
-
-### 5️⃣ 重新分组/排序
-
-如果你觉得 Cases 页区块顺序要调,或者要拆出新分类(比如把 "shipment" 拆成"国内发货/海外发货"),告诉 Claude 即可,Cases 页是 manifest-driven 的,改一处就全网生效。
-
----
-
-## 关于"工厂图" vs "Cases 图"
-
-| 用途 | 在哪里 | 来源 |
-|---|---|---|
-| About 页顶部 3 张正式厂房图 | About 页 `factoryHighlights`(代码硬编码) | `product-images/factory/` |
-| Cases 页"In Production"分类 | gallery.ts `workshop`/`customer` 分类 | `product-images/exhibitions/` |
-
-**两者分开**的原因:About 页用的是"端庄正式的厂房代表照"(3 张精选),Cases 页是"丰富的现场画面"(可以多)。
-
-要把某张 Cases 里的车间图升级到 About 页,告诉 Claude id 即可,Claude 会把文件复制到 `factory/` 目录并替换 About 页配置。
-
----
-
-## 关于视频
-
-视频不上传到 Supabase(成本高、加载慢),用 YouTube + iframe 嵌入。
-
-**新增视频流程**:
-1. 你在 DEYU YouTube 频道上传视频
-2. 给 Claude 视频 ID 或 embed URL,以及对应哪个产品 slug
-3. Claude 把 `videoUrl: 'https://www.youtube.com/embed/VIDEO_ID'` 加到 `products.ts` 对应产品上
-4. 产品详情页会自动出现 "Watch It in Action" 区块
+- ❌ 不要把视频 / 大型媒体文件丢到 `deyu-site/public/`,去 Media Studio
+- ✅ 网页图保持 .jpg/.png/.webp,单图 < 500KB(用 sharp / sips 压缩)
+- ✅ 产品图统一 1600×1200 白底,gallery 引用同 slug
