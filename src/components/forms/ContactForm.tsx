@@ -147,7 +147,6 @@ export default function ContactForm({ prefilledMachine, prefilledMachineName }: 
             <option value="single-color">{t('cat_single')}</option>
             <option value="dual-color">{t('cat_dual')}</option>
             <option value="multi-color">{t('cat_multi')}</option>
-            <option value="air-blowing">{t('cat_air')}</option>
             <option value="industrial">{t('cat_industrial')}</option>
             <option value="equipment">{t('cat_equipment')}</option>
             <option value="other">{t('cat_other')}</option>

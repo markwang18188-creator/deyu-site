@@ -80,6 +80,31 @@ export const gallery: GalleryImage[] = [
     category: 'tradeshow',
     caption: 'Booth with 3D Machine Visualization Display',
   },
+  {
+    id: 'tradeshow-live-rotary-demo',
+    filename: 'exhibition-20.jpg',
+    category: 'tradeshow',
+    caption: 'DEYU engineers running a live rotary sole injection demo at the booth',
+    year: 2023,
+  },
+  {
+    id: 'tradeshow-corner-booth',
+    filename: 'exhibition-24.jpg',
+    category: 'tradeshow',
+    caption: 'DEYU Shoes Machine corner booth at footwear machinery expo',
+  },
+  {
+    id: 'tradeshow-deyu-machinery-stand',
+    filename: 'exhibition-22.jpg',
+    category: 'tradeshow',
+    caption: 'Wenzhou Deyu Machinery exhibition stand with full machine lineup',
+  },
+  {
+    id: 'tradeshow-dy1124b-display',
+    filename: 'exhibition-25.jpg',
+    category: 'tradeshow',
+    caption: 'DY-1124B air-blowing sole injection machine on display at the DEYU booth',
+  },
 
   // ── Customer / 客户现场 ───────────────────────────────────
   {

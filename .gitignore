@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# source media for blog/troubleshooting cases (raw videos/photos).
+# processed web images live in public/troubleshooting/ and ARE committed.
+/油缸泄压案例/
+/*.MOV
+/*.MP4
+/*.HEIC
+/*.heic

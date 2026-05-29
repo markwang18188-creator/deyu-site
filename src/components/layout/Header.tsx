@@ -16,10 +16,6 @@ const productGroups = [
     ).slice(0, 6),
   },
   {
-    key: 'air_blowing',
-    items: products.filter((p) => p.category === 'air-blowing'),
-  },
-  {
     key: 'industrial_parts',
     items: products.filter((p) => p.category === 'industrial'),
   },
@@ -113,19 +109,23 @@ export default function Header() {
                   onMouseEnter={() => setMegaOpen(true)}
                   onMouseLeave={() => setMegaOpen(false)}
                 >
-                  <button className="px-4 py-2 text-sm font-medium hover:text-orange-300 transition-colors flex items-center gap-1">
+                  <Link
+                    href="/products"
+                    onClick={() => setMegaOpen(false)}
+                    className="px-4 py-2 text-sm font-medium hover:text-orange-300 transition-colors flex items-center gap-1"
+                  >
                     {link.label}
                     <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                     </svg>
-                  </button>
+                  </Link>
 
                   {megaOpen && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-[640px] bg-white text-gray-900 shadow-xl rounded-b-lg border-t-2 border-[#ea580c] p-6 grid grid-cols-3 gap-6">
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-[520px] bg-white text-gray-900 shadow-xl rounded-b-lg border-t-2 border-[#ea580c] p-6 grid grid-cols-2 gap-6">
                       {productGroups.map((group) => (
                         <div key={group.key}>
                           <h3 className="text-xs font-bold text-[#1e3a8a] uppercase tracking-wide mb-3 border-b pb-2">
-                            {t(group.key as 'injection_machines' | 'air_blowing' | 'industrial_parts')}
+                            {t(group.key as 'injection_machines' | 'industrial_parts')}
                           </h3>
                           <ul className="space-y-1">
                             {group.items.map((product) => (

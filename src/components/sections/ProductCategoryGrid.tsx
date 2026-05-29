@@ -31,14 +31,6 @@ export default async function ProductCategoryGrid() {
       href: '/products?category=multi-color',
     },
     {
-      slug: 'air-blowing',
-      title: t('air_blowing_title'),
-      description: t('air_blowing_desc'),
-      icon: '💨',
-      models: 'DY-1124B · DY-2224B · DY-3124C',
-      href: '/products?category=air-blowing',
-    },
-    {
       slug: 'industrial',
       title: t('industrial_title'),
       description: t('industrial_desc'),

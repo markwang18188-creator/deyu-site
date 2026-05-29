@@ -47,6 +47,24 @@ export async function getPostBySlug(slug: string, language = 'en'): Promise<Blog
   return data as BlogPost | null;
 }
 
+/** Preview a post regardless of status (drafts included). Uses the service-role
+ *  client because RLS hides drafts from the public anon client. Server-only. */
+export async function getPreviewPostBySlug(slug: string, language = 'en'): Promise<BlogPost | null> {
+  const { createAdminClient } = await import('./admin');
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('slug', slug)
+    .eq('language', language)
+    .maybeSingle();
+  if (error) {
+    console.error('[blog] getPreviewPostBySlug:', error.message);
+    return null;
+  }
+  return data as BlogPost | null;
+}
+
 export async function getAllPublishedSlugs(): Promise<{ slug: string; language: string }[]> {
   const supabase = createClient();
   const { data, error } = await supabase

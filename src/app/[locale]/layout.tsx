@@ -8,6 +8,8 @@ import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
+import Clarity from '@/components/analytics/Clarity';
+import CookieNotice from '@/components/CookieNotice';
 import ChatWidget from '@/components/chatbot/ChatWidget';
 import '../globals.css';
 
@@ -103,11 +105,13 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col">
         <GoogleAnalytics />
+        <Clarity />
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
           <ChatWidget />
+          <CookieNotice />
         </NextIntlClientProvider>
       </body>
     </html>

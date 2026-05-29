@@ -3,12 +3,12 @@ import { headers } from 'next/headers';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { buildSystemPrompt } from '@/lib/chatbot/system-prompt';
 import { chatbotTools, executeTool, type ToolContext } from '@/lib/chatbot/tools';
+import { createDeepSeek, DEEPSEEK_MODEL } from '@/lib/deepseek';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const MODEL = process.env.DEEPSEEK_MODEL || 'deepseek-chat';
-const BASE_URL = process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com/v1';
+const MODEL = DEEPSEEK_MODEL;
 const MAX_TOKENS = 1024;
 const MAX_TOOL_ROUNDS = 5;
 
@@ -89,10 +89,7 @@ export async function POST(req: Request) {
       });
   }
 
-  const client = new OpenAI({
-    apiKey: process.env.DEEPSEEK_API_KEY,
-    baseURL: BASE_URL,
-  });
+  const client = createDeepSeek();
 
   const systemPrompt = buildSystemPrompt();
 

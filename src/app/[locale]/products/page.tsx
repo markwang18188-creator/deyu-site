@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const categoryKeys: ProductCategory[] = [
-  'single-color', 'dual-color', 'multi-color', 'air-blowing', 'industrial',
+  'single-color', 'dual-color', 'multi-color', 'industrial',
 ];
 
 export default async function ProductsPage({

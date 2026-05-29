@@ -4,6 +4,33 @@
 
 ---
 
+## 📋 统一视频说明(通用文案 · 直接复制)
+
+> **今后所有 YouTube 视频默认用这一段**(不绑定具体机型,介绍公司+产品全线)。
+> 特定机型的视频如需更精准描述,可在这段前面再加 1-2 句该机型特点;但默认这段即可。
+
+```
+DEYU — professional manufacturer of shoe sole injection moulding machines, based in Wenzhou, China. Since 2009 we have supplied PVC, TPR, TPU and TR sole production machines to footwear factories in 30+ countries.
+
+🔹 Single & dual color sole injection machines
+🔹 Rotary disc & slide-type configurations (12 / 16 / 20 / 24 stations)
+🔹 Materials: PVC · TPR · TPU · TR
+🔹 Servo energy-saving · CE & ISO 9001
+
+Whether you produce slippers, sandals, sports shoes or work boots, DEYU can match a machine to your output and budget.
+
+👉 Explore all machines: https://deyusolemachine.com/products
+💬 WhatsApp: +86 136 1577 8781
+
+#shoemachinery #soleinjection #footwearmachine #DEYU #shoemaking
+```
+
+**上传每个视频时记得:**
+- 观众设置选 **"不,内容不是面向儿童的"**
+- 竖屏(Shorts)视频标题末尾加 `#Shorts`
+
+---
+
 ## 🎯 双轨上传策略
 
 19 个视频按比例分两路上传:

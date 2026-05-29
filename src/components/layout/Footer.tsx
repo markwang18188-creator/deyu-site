@@ -60,7 +60,6 @@ export default async function Footer() {
                 ['single_color', '/products?category=single-color'],
                 ['dual_color', '/products?category=dual-color'],
                 ['multi_color', '/products?category=multi-color'],
-                ['air_blowing', '/products?category=air-blowing'],
                 ['industrial', '/products?category=industrial'],
                 ['equipment', '/equipment'],
               ].map(([key, href]) => (

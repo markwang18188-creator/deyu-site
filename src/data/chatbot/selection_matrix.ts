@@ -122,11 +122,8 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
       if (budgetTier === 'tight' || /sample|prototype|small.batch|试水|入门/.test(hintLower)) {
         productSlugs.push('two-station-slide-sole-machine'); // DY-1102 (入门 TPU)
       }
-      if (moldConfig === '1-pair-per-mold') {
-        productSlugs.push('tr-tpu-water-cooling-sole-machine'); // DY-1112TR/TPU (6 或 12 工位)
-      } else {
-        productSlugs.push('tpu-single-color-vertical-machine'); // DY-1106TR/TPU (立式)
-      }
+      // TR/TPU 单色 = 150T 水冷转盘机 (含 DY-1106TR/TPU 与 DY-1112TR/TPU 配置)
+      productSlugs.push('tr-tpu-150t-water-cooling-rotary-machine');
     } else {
       // PVC/TPR 单色
       const wantsAirBlow = /air.blow|吹气/.test(hintLower);
@@ -140,14 +137,10 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
         }
       } else if (isFlatSole) {
         // 片底, 一模一双, 需要自动开模
-        productSlugs.push('pvc-six-station-rotary-machine'); // DY-1106
-        productSlugs.push('pvc-single-color-12-station-machine'); // DY-1112A (12 工位 100T)
+        productSlugs.push('pvc-six-station-rotary-machine'); // DY-1106/1108/1112 (80-100T 系列)
       } else {
         // 一模一双普通鞋底
-        productSlugs.push('pvc-six-station-rotary-machine'); // DY-1106
-        if (budgetTier === 'standard' || budgetTier === 'premium') {
-          productSlugs.push('pvc-single-color-12-station-machine'); // DY-1112A 中产量备选
-        }
+        productSlugs.push('pvc-six-station-rotary-machine'); // DY-1106/1108/1112 (80-100T 系列)
       }
     }
   }
