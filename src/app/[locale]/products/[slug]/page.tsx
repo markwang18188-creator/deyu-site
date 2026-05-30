@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { products, getProductBySlug, categoryLabels, productVideoEmbed } from '@/data/products';
 import CtaSection from '@/components/sections/CtaSection';
 import ChatbotBanner from '@/components/sections/ChatbotBanner';
+import ProductMediaSwitcher from '@/components/product/ProductMediaSwitcher';
 import { buildAlternates } from '@/lib/metadata';
 
 export function generateStaticParams() {
@@ -99,17 +99,14 @@ export default async function ProductDetailPage({
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Product main image */}
-            <div className="relative aspect-[4/3] bg-[#f8fafc] rounded-xl overflow-hidden border border-[#e2e8f0]">
-              <Image
-                src={product.mainImage}
-                alt={`${product.model} - ${product.name}`}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-contain p-6"
-              />
-            </div>
+            {/* Product main media — image + demo video in one frame, tab-switchable */}
+            <ProductMediaSwitcher
+              image={product.mainImage}
+              alt={`${product.model} - ${product.name}`}
+              videoEmbedUrl={productVideoEmbed(product)}
+              videoYoutubeId={product.youtubeId ?? null}
+              videoTitle={`${product.model} demonstration video`}
+            />
 
             {/* Info */}
             <div>
@@ -219,19 +216,20 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      {/* Video section — appears once youtubeId is populated */}
-      {(() => {
-        const embedUrl = productVideoEmbed(product);
-        if (!embedUrl) return null;
-        const videoSchema = product.youtubeId
-          ? {
+      {/* VideoObject Schema for SEO — video itself now lives in the media
+          switcher at the top of the page, so no visible section here. */}
+      {product.youtubeId && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'VideoObject',
               name: `${product.model} — ${product.name}`,
               description: product.shortDescription,
               thumbnailUrl: `https://i.ytimg.com/vi/${product.youtubeId}/maxresdefault.jpg`,
               uploadDate: product.videoUploadDate || '2026-01-01',
-              embedUrl,
+              embedUrl: productVideoEmbed(product),
               contentUrl: `https://www.youtube.com/watch?v=${product.youtubeId}`,
               publisher: {
                 '@type': 'Organization',
@@ -241,40 +239,10 @@ export default async function ProductDetailPage({
                   url: 'https://deyusolemachine.com/deyu-logo.png',
                 },
               },
-            }
-          : null;
-
-        return (
-          <section className="py-16 bg-white">
-            {videoSchema && (
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
-              />
-            )}
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-8">
-                <span className="inline-block text-xs font-bold tracking-[0.2em] text-orange-600 uppercase mb-2">
-                  ▶ Live Demo
-                </span>
-                <h2 className="text-2xl lg:text-3xl font-bold text-[#0f172a]">
-                  Watch the {product.model} in Action
-                </h2>
-              </div>
-              <div className="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl ring-1 ring-slate-200">
-                <iframe
-                  src={embedUrl}
-                  title={`${product.model} demonstration video`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full"
-                />
-              </div>
-            </div>
-          </section>
-        );
-      })()}
+            }),
+          }}
+        />
+      )}
 
       <CtaSection />
     </>
