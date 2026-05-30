@@ -104,7 +104,7 @@ export default async function ProductDetailPage({
               image={product.mainImage}
               alt={`${product.model} - ${product.name}`}
               videoEmbedUrl={productVideoEmbed(product)}
-              videoYoutubeId={product.youtubeId ?? null}
+              videoYoutubeId={product.youtubeId ?? product.youtubeShortsId ?? null}
               videoTitle={`${product.model} demonstration video`}
             />
 

@@ -44,9 +44,12 @@ export function youtubeShortsEmbedUrl(id: string): string {
   return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&playsinline=1`;
 }
 
-/** Get a product's primary watchable video URL (YouTube preferred). */
+/** Get a product's primary watchable video URL (YouTube preferred).
+ *  Falls back to a Shorts embed when the product only has a Shorts upload —
+ *  better to show *some* demo than none. */
 export function productVideoEmbed(p: Product): string | undefined {
   if (p.youtubeId) return youtubeEmbedUrl(p.youtubeId);
+  if (p.youtubeShortsId) return youtubeShortsEmbedUrl(p.youtubeShortsId);
   return p.videoUrl;
 }
 
