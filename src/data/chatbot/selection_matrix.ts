@@ -147,21 +147,15 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
   // 规则 4: 双色
   else if (colors === 2) {
     if (isTPUorTR) {
-      if (isOutsole) {
-        productSlugs.push('tpu-tr-dual-color-12-station'); // DY-2212TPU/TR 立柱水冷 150T
-      } else {
-        productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220A
-        // 单头双色紧凑型(110T 12 工位) — 工厂面积紧或预算偏紧
-        productSlugs.push('single-head-dual-color-tr-tpu-machine'); // DY-2112TR/TPU
-        if (budgetTier === 'tight') {
-          productSlugs.push('tpu-dual-color-injection-machine'); // DY-2216TR/TPU fallback
-        }
+      // 双色 TR/TPU 转盘家族 (含 DY-2112 单头 110T · DY-2212 立柱 150T · DY-2216 16 工位 150T)
+      productSlugs.push('tpu-dual-color-injection-machine');
+      if (!isOutsole) {
+        productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220A (高产量备选)
       }
     } else {
       // PVC/TPR 双色
       if (moldConfig === '1-pair-per-mold') {
-        // 一模一双 (常见南美客户)
-        productSlugs.push('tpu-tr-dual-color-12-station'); // DY-2212 12 工位
+        productSlugs.push('tpu-dual-color-injection-machine'); // 双色家族 12 工位配置
       } else {
         productSlugs.push('dual-color-rotary-sole-machine'); // DY-2220A 20 工位高产
       }
@@ -173,7 +167,7 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
     if (wantsFlexibility) {
       productSlugs.push('three-color-three-head-flexible-machine'); // DY-3324A (3 头灵活之王)
     } else if (budgetTier === 'tight' || /small|compact|入门|小批量/.test(hintLower)) {
-      productSlugs.push('three-color-eight-ten-station-machine'); // DY-3208A 8/10 工位入门
+      productSlugs.push('three-color-three-head-flexible-machine'); // DY-3208 (合并到 3208/3324 系列产品)
     } else if (budgetTier === 'premium' || isTPUorTR) {
       productSlugs.push('three-color-12-20-station-machine'); // DY-3212B 立柱高规
     } else {

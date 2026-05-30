@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { products, getProductBySlug, categoryLabels, productVideoEmbed, youtubeShortsEmbedUrl } from '@/data/products';
+import { products, getProductBySlug, categoryLabels, productVideoEmbed } from '@/data/products';
 import CtaSection from '@/components/sections/CtaSection';
 import ChatbotBanner from '@/components/sections/ChatbotBanner';
 import { buildAlternates } from '@/lib/metadata';
@@ -275,55 +275,6 @@ export default async function ProductDetailPage({
           </section>
         );
       })()}
-
-      {/* Quick Demo (YouTube Shorts) — vertical 9:16 — appears once youtubeShortsId is populated */}
-      {product.youtubeShortsId && (
-        <section className="py-12 bg-[#f8fafc]">
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                '@context': 'https://schema.org',
-                '@type': 'VideoObject',
-                name: `${product.model} — Quick Demo`,
-                description: product.shortDescription,
-                thumbnailUrl: `https://i.ytimg.com/vi/${product.youtubeShortsId}/maxresdefault.jpg`,
-                uploadDate: product.videoUploadDate || '2026-01-01',
-                embedUrl: youtubeShortsEmbedUrl(product.youtubeShortsId),
-                contentUrl: `https://www.youtube.com/shorts/${product.youtubeShortsId}`,
-                publisher: {
-                  '@type': 'Organization',
-                  name: 'Wenzhou Deyu Machinery Co., Ltd',
-                  logo: {
-                    '@type': 'ImageObject',
-                    url: 'https://deyusolemachine.com/deyu-logo.png',
-                  },
-                },
-              }),
-            }}
-          />
-          <div className="max-w-md mx-auto px-4">
-            <div className="text-center mb-5">
-              <span className="inline-block text-xs font-bold tracking-[0.2em] text-orange-600 uppercase mb-2">
-                ⚡ Quick Demo
-              </span>
-              <h3 className="text-xl lg:text-2xl font-bold text-[#0f172a] leading-tight">
-                {product.shortsCaption || `60-Second ${product.model} in Action`}
-              </h3>
-            </div>
-            <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-2xl ring-1 ring-slate-200">
-              <iframe
-                src={youtubeShortsEmbedUrl(product.youtubeShortsId)}
-                title={`${product.model} quick demo`}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-                className="absolute inset-0 w-full h-full"
-              />
-            </div>
-          </div>
-        </section>
-      )}
 
       <CtaSection />
     </>
