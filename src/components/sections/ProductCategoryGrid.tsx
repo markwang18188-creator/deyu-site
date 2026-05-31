@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import FadeIn from '@/components/ui/FadeIn';
+import CategoryCard from '@/components/sections/CategoryCard';
 
 export default async function ProductCategoryGrid() {
   const t = await getTranslations('productGrid');
@@ -69,53 +69,15 @@ export default async function ProductCategoryGrid() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((cat, i) => (
             <FadeIn key={cat.slug} delay={i * 0.08}>
-              <Link
-                href={cat.href as '/products'}
-                className="block group relative aspect-[4/3] rounded-xl overflow-hidden border border-[#e2e8f0] hover:border-transparent hover:shadow-2xl hover:shadow-blue-900/20 hover:-translate-y-1 transition-all duration-500 bg-[#0f172a]"
-              >
-                {/* Representative machine image (slowly zooms on hover — Ken Burns) */}
-                <Image
-                  src={cat.image}
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
-                />
-
-                {/* Dark gradient mask — heavy at bottom for text legibility.
-                    Hovering lightens it so the machine photo reveals more. */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/95 via-[#0f172a]/55 to-[#0f172a]/15 transition-opacity duration-500 group-hover:opacity-70" />
-
-                {/* Top accent line — animates in on hover */}
-                <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#1e3a8a] via-[#3b82f6] to-[#ea580c] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
-
-                {/* Soft orange glow on hover (top-right) */}
-                <div className="absolute -top-16 -right-16 w-48 h-48 bg-orange-500/0 group-hover:bg-orange-500/25 rounded-full blur-3xl transition-colors duration-700" />
-
-                {/* Content — pinned to bottom, white on dark */}
-                <div className="relative h-full flex flex-col justify-end p-6 text-white">
-                  <div className="inline-flex items-center gap-2 mb-3">
-                    <span className="text-xl transition-transform duration-300 group-hover:scale-110 origin-left inline-block">
-                      {cat.icon}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold leading-tight mb-1.5 drop-shadow-sm">
-                    {cat.title}
-                  </h3>
-                  <p className="text-[13px] text-white/85 leading-relaxed mb-2 line-clamp-2">
-                    {cat.description}
-                  </p>
-                  <p className="text-[11px] text-white/65 font-mono line-clamp-1 mb-3">
-                    {cat.models}
-                  </p>
-                  <div className="text-sm font-semibold text-orange-300 group-hover:text-orange-200 inline-flex items-center gap-1.5">
-                    {t('view_models')}
-                    <span className="transition-transform duration-300 group-hover:translate-x-1.5">
-                      →
-                    </span>
-                  </div>
-                </div>
-              </Link>
+              <CategoryCard
+                href={cat.href}
+                image={cat.image}
+                icon={cat.icon}
+                title={cat.title}
+                description={cat.description}
+                models={cat.models}
+                viewLabel={t('view_models')}
+              />
             </FadeIn>
           ))}
         </div>
