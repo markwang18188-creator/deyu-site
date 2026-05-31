@@ -8,6 +8,8 @@ interface Marker {
   location: [number, number];
   /** Dot size; 0.05–0.10 looks good. */
   size: number;
+  /** Optional per-marker RGB [0–1]. Falls back to global markerColor. */
+  color?: [number, number, number];
 }
 
 interface Arc {
@@ -28,7 +30,7 @@ interface Props {
 const WENZHOU: [number, number] = [27.99, 120.7];
 
 const DEFAULT_MARKERS: Marker[] = [
-  { location: WENZHOU, size: 0.09 }, // Wenzhou (origin) — slightly larger
+  { location: WENZHOU, size: 0.1, color: [0.25, 0.9, 0.55] }, // Wenzhou (origin) — emerald green to mark factory HQ
   { location: [-15.78, -47.93], size: 0.06 }, // Brazil
   { location: [-34.6, -58.4], size: 0.05 }, // Argentina
   { location: [4.7, -74.1], size: 0.05 }, // Colombia
