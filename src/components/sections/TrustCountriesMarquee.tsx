@@ -1,7 +1,8 @@
 import { Marquee } from '@/components/ui/magic/Marquee';
+import Globe from '@/components/ui/Globe';
 
 /** Countries DEYU machines are currently running in. Kept here so the data
- *  is easy to edit; ordered alphabetically within continent groups. */
+ *  is easy to edit; ordered roughly by continent. */
 const COUNTRIES = [
   'Brazil',
   'Argentina',
@@ -22,38 +23,78 @@ const COUNTRIES = [
 ];
 
 /**
- * Quiet, premium replacement for the deleted "Trusted by Factories in 15
- * Countries" block. A single edge-fading marquee strip of country names —
- * dignified, B2B, doesn't shout. Two rows scrolling in opposite directions
- * give visual depth without being busy.
+ * Global-reach section — dark navy backdrop with a slowly rotating 3D
+ * globe (cobe) marking each customer country in warm gold, paired with
+ * two opposite-scrolling country marquees underneath. Conveys "we ship
+ * everywhere" with quiet premium feel rather than a noisy stat grid.
  */
 export default function TrustCountriesMarquee() {
   return (
-    <section className="relative py-14 lg:py-16 bg-white border-y border-[#e2e8f0] overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
-        <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#ea580c]">
-          Running 24/7 In Factories Across
-        </span>
-        <h2 className="text-2xl lg:text-3xl font-bold text-[#0f172a] mt-2">
-          15 Countries · 4 Continents
-        </h2>
-      </div>
+    <section className="relative py-20 lg:py-24 overflow-hidden bg-[#070d1f]">
+      {/* Subtle radial glow + grid backdrop */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 50% at 50% 35%, rgba(59,130,246,0.18), transparent 60%)',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
 
-      <div className="relative">
-        {/* Edge fade so the strip melts into the section instead of clipping */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Heading */}
+        <div className="text-center mb-10 lg:mb-12">
+          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-orange-400">
+            Global Reach
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mt-3">
+            Running 24/7 In <span className="text-orange-400">15 Countries</span>
+          </h2>
+          <p className="text-[#94a3b8] mt-3 max-w-xl mx-auto">
+            From Wenzhou to São Paulo, Lagos to Jakarta — DEYU machines are on the
+            factory floor across four continents.
+          </p>
+        </div>
 
-        <Marquee pauseOnHover className="[--duration:55s] [--gap:3rem] py-3">
-          {COUNTRIES.map((c) => (
-            <CountryPill key={c} name={c} />
-          ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:65s] [--gap:3rem] py-3 mt-1">
-          {COUNTRIES.slice().reverse().map((c) => (
-            <CountryPill key={c + '-r'} name={c} variant="muted" />
-          ))}
-        </Marquee>
+        {/* Globe */}
+        <div className="relative mx-auto w-full max-w-[320px] lg:max-w-[380px] mb-10 lg:mb-12">
+          <Globe className="w-full" />
+          {/* Soft underglow */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-x-10 bottom-0 h-24 blur-3xl"
+            style={{
+              background:
+                'radial-gradient(ellipse at center, rgba(234,88,12,0.35), transparent 70%)',
+            }}
+          />
+        </div>
+
+        {/* Country marquees */}
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#070d1f] to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#070d1f] to-transparent z-10" />
+
+          <Marquee pauseOnHover className="[--duration:55s] [--gap:2.5rem] py-2">
+            {COUNTRIES.map((c) => (
+              <CountryPill key={c} name={c} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover className="[--duration:65s] [--gap:2.5rem] py-2 mt-1">
+            {COUNTRIES.slice().reverse().map((c) => (
+              <CountryPill key={c + '-r'} name={c} variant="muted" />
+            ))}
+          </Marquee>
+        </div>
       </div>
     </section>
   );
@@ -61,14 +102,14 @@ export default function TrustCountriesMarquee() {
 
 function CountryPill({ name, variant }: { name: string; variant?: 'muted' }) {
   const base =
-    'inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold tracking-wide whitespace-nowrap shrink-0 transition-colors';
+    'inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold tracking-wide whitespace-nowrap shrink-0 border transition-colors';
   const styles =
     variant === 'muted'
-      ? 'bg-[#f1f5f9] text-[#64748b] hover:text-[#0f172a]'
-      : 'bg-[#1e3a8a]/5 text-[#1e3a8a] hover:bg-[#1e3a8a]/10';
+      ? 'bg-white/[0.03] text-white/60 border-white/10 hover:text-white/90'
+      : 'bg-white/[0.06] text-white border-white/15 hover:bg-white/[0.1]';
   return (
     <span className={`${base} ${styles}`}>
-      <span className="w-1.5 h-1.5 rounded-full bg-[#ea580c]" aria-hidden="true" />
+      <span className="w-1.5 h-1.5 rounded-full bg-orange-400" aria-hidden="true" />
       {name}
     </span>
   );
