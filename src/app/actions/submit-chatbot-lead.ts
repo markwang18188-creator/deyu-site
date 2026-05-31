@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { notifyFeishu } from '@/lib/chatbot/feishu';
+import { notifyEmail } from '@/lib/chatbot/email-notify';
 
 const ChatbotLeadSchema = z.object({
   customer_name: z.string().min(1),
@@ -89,8 +90,12 @@ export async function submitChatbotLead(
       .eq('id', d.session_id);
   }
 
+  // 双通道通知:飞书机器人(主) + 邮件备份(兜底)。任一失败都不阻塞主流程。
   notifyFeishu({ ...d, id: inserted?.id }).catch((err) =>
     console.error('[submit-chatbot-lead] feishu notify failed:', err)
+  );
+  notifyEmail({ ...d, id: inserted?.id }).catch((err) =>
+    console.error('[submit-chatbot-lead] email notify failed:', err)
   );
 
   return { success: true, id: inserted?.id };
