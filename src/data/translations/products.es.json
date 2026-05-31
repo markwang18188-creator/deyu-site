@@ -1,0 +1,575 @@
+{
+  "two-station-slide-sole-machine": {
+    "name": "Máquina de Inyección de Suelas de TPU — DY-1102 Deslizante de 2 Estaciones Nivel de Entrada",
+    "shortDescription": "Máquina de inyección de suelas de TPU nivel de entrada — diseño deslizante de 2 estaciones. La forma más económica de iniciar la producción de suelas de TPU. También compatible con materiales PVC y TPR.",
+    "features": [
+      "Aplicación principal: producción de suelas de TPU",
+      "Diseño deslizante de 2 estaciones",
+      "Costo de entrada más bajo para fabricación de TPU",
+      "También compatible con PVC / TPR",
+      "Operación simple, mantenimiento fácil",
+      "Bajo consumo de energía"
+    ],
+    "applications": [
+      "Muestreo y prototipado de suelas de TPU",
+      "Producción de TPU en lotes pequeños",
+      "Fabricación de TPU nivel de entrada",
+      "Suelas planas de PVC / TPR",
+      "Producción OEM de bajo volumen"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Primary Material": "Material Principal",
+      "Compatible Materials": "Materiales Compatibles",
+      "Best For": "Ideal Para"
+    }
+  },
+  "pvc-six-station-rotary-machine": {
+    "name": "Máquina de Inyección Rotativa Monocolor Totalmente Automática para Suelas — 80-100T (PVC / TPR / TPU)",
+    "shortDescription": "Máquina rotativa monocolor de tonelaje medio para suelas de PVC / TPR / TPU. Una familia de productos que abarca DY-1106 (6 estaciones), DY-1108 (10 estaciones) y DY-1112 (12 estaciones) con fuerza de cierre de 80-100T. Hasta 130 pares/hora. Enfriamiento por agua opcional.",
+    "features": [
+      "Disco rotatorio — opciones de 6 / 10 / 12 estaciones (DY-1106 / 1108 / 1112)",
+      "Fuerza de cierre media: 80-100 toneladas",
+      "Materiales: PVC / TPR / TPU (expandido o no expandido)",
+      "Hasta 130 pares/hora",
+      "Tornillo grande de Φ65 en la máquina de 12 estaciones (DY-1112)",
+      "Enfriamiento central por agua opcional para un enfriamiento más rápido del molde",
+      "Control digital programado por computadora · ahorro de energía servo (ahorra más del 30%)"
+    ],
+    "applications": [
+      "Juegos de calzado para hombre",
+      "Producción de suelas de PVC/TPR/TPU de volumen medio",
+      "Calzado casual y deportivo",
+      "Producción OEM"
+    ],
+    "specLabels": {
+      "Models": "Modelos",
+      "Clamping Force": "Fuerza de cierre",
+      "Stations": "Estaciones",
+      "Material": "Material",
+      "Screw Diameter": "Diámetro del tornillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Max Injection Pressure": "Presión máxima de inyección",
+      "Productivity": "Productividad",
+      "Cooling": "Enfriamiento",
+      "Total Power": "Potencia total"
+    }
+  },
+  "tr-tpu-150t-water-cooling-rotary-machine": {
+    "name": "Máquina Rotativa Automática Completa para Suelas Monocolor con Enfriamiento por Agua — 150T (TR / TPU)",
+    "shortDescription": "Máquina rotativa pesada de 150T para suelas monocolor con enfriamiento por agua para TR / TPU. Enfriamiento central por agua y apertura automática de molde, disponible en configuraciones de 6 estaciones (DY-1106TR/TPU) o 6/12 estaciones (DY-1112TR/TPU). 80-120 pares/hora.",
+    "features": [
+      "Fuerza de cierre pesada de 150T — para suelas de espuma y sólidas de TR / TPU",
+      "Configuraciones: DY-1106TR/TPU (6 estaciones) · DY-1112TR/TPU (6 o 12 estaciones)",
+      "Enfriamiento central por agua — enfriamiento rápido del molde",
+      "Brazo robótico de apertura automática de molde — fácil para cualquier operador",
+      "Materiales: TR / TPU (espumado o sólido)",
+      "Sistema de ahorro de energía servo — ahorra más del 30% de electricidad",
+      "Estructura integrada compacta"
+    ],
+    "applications": [
+      "Suelas deportivas y atléticas de TR/TPU",
+      "Suelas para zapatos de running y trail",
+      "Calzado para exteriores",
+      "Suelas de alto rendimiento"
+    ],
+    "specLabels": {
+      "Models": "Modelos",
+      "Clamping Force": "Fuerza de cierre",
+      "Stations": "Estaciones",
+      "Material": "Material",
+      "Screw Diameter": "Diámetro del husillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Max Injection Pressure": "Presión máxima de inyección",
+      "Productivity": "Productividad",
+      "Cooling": "Enfriamiento",
+      "Total Power": "Potencia total",
+      "Machine Weight": "Peso de la máquina"
+    }
+  },
+  "pvc-single-color-rotary-machine": {
+    "name": "Máquina Inyectora de Suelas de Plástico y Caucho Monocolor Tipo Rotatorio Totalmente Automática",
+    "shortDescription": "Máquina rotativa monocolor de 20 estaciones de alto rendimiento para PVC/TPR/TPU. 180 pares/hora, husillo grande Φ75. El caballo de batalla de DEYU para producción de suelas de PVC de alto volumen.",
+    "features": [
+      "Disco rotatorio de 20 estaciones",
+      "Producción: 180 pares/hora (alto volumen)",
+      "Husillo grande Φ75 — alto volumen de inyección por disparo",
+      "Materiales: PVC / TPR / TPU (espumado o no espumado)",
+      "20 ajustes independientes de volumen de inyección por estación (control por computadora)",
+      "Motor hidráulico de bajo ruido, baja velocidad y alto par",
+      "Cambio de velocidad sin escalonamiento"
+    ],
+    "applications": [
+      "Zapatos deportivos",
+      "Zapatos casuales",
+      "Zapatos de seguridad",
+      "Sandalias",
+      "Producción de PVC de alto volumen"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Screw Diameter": "Diámetro del husillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Max Injection Pressure": "Presión máxima de inyección",
+      "Productivity": "Productividad",
+      "Mould Dimension": "Dimensión del molde",
+      "Total Power": "Potencia total",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina",
+      "Oil Capacity": "Capacidad de aceite"
+    }
+  },
+  "tpu-tr-vertical-injection-machine": {
+    "name": "Máquina de Inyección Vertical Automática de Dos Colores para TR/TPU",
+    "shortDescription": "Máquina hidráulica vertical para TR/TPU con configuración de 4 tornillos que admite producción de uno y dos colores. Estructura de giro de 0/90/180°. Fuerza de cierre de 150T. Producto de nicho para preferencias de diseño vertical.",
+    "features": [
+      "Sistema de cierre de molde hidráulico vertical",
+      "Estructura de giro de 0° / 90° / 180°",
+      "4 tornillos (Φ55 × 4) — admite uno y dos colores",
+      "Fuerza de cierre de 150T",
+      "Espacio de molde autoajustable (80-200 mm)",
+      "Huella compacta",
+      "Tanque de aceite y caja de control eléctrico integrados",
+      "Interfaz hombre-máquina con pantalla táctil"
+    ],
+    "applications": [
+      "Suelas de TR",
+      "Suelas de TPU",
+      "Producción especializada con diseño vertical",
+      "Clientes que prefieren máquinas verticales"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Layout": "Disposición",
+      "Colors": "Colores",
+      "Material": "Material",
+      "Screw Diameter": "Diámetro del tornillo",
+      "Clamping Force": "Fuerza de cierre",
+      "Mould Opening Stroke": "Carrera de apertura del molde",
+      "Mould Dimension": "Dimensión del molde",
+      "Mould Thickness": "Espesor del molde",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Total Power": "Potencia total",
+      "Oil Capacity": "Capacidad de aceite",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina"
+    }
+  },
+  "tpu-dual-color-injection-machine": {
+    "name": "Serie de Máquinas de Inyección de Suelas Rotativas Automáticas de Dos Colores TR/TPU",
+    "shortDescription": "Familia de máquinas rotativas de suela de dos colores TR/TPU. Las configuraciones van desde una compacta estación única de 12 estaciones 110T (DY-2112) hasta una insignia de doble cabezal tipo columna de 12 estaciones 150T (DY-2212) y una de 16 estaciones 150T (DY-2216) de mayor capacidad. 60-120 pares/hora.",
+    "features": [
+      "Tres configuraciones: DY-2112 (cabezal único, 110T) · DY-2212 (doble cabezal tipo columna, 150T) · DY-2216 (doble cabezal de 16 estaciones, 150T)",
+      "Disco rotatorio de 12 o 16 estaciones",
+      "Materiales: TR / TPU (PVC / TPR también compatibles en DY-2216)",
+      "Enfriamiento central por agua — enfriamiento rápido del molde",
+      "Brazo robótico de apertura automática de molde (DY-2112)",
+      "Bomba de aceite externa en DY-2212 — mejor disipación de calor, mayor vida útil de la máquina",
+      "Sistema de ahorro de energía servo — ahorra más del 30% de electricidad",
+      "Producción: 60-120 pares/hora según configuración"
+    ],
+    "applications": [
+      "Suelas deportivas de dos colores TR/TPU",
+      "Suelas de tacos de fútbol",
+      "Suelas premium para zapatos de running",
+      "Suelas de moda de dos tonos",
+      "Producción de dos colores de volumen medio a alta gama"
+    ],
+    "specLabels": {
+      "Models": "Modelos",
+      "Stations": "Estaciones",
+      "Configuration": "Configuración",
+      "Clamping Force": "Fuerza de cierre",
+      "Material": "Material",
+      "Screw Diameter": "Diámetro del husillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Max Injection Pressure": "Presión máxima de inyección",
+      "Productivity": "Productividad",
+      "Cooling": "Enfriamiento",
+      "Total Power": "Potencia total",
+      "Machine Weight": "Peso de la máquina"
+    }
+  },
+  "dual-color-rotary-sole-machine": {
+    "name": "Máquina Inyectora de Suelas de Plástico y Caucho de Dos Colores, Tipo Rotatorio Totalmente Automático",
+    "shortDescription": "Máquina de 20 estaciones de alto volumen para PVC/TPR/TPU bicolor. Fuerza de cierre de 55T (configurable 55/55, 55/80, 80/80 principal/secundaria), 150 pares/hora. La máquina de trabajo bicolor de DEYU para producción general.",
+    "features": [
+      "Disco rotatorio de 20 estaciones",
+      "Cabezales de inyección dobles (Φ75 principal + Φ65 secundario)",
+      "Fuerza de cierre configurable: 55/55, 55/80 u 80/80 toneladas (según presupuesto)",
+      "Producción: 150 pares/hora",
+      "Materiales: PVC / TPR / TPU (expandido o no expandido)",
+      "Sistema hidráulico de alta presión y alto caudal — mayor eficiencia",
+      "Bomba de aceite externa — mejor enfriamiento, mayor vida útil",
+      "Marco compacto, diseño ligero"
+    ],
+    "applications": [
+      "Suelas de zapatos deportivos",
+      "Suelas de zapatos casuales",
+      "Suelas de zapatos para hombre y mujer",
+      "Sandalias",
+      "Producción bicolor de PVC de alto volumen"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Screw Diameter": "Diámetro del husillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Max Injection Pressure": "Presión máxima de inyección",
+      "Productivity": "Productividad",
+      "Mould Dimension": "Dimensión del molde",
+      "Total Power": "Potencia total",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina",
+      "Oil Capacity": "Capacidad de aceite"
+    }
+  },
+  "three-color-12-20-station-machine": {
+    "name": "Máquina Inyectora de Suelas de Plástico Totalmente Automática Tipo Rotatorio de Dos Cabezales y Tres Colores",
+    "shortDescription": "Máquina de 3 colores disponible en configuraciones de 12, 16 o 20 estaciones. Fuerza de cierre de 80T con estructura de columnas: la opción premium para producción pesada de 3 colores. Dos cabezales sirven 3 colores (1 color + 2 colores en 2 capas).",
+    "features": [
+      "Configurable en 12 / 16 / 20 estaciones",
+      "Dos cabezales de inyección, tres colores (configuración de capas 1+2)",
+      "Fuerza de cierre de 80T, estructura de columnas",
+      "Tornillos: Φ75 (principal) + 2 × Φ60 (secundarios)",
+      "Materiales: PVC / TPR (espumado o no espumado)",
+      "Control de temperatura de 4 secciones",
+      "Bomba de aceite externa: mejor enfriamiento, mayor vida útil"
+    ],
+    "applications": [
+      "Suelas deportivas premium de 3 colores",
+      "Calzado de moda",
+      "Suelas casuales multicolor",
+      "Suelas para calzado de hombre y mujer"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Colors": "Colores",
+      "Injection Heads": "Cabezales de inyección",
+      "Screw Diameter": "Diámetro del tornillo",
+      "Screw L/D Ratio": "Relación L/D del tornillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Injection Pressure": "Presión de inyección",
+      "Injection Speed": "Velocidad de inyección",
+      "Screw Rotation Speed": "Velocidad de rotación del tornillo",
+      "Mould Dimension": "Dimensión del molde",
+      "Total Power": "Potencia total",
+      "Motor Power": "Potencia del motor",
+      "Heater Power": "Potencia del calentador",
+      "Oil Tank Volume": "Volumen del tanque de aceite",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina"
+    }
+  },
+  "multi-color-rotary-machine": {
+    "name": "Máquina Inyectora de Suelas de Plástico Totalmente Automática Tipo Rotativo de Tres Colores",
+    "shortDescription": "Máquina rotativa de alta producción de 3 colores, 12 o 20 estaciones, doble cabezal de inyección. 220 pares/hora. La máquina multicolor de DEYU para calzado infantil de 2/3 colores, deportivo, casual, hombre/mujer, sandalias.",
+    "features": [
+      "12 o 20 estaciones",
+      "Tres colores, dos cabezales de inyección",
+      "Fuerza de cierre configurable: 55T / 80T (secundario/principal)",
+      "Producción: 220 pares/hora",
+      "Tornillos: Φ65 (principal) + 2 × Φ60 (secundarios)",
+      "Materiales: PVC / TPR / TPU (espumado o no espumado)",
+      "Control de temperatura de 4 secciones",
+      "Bomba de aceite externa: mejor enfriamiento, mayor vida útil",
+      "Marco compacto, ligero, fácil de operar"
+    ],
+    "applications": [
+      "Suelas de calzado infantil (2/3 colores)",
+      "Suelas de calzado deportivo",
+      "Calzado casual",
+      "Calzado de hombre y mujer",
+      "Sandalias"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Colors": "Colores",
+      "Injection Heads": "Cabezales de inyección",
+      "Screw Diameter": "Diámetro del tornillo",
+      "Screw L/D Ratio": "Relación L/D del tornillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Injection Pressure": "Presión de inyección",
+      "Injection Speed": "Velocidad de inyección",
+      "Screw Rotation Speed": "Velocidad de rotación del tornillo",
+      "Mould Dimension": "Dimensión del molde",
+      "Total Power": "Potencia total",
+      "Motor Power": "Potencia del motor",
+      "Heater Power": "Potencia del calentador",
+      "Oil Tank Volume": "Volumen del tanque de aceite",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina"
+    }
+  },
+  "three-color-three-head-flexible-machine": {
+    "name": "Serie de Máquinas de Inyección de Suelas de Tres Colores Totalmente Automáticas Rotativas (3 Cabezales)",
+    "shortDescription": "Familia de máquinas rotativas de suela de tres colores con 3 cabezales de inyección independientes. Las configuraciones van desde una entrada compacta de 8/10 estaciones (DY-3208, 80T) hasta un buque insignia flexible de alta capacidad de 24 estaciones (DY-3324) que puede producir suelas apiladas de 3 capas, 3 lotes de un solo color en paralelo o tiradas mixtas. 150 pares/hora.",
+    "features": [
+      "Dos configuraciones: DY-3208 (8/10 estaciones, 80T compacto) · DY-3324 (24 estaciones, flexible de alta capacidad)",
+      "Tres cabezales de inyección independientes (cuello de cisne en DY-3324)",
+      "Producción flexible de 3 colores: capas apiladas, lotes de un solo color en paralelo o mixtos",
+      "Materiales: PVC / TPR / TPU (espumado o no espumado)",
+      "Hasta 150 pares/hora según configuración",
+      "Ideal para fábricas que producen múltiples estilos de suela"
+    ],
+    "applications": [
+      "Producción de suelas de 3 colores de nivel básico (DY-3208)",
+      "Producción de suelas apiladas de tres colores (DY-3324)",
+      "Múltiples lotes de un solo color en paralelo (DY-3324)",
+      "Fabricación OEM de calzado de moda con diseños variados de suela",
+      "Calzado infantil y casual de 3 colores"
+    ],
+    "specLabels": {
+      "Models": "Modelos",
+      "Stations": "Estaciones",
+      "Colors": "Colores",
+      "Clamping Force": "Fuerza de cierre",
+      "Screw Diameter": "Diámetro del husillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Max Injection Pressure": "Presión máxima de inyección",
+      "Productivity": "Productividad",
+      "Material": "Material",
+      "Total Power": "Potencia total",
+      "Machine Weight": "Peso de la máquina",
+      "Oil Capacity": "Capacidad de aceite"
+    }
+  },
+  "four-color-rotary-sole-machine": {
+    "name": "Máquina de Moldeo por Inyección de Suelas de Plástico de Cuatro Colores, Tipo Rotatorio Totalmente Automática",
+    "shortDescription": "Máquina rotativa de 12 estaciones con estructura de 2 cabezales (1 husillo principal + 3 secundarios). Produce suelas de dos, tres y cuatro colores para calzado infantil, deportivo, casual, sandalias y suelas multicolor mixtas. 220 pares/hora.",
+    "features": [
+      "Disco rotatorio de 12 estaciones",
+      "Diseño de dos cabezales: 1 husillo principal + 3 secundarios (permite distribución de 1+3 colores)",
+      "Producción: 220 pares/hora",
+      "Materiales: PVC / TPR / TPU (expandido o sólido)",
+      "Control totalmente automático por computadora programable",
+      "Bomba de aceite externa para mejor enfriamiento y mayor vida útil de la máquina",
+      "Estructura compacta, ligera y diseño amigable para el operador"
+    ],
+    "applications": [
+      "Suelas para calzado infantil (2/3/4 colores)",
+      "Suelas para calzado deportivo",
+      "Suelas para calzado casual",
+      "Chanclas y sandalias",
+      "Suelas multicolor mixtas/marmoleadas",
+      "Suelas de PVC/TPR/TPU expandido"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Colors": "Colores",
+      "Injection Heads": "Cabezales de inyección",
+      "Screw Diameter": "Diámetro del husillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Max Injection Pressure": "Presión máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Productivity": "Productividad",
+      "Mould Dimension": "Dimensión del molde",
+      "Total Power": "Potencia total",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina",
+      "Oil Capacity": "Capacidad de aceite"
+    }
+  },
+  "air-blowing-injection-machine": {
+    "name": "Máquina de Moldeo por Inyección y Soplado de Plástico Tipo Rotatorio Totalmente Automática",
+    "shortDescription": "Máquina de soplado de 24 estaciones y un solo color para chanclas y sandalias. 55T de fuerza de cierre con husillo Φ65. 130 pares/hora. Produce suelas ligeras y suaves con una tasa de espumado superior al 60%.",
+    "features": [
+      "Disco rotatorio de 24 estaciones",
+      "Inyección por soplado: productos ligeros, suaves y de superficie lisa",
+      "Tasa de espumado superior al 60%",
+      "Producción: 130 pares/hora",
+      "Materias primas reciclables (calidad similar al material virgen)",
+      "Pantalla LCD + control automático PLC",
+      "Tanque de aceite integrado: menor espacio en planta",
+      "Interfaz hombre-máquina táctil ergonómica"
+    ],
+    "applications": [
+      "Chancletas",
+      "Sandalias",
+      "Calzado de playa",
+      "Calzado casual ligero",
+      "Producción de chanclas de alto volumen"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Type": "Tipo",
+      "Colors": "Colores",
+      "Screw Diameter": "Diámetro del husillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Max Injection Pressure": "Presión máxima de inyección",
+      "Productivity": "Productividad",
+      "Mould Dimension": "Dimensión del molde",
+      "Total Power": "Potencia total",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina",
+      "Oil Capacity": "Capacidad de aceite"
+    }
+  },
+  "dual-color-air-blowing-machine": {
+    "name": "Máquina de Moldeo por Inyección y Soplado de Caucho y Plástico de Dos Colores, Tipo Rotatorio Totalmente Automático",
+    "shortDescription": "Máquina de soplado de dos colores de 20 o 24 estaciones para chanclas de moda, sandalias, zapatos de algodón, correas de colores mixtos. Fuerza de cierre de 55T, tornillos Φ75 + Φ65. 150 pares/hora.",
+    "features": [
+      "Configurable de 20 o 24 estaciones",
+      "Inyección por soplado de dos colores",
+      "Dos cabezales de inyección",
+      "Fuerza de cierre de 55T",
+      "Tornillos: Φ75 (principal) + Φ65 (secundario)",
+      "Producción: 150 pares/hora",
+      "Materiales: PVC / TPR espumado o no espumado por soplado",
+      "Sistema servo de alto rendimiento con bomba de motor servo importada"
+    ],
+    "applications": [
+      "Chancletas de moda",
+      "Sandalias de dos colores",
+      "Zapatos de algodón",
+      "Correas de colores mixtos",
+      "Calzado de playa"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Type": "Tipo",
+      "Colors": "Colores",
+      "Screw Diameter": "Diámetro del tornillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Max Injection Pressure": "Presión máxima de inyección",
+      "Productivity": "Productividad",
+      "Mould Dimension": "Dimensión del molde",
+      "Total Power": "Potencia total",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina",
+      "Oil Capacity": "Capacidad de aceite"
+    }
+  },
+  "three-color-mixed-air-blowing-machine": {
+    "name": "Máquina de Moldeo por Inyección y Soplado de Plástico de Tres Colores Tipo Rotatorio Totalmente Automática",
+    "shortDescription": "Máquina de soplado de un cabezal y 3 colores mixtos con 20 o 24 estaciones. Crea efectos de color mixto únicos y patrones de camuflaje. Fuerza de cierre de 80T, 3 tornillos. Para zapatos de algodón premium, pantuflas, correas de color mixto, sandalias de camuflaje.",
+    "features": [
+      "Configurable de 20 o 24 estaciones",
+      "Inyección mixta de tres colores de un cabezal",
+      "Fuerza de cierre de 80T",
+      "Tornillos: Φ65 + Φ60 + Φ60",
+      "Técnica de soplado: ligero y suave",
+      "Capacidad única de efecto mixto/camuflaje",
+      "Materiales: PVC / TPR espumado o no espumado",
+      "Sistema de ahorro de energía servo de alto rendimiento"
+    ],
+    "applications": [
+      "Zapatos de algodón de color mixto",
+      "Zapatos casuales",
+      "Sandalias de camuflaje",
+      "Correas de color mixto",
+      "Pantuflas de moda premium"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Type": "Tipo",
+      "Colors": "Colores",
+      "Screw Diameter": "Diámetro del tornillo",
+      "Screw L/D Ratio": "Relación L/D del tornillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Injection Pressure": "Presión de inyección",
+      "Injection Speed": "Velocidad de inyección",
+      "Screw Rotation Speed": "Velocidad de rotación del tornillo",
+      "Mould Dimension": "Dimensión del molde",
+      "Total Power": "Potencia total",
+      "Heater Power": "Potencia del calentador",
+      "Motor Power": "Potencia del motor",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina",
+      "Oil Tank Volume": "Volumen del tanque de aceite"
+    }
+  },
+  "industrial-parts-two-station-machine": {
+    "name": "Máquina de Inyección de Plástico y Caucho Industrial Totalmente Automática de Dos Estaciones Deslizantes — 400T",
+    "shortDescription": "Prensa industrial deslizante de 2 estaciones de servicio pesado con 400 toneladas de fuerza de cierre y capacidad de inyección de 9000cc. Diseñada para piezas industriales: discos de pesas, mancuernas, cojines de asientos automotrices. NO es una máquina para suelas de zapatos — una línea de producción industrial dedicada de servicio pesado.",
+    "features": [
+      "Diseño deslizante de 2 estaciones",
+      "Fuerza de cierre pesada de 400 toneladas",
+      "Capacidad de inyección masiva de 9000 cm³/disparo",
+      "Gran diámetro de tornillo de Φ105",
+      "Sistema servo electrohidráulico completo — respuesta rápida, ahorro de energía",
+      "Regla electrónica para medición precisa del material",
+      "Control automático completo por computadora PLC",
+      "Nueva estructura automática de apertura de molde",
+      "Materiales: PVC / TPE / TPR / TPU y otros termoplásticos"
+    ],
+    "applications": [
+      "Discos de pesas para barras",
+      "Mancuernas (hierro fundido con recubrimiento de caucho)",
+      "Cojines de asientos automotrices",
+      "Piezas moldeadas industriales pesadas",
+      "Producción OEM de equipos de fitness"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Screw Diameter": "Diámetro del tornillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Injection Stroke": "Carrera de inyección",
+      "Minimum Mould Thickness": "Espesor mínimo del molde",
+      "Left-Right Mould Opening Stroke": "Carrera de apertura del molde izquierda-derecha",
+      "Ejector Stroke": "Carrera del expulsor",
+      "Max Mould Dimension": "Dimensión máxima del molde",
+      "Average Power": "Potencia promedio",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina",
+      "Oil Capacity": "Capacidad de aceite"
+    }
+  },
+  "industrial-parts-six-station-machine": {
+    "name": "Máquina de Moldeo por Inyección Industrial de Disco Rotatorio, Enfriada por Agua, Totalmente Automática de Seis Estaciones — 400T",
+    "shortDescription": "Prensa industrial de disco rotatorio de 6 estaciones de alta resistencia con fuerza de cierre de 400 toneladas, enfriamiento por agua y capacidad de inyección de 9000 cc. Hermana de mayor producción de la DY-1102-S. Diseñada para mancuernas, discos de pesas, cojines de asientos automotrices y otras piezas moldeadas industriales pesadas.",
+    "features": [
+      "Disco rotatorio de 6 estaciones",
+      "Fuerza de cierre pesada de 400 toneladas",
+      "Capacidad de inyección masiva de 9000 cm³/disparo",
+      "Diámetro de husillo grande de Φ105 mm",
+      "Sistema central de enfriamiento por agua — enfriamiento rápido",
+      "Sistema servo electrohidráulico completo — respuesta rápida, ahorro de energía",
+      "Regla electrónica para medición precisa del material",
+      "Control completo por computadora PLC automático",
+      "Nueva estructura de apertura de molde automática",
+      "Materiales: PVC / TPE / TPR / TPU y otros termoplásticos",
+      "El sistema servo ahorra más del 30% de electricidad"
+    ],
+    "applications": [
+      "Discos de pesas para barra",
+      "Mancuernas (recubiertas de caucho)",
+      "Cojines de asientos automotrices",
+      "Piezas moldeadas industriales pesadas",
+      "Equipos de fitness OEM",
+      "Producción industrial de alto volumen"
+    ],
+    "specLabels": {
+      "Model": "Modelo",
+      "Stations": "Estaciones",
+      "Screw Diameter": "Diámetro del husillo",
+      "Max Injection Capacity": "Capacidad máxima de inyección",
+      "Clamping Force": "Fuerza de cierre",
+      "Injection Stroke": "Carrera de inyección",
+      "Minimum Mould Thickness": "Espesor mínimo del molde",
+      "Ejector Stroke": "Carrera del expulsor",
+      "Max Mould Dimension": "Dimensión máxima del molde",
+      "Average Power": "Potencia promedio",
+      "Machine Dimension": "Dimensión de la máquina",
+      "Machine Weight": "Peso de la máquina",
+      "Oil Capacity": "Capacidad de aceite"
+    }
+  }
+}

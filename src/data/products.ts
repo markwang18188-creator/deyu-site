@@ -738,3 +738,67 @@ export const categoryLabels: Record<ProductCategory, string> = {
   'multi-color': 'Multi Color Machines',
   'industrial': 'Industrial Heavy-Duty Machines',
 };
+
+// ─────────────────────────────────────────────────────────────────────────
+// Localisation
+//
+// English remains the canonical source — `products` above. Translations live
+// as flat JSON files under `src/data/translations/products.<locale>.json`,
+// keyed by product slug. Each per-slug entry may include any subset of the
+// translatable fields; missing fields automatically fall back to English so
+// a partially-translated entry never breaks a product page.
+//
+// Why JSON instead of inline TS? Translation drafts come from one-shot
+// scripts (DeepSeek) and we want them reviewable / hand-editable without
+// touching the canonical TS file. Keeps source-of-truth English copy
+// untouched even when the ES file is rewritten.
+// ─────────────────────────────────────────────────────────────────────────
+
+import productsEs from './translations/products.es.json';
+
+interface ProductTranslation {
+  name?: string;
+  shortDescription?: string;
+  features?: string[];
+  applications?: string[];
+  /** Spec *labels* only — values stay English (numeric ranges, units). */
+  specLabels?: Record<string, string>;
+}
+
+const TRANSLATIONS: Record<string, Record<string, ProductTranslation>> = {
+  es: productsEs as Record<string, ProductTranslation>,
+};
+
+/**
+ * Return a copy of the product with translated fields merged in for the
+ * given locale. Falls back to the English source per-field — never returns
+ * undefined on a translatable field. English (`en`) returns the canonical
+ * product as-is.
+ */
+export function getLocalizedProduct(
+  slug: string,
+  locale: string
+): Product | undefined {
+  const source = getProductBySlug(slug);
+  if (!source) return undefined;
+  if (locale === 'en') return source;
+
+  const dict = TRANSLATIONS[locale];
+  if (!dict) return source;
+  const t = dict[source.slug] ?? dict[source.modelSlug ?? ''] ?? {};
+
+  const specifications: Record<string, string> = {};
+  for (const [k, v] of Object.entries(source.specifications)) {
+    const localKey = t.specLabels?.[k] ?? k;
+    specifications[localKey] = v;
+  }
+
+  return {
+    ...source,
+    name: t.name ?? source.name,
+    shortDescription: t.shortDescription ?? source.shortDescription,
+    features: t.features?.length ? t.features : source.features,
+    applications: t.applications?.length ? t.applications : source.applications,
+    specifications,
+  };
+}

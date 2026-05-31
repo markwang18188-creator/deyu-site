@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { products, getProductBySlug, categoryLabels, productVideoEmbed } from '@/data/products';
+import { products, getLocalizedProduct, categoryLabels, productVideoEmbed } from '@/data/products';
 import CtaSection from '@/components/sections/CtaSection';
 import ChatbotBanner from '@/components/sections/ChatbotBanner';
 import ProductMediaSwitcher from '@/components/product/ProductMediaSwitcher';
@@ -15,10 +15,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const { slug, locale } = await params;
+  const product = getLocalizedProduct(slug, locale);
   if (!product) return {};
   return {
     title: `${product.name} | ${product.model} | DEYU`,
@@ -36,10 +36,10 @@ export async function generateMetadata({
 export default async function ProductDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const { slug, locale } = await params;
+  const product = getLocalizedProduct(slug, locale);
   if (!product) notFound();
 
   const t = await getTranslations('productDetail');
