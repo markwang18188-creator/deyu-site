@@ -59,10 +59,6 @@ export default function TrustCountriesMarquee() {
           <h2 className="text-3xl lg:text-4xl font-bold text-white mt-3">
             Running 24/7 In <span className="text-orange-400">15 Countries</span>
           </h2>
-          <p className="text-[#94a3b8] mt-3 max-w-xl mx-auto">
-            From Wenzhou to São Paulo, Lagos to Jakarta — DEYU machines are on the
-            factory floor across four continents.
-          </p>
         </div>
 
         {/* Globe */}
