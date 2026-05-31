@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/sections/Hero';
 import TrustBar from '@/components/sections/TrustBar';
+import TrustCountriesMarquee from '@/components/sections/TrustCountriesMarquee';
 import ProductCategoryGrid from '@/components/sections/ProductCategoryGrid';
 import CtaSection from '@/components/sections/CtaSection';
 import { buildAlternates } from '@/lib/metadata';
@@ -102,6 +103,7 @@ export default function HomePage() {
       />
       <Hero />
       <TrustBar />
+      <TrustCountriesMarquee />
       <ProductCategoryGrid />
       <CtaSection />
     </>
