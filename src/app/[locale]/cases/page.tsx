@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { buildAlternates } from '@/lib/metadata';
 import CtaSection from '@/components/sections/CtaSection';
 import { gallery, imageUrl, type GalleryImage } from '@/data/gallery';
+import CustomerFactoryGallery, { type FactoryItem } from '@/components/cases/CustomerFactoryGallery';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('cases');
@@ -20,22 +21,36 @@ export async function generateMetadata(): Promise<Metadata> {
 const tradeShows = gallery.filter(
   (g) => g.published !== false && g.category === 'tradeshow'
 );
-const installations = gallery.filter(
-  (g) =>
-    g.published !== false &&
-    (g.category === 'workshop' ||
-      g.category === 'customer' ||
-      g.category === 'product')
-);
 const shipments = gallery.filter(
   (g) => g.published !== false && g.category === 'shipment'
 );
 
-const markets = [
-  { region: 'South America', countries: 'Brazil · Argentina · Colombia', icon: '🌎' },
-  { region: 'Middle East & Africa', countries: 'Turkey · Egypt · Morocco · Nigeria', icon: '🌍' },
-  { region: 'South Asia', countries: 'India · Pakistan · Bangladesh', icon: '🌏' },
-  { region: 'Southeast Asia', countries: 'Vietnam · Indonesia', icon: '🌏' },
+// Mix of YouTube customer-site videos + best customer/workshop photos for
+// the "Inside Customer Factories" gallery. Videos come first so they take
+// the spotlight when the section first appears; photos round out the
+// thumbnail strip. Add more video items here as customer-factory videos
+// get published on YouTube (multi-machine tours, customer site demos).
+const factoryItems: FactoryItem[] = [
+  {
+    type: 'video' as const,
+    youtubeId: 'vkDSJiMSumQ',
+    caption:
+      'DY-1108 single-color sole machine running on an African customer factory floor — real production, real output.',
+    tags: ['Africa', 'DY-1108', 'Customer Site'],
+  },
+  ...gallery
+    .filter(
+      (g) =>
+        g.published !== false &&
+        (g.category === 'customer' || g.category === 'workshop')
+    )
+    .map((g) => ({
+      type: 'image' as const,
+      src: imageUrl(g),
+      alt: g.caption,
+      caption: g.caption,
+      tags: g.location ? [g.location] : undefined,
+    })),
 ];
 
 function GalleryGrid({ images }: { images: GalleryImage[] }) {
@@ -123,19 +138,8 @@ export default async function CasesPage() {
         </section>
       )}
 
-      {/* Section 2 — Customer Installations & Production */}
-      {installations.length > 0 && (
-        <section className="py-16 bg-[#f8fafc]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeader
-              eyebrow="In Production"
-              title="Customer Installations & Daily Production"
-              desc="DEYU machines are running in factories across 30+ countries — from large-volume sport-shoe brands to specialty footwear OEMs. Below is a snapshot of our machines on the production floor."
-            />
-            <GalleryGrid images={installations} />
-          </div>
-        </section>
-      )}
+      {/* Section 2 — Inside Customer Factories (interactive gallery) */}
+      {factoryItems.length > 0 && <CustomerFactoryGallery items={factoryItems} />}
 
       {/* Section 3 — Shipments */}
       {shipments.length > 0 && (
@@ -150,31 +154,6 @@ export default async function CasesPage() {
           </div>
         </section>
       )}
-
-      {/* Global markets */}
-      <section className="py-16 bg-[#1e3a8a] text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-3 text-center">
-            Where Our Machines Are Running
-          </h2>
-          <p className="text-blue-200 text-center mb-10 max-w-2xl mx-auto">
-            Exporting to 30+ countries across four continents.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {markets.map((m) => (
-              <div
-                key={m.region}
-                className="group bg-white/10 hover:bg-white/15 border border-white/20 hover:border-orange-400/50 rounded-xl p-6 text-center backdrop-blur hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">{m.icon}</div>
-                <h3 className="font-semibold text-sm mb-2">{m.region}</h3>
-                <p className="text-xs text-blue-200 leading-relaxed">{m.countries}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <CtaSection />
     </>
