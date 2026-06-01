@@ -11,7 +11,16 @@ import { useState } from 'react';
  */
 export type FactoryItem =
   | { type: 'image'; src: string; alt: string; caption: string; tags?: string[] }
-  | { type: 'video'; youtubeId: string; thumb?: string; caption: string; tags?: string[] };
+  | {
+      type: 'video';
+      youtubeId: string;
+      /** Set true for 9:16 vertical Shorts so the main media frame goes
+       *  portrait instead of 16:9 (otherwise the Short renders pillarboxed). */
+      isShorts?: boolean;
+      thumb?: string;
+      caption: string;
+      tags?: string[];
+    };
 
 export default function CustomerFactoryGallery({ items }: { items: FactoryItem[] }) {
   const [active, setActive] = useState(0);
@@ -88,24 +97,42 @@ export default function CustomerFactoryGallery({ items }: { items: FactoryItem[]
 
           {/* Main media area */}
           <div className="flex-1 order-1 md:order-2 min-w-0">
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black">
-              {current.type === 'video' ? (
+            <div className="flex justify-center">
+            {current.type === 'video' && current.isShorts ? (
+              // 9:16 Shorts — narrower frame, capped height so the gallery
+              // section doesn't blow up on desktop. Centered within the
+              // available column.
+              <div className="relative aspect-[9/16] w-full max-w-[min(440px,75vh)] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black">
                 <iframe
                   key={current.youtubeId}
-                  src={`https://www.youtube-nocookie.com/embed/${current.youtubeId}?rel=0&modestbranding=1`}
+                  src={`https://www.youtube-nocookie.com/embed/${current.youtubeId}?rel=0&modestbranding=1&playsinline=1`}
                   title={current.caption}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="absolute inset-0 w-full h-full"
                 />
-              ) : (
-                <img
-                  key={current.src}
-                  src={current.src}
-                  alt={current.alt}
-                  className="absolute inset-0 w-full h-full object-cover animate-[fadeIn_300ms_ease-out]"
-                />
-              )}
+              </div>
+            ) : (
+              <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black">
+                {current.type === 'video' ? (
+                  <iframe
+                    key={current.youtubeId}
+                    src={`https://www.youtube-nocookie.com/embed/${current.youtubeId}?rel=0&modestbranding=1`}
+                    title={current.caption}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                ) : (
+                  <img
+                    key={current.src}
+                    src={current.src}
+                    alt={current.alt}
+                    className="absolute inset-0 w-full h-full object-cover animate-[fadeIn_300ms_ease-out]"
+                  />
+                )}
+              </div>
+            )}
             </div>
 
             {/* Caption row */}

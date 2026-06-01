@@ -38,6 +38,14 @@ const factoryItems: FactoryItem[] = [
       'DY-1108 8-station single-color sole machine in full production on a customer factory floor — real-world output, not a showroom demo.',
     tags: ['DY-1108', 'Customer Site', 'Production Line'],
   },
+  {
+    type: 'video' as const,
+    youtubeId: '-yA74jjZS6Y',
+    isShorts: true,
+    caption:
+      'Customer case in Turkey — DY-2220 dual-color rotary disc on the production line. Filmed by a Turkish footwear manufacturer.',
+    tags: ['Turkey', 'DY-2220', 'Customer Site'],
+  },
   ...gallery
     .filter(
       (g) =>
