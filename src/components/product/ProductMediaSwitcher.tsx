@@ -12,16 +12,12 @@ import Image from 'next/image';
 export default function ProductMediaSwitcher({
   image,
   alt,
-  gallery,
   videoEmbedUrl,
   videoYoutubeId,
   videoTitle,
 }: {
   image: string;
   alt: string;
-  /** Extra images appended after the main image, before the video.
-   *  Typical use: machine close-ups, sample-output shots. */
-  gallery?: string[];
   videoEmbedUrl?: string | null;
   videoYoutubeId?: string | null;
   videoTitle?: string;
@@ -31,9 +27,6 @@ export default function ProductMediaSwitcher({
     | { type: 'video'; embed: string; thumb: string };
 
   const items: Item[] = [{ type: 'image', src: image }];
-  for (const extra of gallery ?? []) {
-    items.push({ type: 'image', src: extra });
-  }
   if (videoEmbedUrl && videoYoutubeId) {
     items.push({
       type: 'video',

@@ -278,7 +278,7 @@ export const products: Product[] = [
     },
     applications: ['Dual-color TR/TPU sports soles', 'Soccer cleat outsoles', 'Premium running shoe soles', 'Two-tone fashion soles', 'Mid-volume to high-end dual-color production'],
     mainImage: img('dy-2212t.jpg'),
-    gallery: [img('dy-2212t-samples.jpg')],
+    gallery: [],
     youtubeId: 'CXLqefs4EAk',
   },
 
