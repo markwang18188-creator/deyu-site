@@ -27,9 +27,9 @@
   },
   "pvc-six-station-rotary-machine": {
     "name": "Máquina de Inyección Rotativa Monocolor Totalmente Automática para Suelas — 80-100T (PVC / TPR / TPU)",
-    "shortDescription": "Máquina rotativa monocolor de tonelaje medio para suelas de PVC / TPR / TPU. Una familia de productos que abarca DY-1106 (6 estaciones), DY-1108 (10 estaciones) y DY-1112 (12 estaciones) con fuerza de cierre de 80-100T. Hasta 130 pares/hora. Enfriamiento por agua opcional.",
+    "shortDescription": "Máquina rotativa monocolor de tonelaje medio para suelas de PVC / TPR / TPU. Una familia de productos que abarca DY-1106 (6 estaciones), DY-1108 (8 estaciones) y DY-1112 (12 estaciones) con fuerza de cierre de 80-100T. Hasta 130 pares/hora. Enfriamiento por agua opcional.",
     "features": [
-      "Disco rotatorio — opciones de 6 / 10 / 12 estaciones (DY-1106 / 1108 / 1112)",
+      "Disco rotatorio — opciones de 6 / 8 / 12 estaciones (DY-1106 / 1108 / 1112)",
       "Fuerza de cierre media: 80-100 toneladas",
       "Materiales: PVC / TPR / TPU (expandido o no expandido)",
       "Hasta 130 pares/hora",
@@ -311,9 +311,9 @@
   },
   "three-color-three-head-flexible-machine": {
     "name": "Serie de Máquinas de Inyección de Suelas de Tres Colores Totalmente Automáticas Rotativas (3 Cabezales)",
-    "shortDescription": "Familia de máquinas rotativas de suela de tres colores con 3 cabezales de inyección independientes. Las configuraciones van desde una entrada compacta de 8/10 estaciones (DY-3208, 80T) hasta un buque insignia flexible de alta capacidad de 24 estaciones (DY-3324) que puede producir suelas apiladas de 3 capas, 3 lotes de un solo color en paralelo o tiradas mixtas. 150 pares/hora.",
+    "shortDescription": "Familia de máquinas rotativas de suela de tres colores con 3 cabezales de inyección independientes. Las configuraciones van desde una entrada compacta de 8 estaciones (DY-3208, 80T) hasta un buque insignia flexible de alta capacidad de 24 estaciones (DY-3324) que puede producir suelas apiladas de 3 capas, 3 lotes de un solo color en paralelo o tiradas mixtas. 150 pares/hora.",
     "features": [
-      "Dos configuraciones: DY-3208 (8/10 estaciones, 80T compacto) · DY-3324 (24 estaciones, flexible de alta capacidad)",
+      "Dos configuraciones: DY-3208 (8 estaciones, 80T compacto) · DY-3324 (24 estaciones, flexible de alta capacidad)",
       "Tres cabezales de inyección independientes (cuello de cisne en DY-3324)",
       "Producción flexible de 3 colores: capas apiladas, lotes de un solo color en paralelo o mixtos",
       "Materiales: PVC / TPR / TPU (espumado o no espumado)",

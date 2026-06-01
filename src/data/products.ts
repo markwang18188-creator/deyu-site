@@ -100,9 +100,9 @@ export const products: Product[] = [
     name: 'Full Automatic Single-Color Rotary Sole Injection Moulding Machine — 80-100T (PVC / TPR / TPU)',
     category: 'single-color',
     shortDescription:
-      'Medium-tonnage single-color rotary sole machine for PVC / TPR / TPU. One product family covering DY-1106 (6-station), DY-1108 (10-station) and DY-1112 (12-station) at 80-100T clamping. Up to 130 pairs/hour. Optional water-cooling.',
+      'Medium-tonnage single-color rotary sole machine for PVC / TPR / TPU. One product family covering DY-1106 (6-station), DY-1108 (8-station) and DY-1112 (12-station) at 80-100T clamping. Up to 130 pairs/hour. Optional water-cooling.',
     features: [
-      'Rotary disc — 6 / 10 / 12 station options (DY-1106 / 1108 / 1112)',
+      'Rotary disc — 6 / 8 / 12 station options (DY-1106 / 1108 / 1112)',
       'Medium clamping force: 80-100 tons',
       'Materials: PVC / TPR / TPU (foamed or non-foamed)',
       'Up to 130 pairs/hour',
@@ -111,9 +111,9 @@ export const products: Product[] = [
       'Computer-programmed digital control · servo energy-saving (saves 30%+)',
     ],
     specifications: {
-      'Models': 'DY-1106 (6-station) · DY-1108 (10-station) · DY-1112 (12-station)',
+      'Models': 'DY-1106 (6-station) · DY-1108 (8-station) · DY-1112 (12-station)',
       'Clamping Force': '80-100 tons',
-      'Stations': '6 / 10 / 12',
+      'Stations': '6 / 8 / 12',
       'Material': 'PVC / TPR / TPU',
       'Screw Diameter': 'Φ65 mm (DY-1112)',
       'Max Injection Capacity': '660 cm³/shot (DY-1112)',
@@ -462,9 +462,9 @@ export const products: Product[] = [
     name: 'Full Automatic Rotary Three Color Sole Injection Moulding Machine Series (3 Heads)',
     category: 'multi-color',
     shortDescription:
-      'Three-color rotary sole machine family with 3 independent injection heads. Configurations range from a compact 8/10-station entry (DY-3208, 80T) to a high-capacity 24-station flexible flagship (DY-3324) that can run 3-layer stacked soles, 3 single-color batches in parallel, or mixed runs. 150 pairs/hour.',
+      'Three-color rotary sole machine family with 3 independent injection heads. Configurations range from a compact 8-station entry (DY-3208, 80T) to a high-capacity 24-station flexible flagship (DY-3324) that can run 3-layer stacked soles, 3 single-color batches in parallel, or mixed runs. 150 pairs/hour.',
     features: [
-      'Two configurations: DY-3208 (8/10 stations, 80T compact) · DY-3324 (24 stations, flexible high-capacity)',
+      'Two configurations: DY-3208 (8 stations, 80T compact) · DY-3324 (24 stations, flexible high-capacity)',
       'Three independent injection heads (gooseneck on DY-3324)',
       'Flexible 3-color production: stacked layers, parallel single-color batches, or mixed',
       'Materials: PVC / TPR / TPU (foamed or non-foamed)',
@@ -472,7 +472,7 @@ export const products: Product[] = [
       'Ideal for factories producing multiple sole styles',
     ],
     specifications: {
-      'Models': 'DY-3208 (8/10-station compact) · DY-3324 (24-station flexible)',
+      'Models': 'DY-3208 (8-station compact) · DY-3324 (24-station flexible)',
       'Stations': '8 / 10 / 24',
       'Colors': '3 (independent heads, up to 3 layers on DY-3324)',
       'Clamping Force': '80 tons (DY-3208) · 55 tons (DY-3324)',
