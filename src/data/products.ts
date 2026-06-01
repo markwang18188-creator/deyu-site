@@ -672,7 +672,7 @@ export const products: Product[] = [
       'Heavy industrial moulded parts',
       'Fitness equipment OEM production',
     ],
-    mainImage: img('dy-1102.png'),
+    mainImage: img('dy-1102-h.jpg'),
     gallery: [],
   },
 
