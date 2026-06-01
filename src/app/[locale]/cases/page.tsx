@@ -33,10 +33,10 @@ const shipments = gallery.filter(
 const factoryItems: FactoryItem[] = [
   {
     type: 'video' as const,
-    youtubeId: 'vkDSJiMSumQ',
+    youtubeId: 'W0pUaiwUrsE',
     caption:
-      'DY-1108 single-color sole machine running on an African customer factory floor — real production, real output.',
-    tags: ['Africa', 'DY-1108', 'Customer Site'],
+      'DY-1108 8-station single-color sole machine in full production on a customer factory floor — real-world output, not a showroom demo.',
+    tags: ['DY-1108', 'Customer Site', 'Production Line'],
   },
   ...gallery
     .filter(
