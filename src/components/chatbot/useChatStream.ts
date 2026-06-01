@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { trackLeadSubmit } from '@/lib/analytics';
 
 export interface ChatMessage {
   role: 'user' | 'assistant';
@@ -124,6 +125,14 @@ export function useChatStream() {
                 next[next.length - 1] = { ...next[next.length - 1], toolNames: [...toolNames] };
                 return next;
               });
+              // Conversion event — when the bot calls `capture_lead` the lead
+              // was saved server-side (the SSE stream only carries name+id,
+              // not the call arguments, but the bot only invokes this tool
+              // after all required fields are collected so it's a reliable
+              // proxy for "lead created").
+              if (event.data.name === 'capture_lead') {
+                trackLeadSubmit({ source: 'website_chatbot' });
+              }
             } else if (event.event === 'error') {
               const msg = event.data?.message || 'Something went wrong.';
               setError(msg);

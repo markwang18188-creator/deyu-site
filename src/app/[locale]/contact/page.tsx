@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { getProductBySlug } from '@/data/products';
 import ContactForm from '@/components/forms/ContactForm';
+import WhatsAppLink from '@/components/analytics/WhatsAppLink';
 import { buildAlternates } from '@/lib/metadata';
 
 interface ContactPageProps {
@@ -42,10 +43,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <div>
                 <h2 className="text-lg font-bold text-[#0f172a] mb-4">{t('direct_contact')}</h2>
                 <div className="space-y-4">
-                  <a
-                    href="https://wa.me/8613615778781"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <WhatsAppLink
+                    location="contact_page"
                     className="flex items-center gap-3 text-[#334155] hover:text-[#1e3a8a] transition-colors"
                   >
                     <span className="w-10 h-10 bg-[#075E54] rounded-full flex items-center justify-center flex-shrink-0">
@@ -57,7 +56,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                       <div className="text-sm font-semibold">{t('whatsapp_label')}</div>
                       <div className="text-sm text-[#64748b]">{t('whatsapp_number')}</div>
                     </div>
-                  </a>
+                  </WhatsAppLink>
                   <div className="flex items-center gap-3 text-[#334155]">
                     <span className="w-10 h-10 bg-[#1e3a8a] rounded-full flex items-center justify-center flex-shrink-0">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

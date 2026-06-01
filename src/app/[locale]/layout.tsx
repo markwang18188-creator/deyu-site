@@ -9,6 +9,8 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import Clarity from '@/components/analytics/Clarity';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import CookieNotice from '@/components/CookieNotice';
 import ChatWidget from '@/components/chatbot/ChatWidget';
 import '../globals.css';
@@ -104,8 +106,6 @@ export default async function LocaleLayout({
       className={`${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <GoogleAnalytics />
-        <Clarity />
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="flex-1">{children}</main>
@@ -113,6 +113,12 @@ export default async function LocaleLayout({
           <ChatWidget />
           <CookieNotice />
         </NextIntlClientProvider>
+
+        {/* Analytics: GA4 + Clarity (env-gated) + Vercel built-in + Speed Insights */}
+        <GoogleAnalytics />
+        <Clarity />
+        <VercelAnalytics />
+        <SpeedInsights />
       </body>
     </html>
   );

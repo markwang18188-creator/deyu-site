@@ -5,6 +5,8 @@ import { X, RotateCcw } from 'lucide-react';
 import { useChatStream } from './useChatStream';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
+import WhatsAppLink from '@/components/analytics/WhatsAppLink';
+import { trackChatbotStart } from '@/lib/analytics';
 
 const OPEN_EVENT = 'open-deyu-chat';
 
@@ -63,14 +65,25 @@ function SalesAvatar({ className = '' }: { className?: string }) {
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [hasFiredStartEvent, setHasFiredStartEvent] = useState(false);
   const { messages, streaming, send, reset } = useChatStream();
+
+  /** Open the chat and fire the analytics event exactly once per session. */
+  const openChat = (location: string) => {
+    setOpen(true);
+    if (!hasFiredStartEvent) {
+      trackChatbotStart(location);
+      setHasFiredStartEvent(true);
+    }
+  };
 
   // External components can open the chat via window event
   useEffect(() => {
-    const onOpen = () => setOpen(true);
+    const onOpen = () => openChat('external');
     window.addEventListener(OPEN_EVENT, onOpen);
     return () => window.removeEventListener(OPEN_EVENT, onOpen);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasFiredStartEvent]);
 
   const handleSend = (text: string) => {
     const referrerPage = typeof window !== 'undefined' ? window.location.pathname : undefined;
@@ -96,7 +109,7 @@ export default function ChatWidget() {
 
           {/* Main pill */}
           <button
-            onClick={() => setOpen(true)}
+            onClick={() => openChat('floating')}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             className="group relative bg-white hover:bg-slate-50 rounded-full shadow-xl hover:shadow-2xl border border-slate-200 pl-1.5 pr-5 py-1.5 flex items-center gap-3 transition-all duration-300 hover:-translate-y-0.5"
@@ -158,14 +171,13 @@ export default function ChatWidget() {
 
           <ChatMessages messages={messages} streaming={streaming} />
 
-          <a
-            href="https://wa.me/8613615778781?text=Hi%2C%20I%27d%20like%20to%20talk%20to%20someone%20at%20DEYU"
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            location="chatbot"
+            text="Hi%2C%20I%27d%20like%20to%20talk%20to%20someone%20at%20DEYU"
             className="block text-center text-[11px] text-slate-500 hover:text-green-600 py-2 border-t border-b border-slate-100 bg-slate-50"
           >
             💬 Prefer a human? Chat on WhatsApp
-          </a>
+          </WhatsAppLink>
 
           <ChatInput onSend={handleSend} disabled={streaming} />
         </div>

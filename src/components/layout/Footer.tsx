@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import WhatsAppLink from '@/components/analytics/WhatsAppLink';
 
 const SOCIAL_LINKS = {
   facebook: 'https://www.facebook.com/profile.php?id=100092413230082',
@@ -122,14 +123,9 @@ export default async function Footer() {
             </h3>
             <ul className="space-y-3 text-sm text-[#94a3b8]">
               <li>
-                <a
-                  href="https://wa.me/8613615778781"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
+                <WhatsAppLink location="footer" className="hover:text-white transition-colors">
                   {t('whatsapp')}: +86 136 1577 8781
-                </a>
+                </WhatsAppLink>
               </li>
               <li>
                 <a href="mailto:info@wzdeyu.cn" className="hover:text-white transition-colors">

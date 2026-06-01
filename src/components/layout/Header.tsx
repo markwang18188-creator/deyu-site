@@ -7,6 +7,7 @@ import { Link } from '@/i18n/navigation';
 import { Menu, X, MapPin, ShieldCheck, Phone, Mail, MessageCircle } from 'lucide-react';
 import { products } from '@/data/products';
 import LanguageSwitcher from './LanguageSwitcher';
+import WhatsAppLink from '@/components/analytics/WhatsAppLink';
 
 const productGroups = [
   {
@@ -167,16 +168,14 @@ export default function Header() {
           {/* Right: Language switcher + WhatsApp + Send Enquiry + Mobile menu */}
           <div className="flex items-center gap-2">
             <LanguageSwitcher />
-            <a
-              href="https://wa.me/8613615778781"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
+            <WhatsAppLink
+              location="header"
+              ariaLabel="WhatsApp"
               className="hidden sm:flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white text-sm font-semibold px-3 py-2 rounded-md transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               <span className="hidden xl:inline">{t('whatsapp')}</span>
-            </a>
+            </WhatsAppLink>
             <Link
               href="/contact"
               className="hidden sm:flex items-center gap-2 bg-[#c2410c] hover:bg-[#9a3412] text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors"
@@ -211,15 +210,13 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href="https://wa.me/8613615778781"
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppLink
+              location="header_mobile"
               className="mt-3 flex items-center justify-center gap-2 bg-[#25D366] text-white text-sm font-semibold px-4 py-3 rounded-md"
             >
               <MessageCircle className="w-4 h-4" />
               {t('whatsapp_us')}
-            </a>
+            </WhatsAppLink>
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}

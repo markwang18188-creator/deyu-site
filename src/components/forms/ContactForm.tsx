@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { submitLead, type LeadFormData } from '@/app/actions/submit-lead';
+import { trackLeadSubmit } from '@/lib/analytics';
 
 const schema = z.object({
   name: z.string().min(2),
@@ -56,6 +57,12 @@ export default function ContactForm({ prefilledMachine, prefilledMachineName }: 
       setError('root', { message: t('submit_error') });
       return;
     }
+
+    trackLeadSubmit({
+      source: payload.source ?? 'contact_form',
+      country: payload.country,
+      machine: payload.machine_interest,
+    });
 
     router.push('/thank-you');
   };
