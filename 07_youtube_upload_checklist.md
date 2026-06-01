@@ -4,6 +4,56 @@
 
 ---
 
+## ⛔ 版权防踩坑 · 三条铁律(读完再开始)
+
+第一批 19 视频里 3 个 Shorts 因 BGM 被 Content ID 认领 + 时长超 60s 被
+**直接禁播**。原因 + 防范固化在下面三条,做新一批前请逐条对照。
+
+### 1 · BGM 只能用 YouTube Audio Library 标 "无需署名" 的曲目
+
+`deyu-media-studio/assets/bgm/` 是 BGM 池,`watermark.sh` 自动按视频名
+哈希分配。**池里只允许放 YouTube Audio Library 的"无需署名"曲目**。
+
+- Pixabay CC0 / 各种"免版权"网站 ≠ 100% 安全(上传者可能本就没合法权
+  利,或被第三方后期注册到 Content ID)。
+- 唯一确定干净的源:`studio.youtube.com/.../music`,筛选"归属类型 = 无
+  需署名"。
+- 详情看 `deyu-media-studio/assets/bgm/README.md`。
+
+### 2 · Shorts 渲染务必 `SHORTS=1`,卡到 ≤58 秒
+
+YouTube 隐藏规则:
+- **Shorts > 60 秒 + 含 Content ID 认领 = 直接禁播**(我们踩到的)
+- Shorts < 60 秒 + 含认领 = 只是分成归对方,视频还能播
+
+所以做 Shorts 时:
+
+```bash
+SHORTS=1 bash scripts/watermark.sh inbox/      # 整批输出截到 58s
+```
+
+输出文件名会加 `-short` 后缀,跟横屏版可以共存。横屏长视频不需要
+`SHORTS` 参数,因为横屏没有 60s 红线。
+
+### 3 · 每批先发 1 个 Unlisted,等 10 分钟看 `/copyright` 干净再批量公开
+
+即使 BGM 池都是 YT Audio Library,也建议**最保险**:
+
+1. 第一个视频上传时设 **不公开 (Unlisted)**,不是 Public
+2. 等 5–10 分钟,让 YouTube Content ID 跑完扫描
+3. 打开 `https://studio.youtube.com/video/<id>/copyright`
+4. **没有 Content ID 主张** → 改成 Public,后续 18 个按相同模板批量公开
+5. **有主张** → 先不公开,去 `/copyright` 点 "采取行动 → 替换歌曲",换
+   一首 YT Audio Library 里的曲子保存,再公开
+
+万一已公开后才发现被认领,想保留 URL / 评论 / 观看数:
+- 进 `/copyright` 用 "替换歌曲"(YouTube 自动处理,几分钟到几小时生
+  效),原 URL 不变
+- 但 Shorts 如果已经因为 >60s + 认领被禁播,在替换歌曲生效前都是禁播状
+  态。所以**事前 SHORTS=1 截到 58s 才是根本解**
+
+---
+
 ## 📋 统一视频说明(通用文案 · 直接复制)
 
 > **今后所有 YouTube 视频默认用这一段**(不绑定具体机型,介绍公司+产品全线)。
