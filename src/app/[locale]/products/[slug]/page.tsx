@@ -103,6 +103,7 @@ export default async function ProductDetailPage({
             <ProductMediaSwitcher
               image={product.mainImage}
               alt={`${product.model} - ${product.name}`}
+              gallery={product.gallery}
               videoEmbedUrl={productVideoEmbed(product)}
               videoYoutubeId={product.youtubeId ?? product.youtubeShortsId ?? null}
               videoTitle={`${product.model} demonstration video`}
