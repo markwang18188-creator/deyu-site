@@ -1,0 +1,21 @@
+{
+  "slug": "cold-start-motor-strain-pvc-sole-machine",
+  "title": "Cold-Start Motor Strain on a PVC Sole Machine? The 20-Minute Fix",
+  "description": "A standard-motor sole injection machine made a deep, straining noise at the end of every cold-start charging cycle — then went silent after 40 minutes. We diagnosed it without touching the hardware.",
+  "language": "en",
+  "keywords": [
+    "Troubleshooting",
+    "sole injection machine cold start noise",
+    "hydraulic oil viscosity cold morning",
+    "PVC barrel heat soak",
+    "screw backpressure cold start",
+    "standard motor vs servo sole machine"
+  ],
+  "product_refs": [
+    "pvc-six-station-rotary-machine",
+    "pvc-single-color-rotary-machine",
+    "tpu-dual-color-injection-machine"
+  ],
+  "featured_image_url": "/troubleshooting/cold-start-1.jpg",
+  "body_path": "cold-start-motor-strain.mdx"
+}

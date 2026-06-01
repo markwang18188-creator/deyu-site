@@ -1,0 +1,104 @@
+A customer in Ecuador, running one of our older sole injection machines with a **standard induction motor** (not servo), sent us a short video one morning. Every cold start, the motor made a deep, straining noise at the very end of the screw-retract / plasticising stroke — as if something inside was hitting a wall. After thirty or forty minutes of running, the noise disappeared. Once the machine was warm, it produced perfect PVC soles the rest of the day.
+
+The customer's first instinct was the same as most operators': *check the voltage* (it was normal) and *check the barrel temperature* (also normal). He had tried nudging the barrel set-point up a few degrees — that helped, but he correctly stopped before the PVC started to burn.
+
+We told him not to touch any hardware. This is a textbook **cold-machine physics problem**, not a defect, and the fix takes 20 minutes of operator routine — not a service call.
+
+<Split side="right" img="/troubleshooting/cold-start-1.jpg" cap="The injection unit on the customer's machine — screw drive shaft (centre), thrust bearing housing (left) and the screw-cylinder flange (right). This is where the strain is happening." img2="/troubleshooting/cold-start-2.jpg" cap="Frame from the customer's video — screw partially retracted, PVC granulate around the base.">
+
+## What the Noise Actually Is
+
+On a standard-motor sole machine, the screw is driven by a hydraulic motor (powered by the main hydraulic pump). During the **charging phase**, the screw rotates and retreats while picking up new material from the hopper. Towards the **end** of that stroke, two forces peak at once:
+
+1. **Backpressure** — the resistance the receding screw feels from the molten plastic packed in front of it.
+2. **Mechanical inertia** — peak torque on the drive coupling, thrust bearing, and ball-spline guides.
+
+When the machine is cold, the hydraulic system, the plastic, and the bearing grease are all working against you simultaneously. None of them are damaged. They are all just *cold*.
+
+</Split>
+
+## Four Cold-State Causes (and Which Ones Stack)
+
+In our experience this symptom is almost never caused by a single faulty part. It's two or three normal-but-cold conditions stacking up — which is also why the noise quietly disappears after half an hour.
+
+### 1 · Cold hydraulic oil — the most common driver
+
+Hydraulic oil thickens at low temperatures. At the end of the charging stroke, the retreating screw demands maximum flow from the pump *exactly* when the oil is at its most viscous. Pushing thick oil through proportional valves and through a hydraulic motor produces a deep, humming, straining noise — sometimes mistaken for a failing pump.
+
+Once the oil warms to **45–55 °C** in normal operation, viscosity drops, flow eases, and the noise vanishes.
+
+**Two things to check first:**
+
+- **Ambient temperature.** If the factory is cold in the morning (Ecuador's Andean factories run cold; so do many in Turkey, the Balkans, parts of Argentina), the symptom will be worse.
+- **Oil grade.** Confirm the machine is filled with the **right viscosity for the climate** — typically **ISO VG 46** for moderate climates, VG 32 in colder ones. We have seen factories that received a machine pre-filled with VG 68 and then moved it into a cool morning environment — same hardware, completely different cold-start behaviour.
+
+### 2 · Barrel "looks warm" but isn't fully heat-soaked
+
+Heater controllers measure the **outer wall** of the barrel. The wall can reach the set-point well before the heat has *penetrated* to the core of the screw and to the plastic packed deep in the flights.
+
+At the end of the charging stroke, the screw is pulling against a large mass of barely-softened material that hasn't soaked through yet. That semi-rigid plug is what your drive motor is fighting.
+
+> **This is why turning the heater up "fixed it" — but the fix is wrong.** A higher set-point reduces soak-time, but in PVC it also burns the material against the screw flights. The right answer is to keep the set-point where it is and **extend the soak time**.
+
+### 3 · Initial backpressure / screw speed too high for a cold machine
+
+A backpressure value tuned for steady-state production is too aggressive while the machine is still cold and the material is still semi-rigid. The first half hour after a cold start is *not* the same operating regime as midday production — yet most operators use the same parameter set.
+
+### 4 · Stiff grease on transmission parts
+
+At peak torque, the **thrust bearing behind the screw**, **spline shaft**, and **guide rails** all need a film of flowing grease. Cold grease is stiff. Stiff grease causes localised dry friction at exactly the moment loads peak — the end of charging.
+
+After thirty minutes, the heat that the system generates softens the grease, it redistributes, and the friction noise stops on its own.
+
+<Split side="left" img="/troubleshooting/cold-start-3.jpg" cap="The screw drive shaft, coupling and rear bearing housing — the components that carry peak torque and need warm, mobile grease.">
+
+## The 20-Minute Fix We Asked the Customer to Try
+
+We sent the customer **one** change to his morning routine. No tools, no parts, no service visit:
+
+**Twenty minutes before formal production, do this in order:**
+
+1. Switch on the **barrel heaters** as usual.
+2. Switch on the **main motor** — but **do not feed material** and **do not run the injection cycle**. Let the hydraulic pump run on idle.
+3. **Wait 20 minutes.** Two things happen in parallel: the hydraulic oil warms to its operating range, and the barrel heat soaks fully through to the screw core.
+4. Only then begin the plasticising cycle and start the first shot.
+5. For the **first half-hour** of production, drop **backpressure and screw RPM by ~20 %**. Once the machine is sounding smooth, return them to your normal production values.
+
+</Split>
+
+The next morning the customer reported back: **no more cold-start noise**. He has been running the warm-up routine for several months now and the symptom has not returned. Nothing on the hardware was changed.
+
+## Why We Don't Recommend a Hardware Fix Here
+
+There are three "hardware" fixes a less-careful supplier might recommend in this situation — and we want to flag them, because each one is a wasted spend:
+
+| Suggested fix | Why we don't recommend it |
+|---|---|
+| Replace the hydraulic motor | The motor isn't damaged. It is moving cold oil. |
+| Replace the thrust bearing | The bearing isn't worn. The grease around it is cold. |
+| Raise the barrel temperature permanently | Burns PVC, ruins shots, shortens screw life. |
+
+If the customer had jumped to any of these, the noise would have come back the next cold morning — because the *root cause* (cold start) was never addressed.
+
+## When the Symptom **Is** a Real Problem
+
+To be fair, this is a "cold-start only" symptom. If you hear motor strain like this **during steady-state production**, after the machine has been running an hour, then the cold-physics explanation no longer applies — and *that* is worth a proper diagnosis. The shortlist there is:
+
+- Hydraulic pump internal wear (volumetric efficiency dropping under load)
+- A proportional valve sticking
+- Bearing actually failing (you'll see metallic shavings in the oil pan within a week)
+- Material contamination making the melt drag inconsistently
+
+If you have a machine showing strain at full operating temperature, [send us the video and the machine model](/contact) — we run the same kind of remote diagnosis we did for this customer, and most cases are solved without parts.
+
+## Buying a New Machine? Servo vs. Standard
+
+A natural question after a story like this: *would a servo-motor machine have avoided this entirely?*
+
+The honest answer is **partially**. A **servo drive** machine doesn't have an idling hydraulic pump pushing cold oil, because the pump only spins on demand. It removes Cause #1 almost completely. Causes #2, #3 and #4 (heat soak, cold-state backpressure, cold grease) still apply, just more mildly. Most factories see a **noticeable but not total** improvement in cold-start behaviour after switching.
+
+If you're choosing your next sole machine and your factory runs cold mornings, that 30-percent power saving from a servo isn't the only reason to choose it — quieter cold starts are a real second benefit. Our [single-color rotary disc machines](/products/pvc-six-station-rotary-machine) and [dual-color machines](/products/tpu-dual-color-injection-machine) are available in both configurations; ask us which fits your climate and shift schedule when you enquire.
+
+---
+
+*Got a strange noise, a pressure drop, or a quality issue on your sole machine? [WhatsApp us a 10-second video](https://wa.me/8613615778781) — we diagnose remotely every week.*
