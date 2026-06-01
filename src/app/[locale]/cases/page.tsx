@@ -46,6 +46,14 @@ const factoryItems: FactoryItem[] = [
       'Customer case in Turkey — DY-2220 dual-color rotary disc on the production line. Filmed by a Turkish footwear manufacturer.',
     tags: ['Turkey', 'DY-2220', 'Customer Site'],
   },
+  {
+    type: 'video' as const,
+    youtubeId: 'fwzeGAcie2Y',
+    isShorts: true,
+    caption:
+      'Customer case in Africa — DY-1108 8-station single-color rotary disc producing PVC soles on the customer factory floor.',
+    tags: ['Africa', 'DY-1108', 'Customer Site'],
+  },
   ...gallery
     .filter(
       (g) =>
