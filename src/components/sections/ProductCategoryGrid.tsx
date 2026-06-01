@@ -21,7 +21,7 @@ export default async function ProductCategoryGrid() {
       title: t('dual_color_title'),
       description: t('dual_color_desc'),
       icon: '🔵',
-      models: 'DY-2216TR/TPU · DY-2220A · DY-2212TPU/TR',
+      models: 'DY-2112 · DY-2212 · DY-2216 · DY-2220A',
       image: '/products/dy-2212t.jpg',
       href: '/products?category=dual-color',
     },
