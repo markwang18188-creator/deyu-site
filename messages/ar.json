@@ -104,7 +104,9 @@
     "applications": "التطبيقات",
     "datasheet_title": "طلب كتالوج فني",
     "datasheet_desc": "احصل على الكتالوج الفني الكامل وعرض سعر مخصص لـ",
-    "datasheet_cta": "طلب الكتالوج وعرض السعر"
+    "datasheet_cta": "طلب الكتالوج وعرض السعر",
+    "other_applications_title": "تطبيقات أخرى",
+    "other_applications_subtitle": "أبعد من الاستخدام الرئيسي — شاهد نفس الآلة وهي تنتج منتجات مختلفة."
   },
   "about": {
     "title": "عن شركة Wenzhou Deyu للآلات",

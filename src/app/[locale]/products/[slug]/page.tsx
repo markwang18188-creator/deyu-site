@@ -216,6 +216,51 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
+      {/* Other Applications — extra videos showing the same machine running different products */}
+      {product.applicationVideos && product.applicationVideos.length > 0 && (
+        <section className="py-12 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-[#0f172a] mb-2">
+                {t('other_applications_title')}
+              </h2>
+              <p className="text-[#64748b]">{t('other_applications_subtitle')}</p>
+            </div>
+            <div
+              className={
+                product.applicationVideos.length === 1
+                  ? 'grid grid-cols-1 max-w-3xl mx-auto'
+                  : 'grid grid-cols-1 md:grid-cols-2 gap-8'
+              }
+            >
+              {product.applicationVideos.map((v) => (
+                <div
+                  key={v.youtubeId}
+                  className="rounded-xl overflow-hidden border border-[#e2e8f0] bg-white shadow-sm"
+                >
+                  <div className="aspect-video bg-black">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${v.youtubeId}?rel=0&modestbranding=1`}
+                      title={v.label}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-semibold text-[#0f172a] text-lg">{v.label}</h3>
+                    {v.description && (
+                      <p className="text-sm text-[#475569] mt-2 leading-relaxed">{v.description}</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* VideoObject Schema for SEO — video itself now lives in the media
           switcher at the top of the page, so no visible section here. */}
       {product.youtubeId && (

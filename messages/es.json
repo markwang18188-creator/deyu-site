@@ -104,7 +104,9 @@
     "applications": "Aplicaciones",
     "datasheet_title": "Solicitar Ficha Técnica",
     "datasheet_desc": "Obtenga la ficha técnica completa y un presupuesto personalizado para el",
-    "datasheet_cta": "Solicitar Ficha y Presupuesto"
+    "datasheet_cta": "Solicitar Ficha y Presupuesto",
+    "other_applications_title": "Otras Aplicaciones",
+    "other_applications_subtitle": "Más allá del uso principal — vea la misma máquina produciendo otros productos."
   },
   "about": {
     "title": "Sobre Wenzhou Deyu Machinery",

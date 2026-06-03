@@ -31,7 +31,19 @@ export interface Product {
   videoUploadDate?: string;
   /** Generic embed URL fallback (Vimeo / self-hosted). Use youtubeId when possible. */
   videoUrl?: string;
+  /** Additional application videos — alternative use cases for the same machine.
+   *  Rendered in an "Other Applications" section on the product page, below the main demo. */
+  applicationVideos?: ApplicationVideo[];
   brochurePdfUrl?: string;
+}
+
+export interface ApplicationVideo {
+  /** YouTube video ID (11-char, horizontal). */
+  youtubeId: string;
+  /** Short label, e.g. "TPU Luggage Handle Production". */
+  label: string;
+  /** Optional 1-2 sentence description shown under the embed. */
+  description?: string;
 }
 
 /** Build a privacy-enhanced YouTube embed URL from an 11-char video ID. */
@@ -91,6 +103,14 @@ export const products: Product[] = [
     mainImage: img('dy-1102.png'),
     gallery: [],
     youtubeId: 'RGE2Fic2bno',
+    applicationVideos: [
+      {
+        youtubeId: 'jH8xowcRFqQ',
+        label: 'TPU Luggage Handle Production',
+        description:
+          'The same DY-1102 chassis producing TPU luggage / suitcase handles — demonstrates the machine\'s flexibility beyond shoe sole production. Mould change is the only switch needed.',
+      },
+    ],
   },
 
   {
@@ -718,6 +738,7 @@ export const products: Product[] = [
     ],
     mainImage: img('dy-1102-h.jpg'),
     gallery: [],
+    youtubeShortsId: 'ni0HpHWiJ6U',
   },
 
   {

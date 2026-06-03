@@ -104,7 +104,9 @@
     "applications": "Applications",
     "datasheet_title": "Request a Datasheet",
     "datasheet_desc": "Get the full technical datasheet and a personalised quote for the",
-    "datasheet_cta": "Request Datasheet & Quote"
+    "datasheet_cta": "Request Datasheet & Quote",
+    "other_applications_title": "Other Applications",
+    "other_applications_subtitle": "Beyond the primary use case — watch the same machine running different products."
   },
   "about": {
     "title": "About Wenzhou Deyu Machinery",

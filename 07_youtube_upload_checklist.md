@@ -142,10 +142,12 @@ Whether you produce slippers, sandals, sports shoes or work boots, DEYU can matc
 
 ---
 
-## 📦 已上传 YouTube ID 映射(2026-05-27 抓取)
+## 📦 已上传 YouTube ID 映射(2026-06-03 更新)
 
 | 视频文件 | YouTube ID | 产品 slug | 类型 |
 |---|---|---|---|
+| 2工位打TPU箱包把手 (DY-1102 应用) | `jH8xowcRFqQ` | two-station-slide-sole-machine (applicationVideos) | 横屏 |
+| DY1102-H (1102-S 工业压机) | `ni0HpHWiJ6U` | industrial-parts-two-station-machine | Shorts |
 | 1102 TPU | `RGE2Fic2bno` | two-station-slide-sole-machine | 横屏 |
 | 1106 autoopen | `ydUyUriENNc` | pvc-six-station-rotary-machine | 横屏 |
 | 1106 blowPVC (mov) | `YBxiP73CjEY` | pvc-six-station-rotary-machine | Shorts |
@@ -166,8 +168,8 @@ Whether you produce slippers, sandals, sports shoes or work boots, DEYU can matc
 | DY150 | `7cMchkNhq4U` | tpu-tr-vertical-injection-machine | Shorts |
 | simple mould open | `hyh6-x8BsC0` | (通用,不绑产品页) | Shorts |
 
-**已集成到 products.ts 的 9 个产品**:
-- DY-1102 / DY-1106 / DY-1106-S / DY-1124B / DY-2212TPU/TR / DY-2220A / DY-2224B / DY-150 / DY-3324A
+**已集成到 products.ts 的 10 个产品**:
+- DY-1102 / DY-1102-S / DY-1106 / DY-1106-S / DY-1124B / DY-2212TPU/TR / DY-2220A / DY-2224B / DY-150 / DY-3324A
 
 **未集成**(原因):
 - DY-1108 / DY-1110 / DY-2102 — 没对应产品页
