@@ -795,8 +795,10 @@ export const products: Product[] = [
   // SHOE SOLE MOULDS  —  Phase 7 seed entries
   // ───────────────────────────────────────────────────────────────
   // Sub-types are tracked in specifications['Mould Type'] rather than
-  // separate categories. TODO placeholders flag fields awaiting Mark's
-  // input (material grade, cavity counts, photos, lead time).
+  // separate categories. Customer-facing strings must stay in English
+  // only — no Chinese in name/shortDescription/features/specs/applications.
+  // Pending Mark-supplied data is surfaced as "Available on request"
+  // (a clean B2B placeholder), never as raw "TODO".
   // ═══════════════════════════════════════════════════════════════
 
   {
@@ -812,17 +814,19 @@ export const products: Product[] = [
       'Hard-chrome plated cavity surface (corrosion-resistant)',
       'Quick-change clamping standard',
       'Compatible with single-color rotary machines',
-      'Mould material: TODO (Mark to confirm — P20 / S136 / NAK80)',
-      'Cavity count: TODO (typical 2-6 cavities)',
+      'Multi-cavity configurations (typically 2 to 6 cavities)',
+      'Custom shoe size range on request',
     ],
+    // INTERNAL TODO (Mark): confirm exact steel grade (P20 / S136 / NAK80?),
+    // cavity count default, size range, surface treatment options, lead time.
     specifications: {
       'Mould Type': 'Rotary Disc / Single-Color',
       'Compatible Machine Class': 'DY-1106 / DY-1108 / DY-1112 / DY-1120',
-      'Material': 'TODO — confirm steel grade',
-      'Cavity Count': 'TODO',
-      'Shoe Size Range': 'TODO (e.g. EUR 36-46)',
-      'Surface Treatment': 'TODO — hard chrome / nitriding / etc.',
-      'Lead Time': 'TODO',
+      'Material': 'Hardened tool steel (grade on request)',
+      'Cavity Count': 'On request (typically 2-6 cavities)',
+      'Shoe Size Range': 'On request',
+      'Surface Treatment': 'Hard chrome plated',
+      'Lead Time': 'On request',
     },
     applications: [
       'TPU sole production',
@@ -839,7 +843,7 @@ export const products: Product[] = [
     slug: 'one-piece-shoe-mould',
     modelSlug: 'mould-one-piece',
     model: 'DEYU One-Piece Shoe Mould',
-    name: 'One-Mould-One-Shoe Injection Mould (一模一只)',
+    name: 'One-Mould-One-Shoe Injection Mould',
     category: 'moulds',
     shortDescription:
       'Integrated one-piece shoe mould producing a complete shoe in a single injection cycle. Designed for slipper, sandal and casual one-piece footwear lines. Reduces assembly steps versus separate sole + upper production.',
@@ -847,19 +851,21 @@ export const products: Product[] = [
       'Single-shot full-shoe moulding',
       'Eliminates separate sole-to-upper bonding step',
       'CNC-machined cavity for shoe-shape precision',
-      'Cooling-channel optimized for cycle time',
-      'Mould material: TODO (Mark to confirm)',
-      'Suitable for slipper, beach sandal, casual one-piece designs',
+      'Cooling channel optimised for cycle time',
+      'Compatible materials: PVC / TPR / EVA / TPU',
+      'Suitable for slippers, beach sandals and casual one-piece designs',
     ],
+    // INTERNAL TODO (Mark): confirm compatible machine class, material grade,
+    // size range, surface treatment, lead time.
     specifications: {
       'Mould Type': 'One-Piece / Integrated Shoe',
-      'Compatible Machine Class': 'TODO — confirm with Mark (slide or vertical platforms)',
-      'Material': 'TODO',
+      'Compatible Machine Class': 'On request',
+      'Material': 'Hardened tool steel (grade on request)',
       'Cavity Count': 'Typically 1-2 cavities',
-      'Shoe Size Range': 'TODO',
-      'Mould Material Compatibility': 'PVC / TPR / EVA / TPU',
-      'Surface Treatment': 'TODO',
-      'Lead Time': 'TODO',
+      'Shoe Size Range': 'On request',
+      'Compatible Materials': 'PVC / TPR / EVA / TPU',
+      'Surface Treatment': 'On request',
+      'Lead Time': 'On request',
     },
     applications: [
       'One-piece slippers',
@@ -875,36 +881,38 @@ export const products: Product[] = [
   {
     slug: 'vertical-injection-sole-mould',
     modelSlug: 'mould-vertical',
-    model: 'DEYU Vertical Sole Mould',
-    name: 'Vertical Injection Sole Mould (立式)',
+    model: 'DEYU DY-150 Vertical Sole Mould',
+    name: 'Vertical Injection Sole Mould for DY-150',
     category: 'moulds',
     shortDescription:
-      'Sole mould designed for vertical-layout injection machines (DY-150 class). Compact mould footprint, optimised for TR/TPU sample-to-small-batch production. Ideal for shoe brands testing new sole designs.',
+      'Sole mould purpose-built for the DEYU DY-150 vertical injection machine. Compact 2-cavity footprint (left + right pair per shot) optimised for TR/TPU sample-to-small-batch production. Ideal for shoe brands testing new sole designs or running low-volume premium lines.',
     features: [
-      'Compact mould design — fits vertical platform clamping',
+      'Designed for the DY-150 vertical machine platform',
+      '2-cavity layout (left + right pair per shot)',
       'Optimised for TR / TPU materials',
+      'CNC-machined cavity with clean tread detail',
       'Quick mould-change interface',
-      'CNC-machined cavity for clean release',
-      'Mould material: TODO',
-      'Best for sample making, R&D, low-volume runs',
+      'Compact footprint suited to small / R&D production floors',
     ],
+    // INTERNAL TODO (Mark): confirm material grade, exact size range,
+    // surface treatment, lead time.
     specifications: {
-      'Mould Type': 'Vertical / Single or Two-Color',
-      'Compatible Machine Class': 'DY-150 (vertical) and similar',
-      'Material': 'TODO',
-      'Cavity Count': 'TODO (typically 1-2 cavities)',
-      'Shoe Size Range': 'TODO',
-      'Mould Material Compatibility': 'TR / TPU / TPR',
-      'Surface Treatment': 'TODO',
-      'Lead Time': 'TODO',
+      'Mould Type': 'Vertical Injection / Single-Color',
+      'Compatible Machine': 'DY-150',
+      'Cavity Count': '2 (pair: left + right)',
+      'Material': 'On request',
+      'Compatible Materials': 'TR / TPU / TPR',
+      'Shoe Size Range': 'On request',
+      'Surface Treatment': 'On request',
+      'Lead Time': 'On request',
     },
     applications: [
       'TR / TPU sole sampling',
       'R&D sole prototyping',
       'Small-batch premium sole production',
-      'Vertical-machine factories',
+      'DY-150 vertical machine production lines',
     ],
-    mainImage: img('moulds/placeholder.svg'),
+    mainImage: img('moulds/vertical-injection-sole-mould.jpg'),
     gallery: [],
   },
 ];

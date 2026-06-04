@@ -593,7 +593,7 @@
     }
   },
   "one-piece-shoe-mould": {
-    "name": "Molde de Inyección de Zapato de Una Pieza (一模一只)",
+    "name": "Molde de Inyección de Zapato de Una Pieza",
     "shortDescription": "Molde integrado que produce un zapato completo en un solo ciclo de inyección. Diseñado para líneas de pantuflas, sandalias y calzado casual de una pieza. Reduce los pasos de ensamblaje frente a la producción separada de suela + corte.",
     "applications": [
       "Pantuflas de una pieza",
@@ -608,27 +608,27 @@
       "Material": "Material",
       "Cavity Count": "Número de Cavidades",
       "Shoe Size Range": "Rango de Tallas",
-      "Mould Material Compatibility": "Materiales Compatibles",
+      "Compatible Materials": "Materiales Compatibles",
       "Surface Treatment": "Tratamiento Superficial",
       "Lead Time": "Plazo de Entrega"
     }
   },
   "vertical-injection-sole-mould": {
-    "name": "Molde de Suela para Inyección Vertical (立式)",
-    "shortDescription": "Molde de suela diseñado para máquinas de inyección de disposición vertical (clase DY-150). Huella compacta del molde, optimizada para producción de muestras a pequeños lotes en TR/TPU. Ideal para marcas de calzado que prueban nuevos diseños de suela.",
+    "name": "Molde de Inyección Vertical de Suelas para DY-150",
+    "shortDescription": "Molde de suela diseñado específicamente para la máquina de inyección vertical DEYU DY-150. Huella compacta de 2 cavidades (par izquierdo + derecho por inyección), optimizada para producción de muestras y lotes pequeños en TR/TPU. Ideal para marcas de calzado que prueban nuevos diseños o líneas premium de bajo volumen.",
     "applications": [
       "Muestreo de suelas TR / TPU",
       "Prototipado de suelas en I+D",
       "Producción premium de suelas en lotes pequeños",
-      "Fábricas con máquinas verticales"
+      "Líneas de producción con máquinas verticales DY-150"
     ],
     "specLabels": {
       "Mould Type": "Tipo de Molde",
-      "Compatible Machine Class": "Clase de Máquina Compatible",
-      "Material": "Material",
+      "Compatible Machine": "Máquina Compatible",
       "Cavity Count": "Número de Cavidades",
+      "Material": "Material",
+      "Compatible Materials": "Materiales Compatibles",
       "Shoe Size Range": "Rango de Tallas",
-      "Mould Material Compatibility": "Materiales Compatibles",
       "Surface Treatment": "Tratamiento Superficial",
       "Lead Time": "Plazo de Entrega"
     }
