@@ -264,6 +264,50 @@ git add . && git commit -m "feat(phase-2): static skeleton with all routes" && g
 
 ---
 
+## Phase 7 · 模具品类 Catalog(待Mark素材交付,边交付边上)
+
+**目标**: 在网站现有 4 个机器品类外,引入"模具"作为独立产品大类,扩展 SEO 关键词面 + 开辟模具销售渠道。
+
+**架构原则**: 模具产品复用 `Product` interface 与 `/products/<slug>` 路由 — sitemap / hreflang / Schema.org 全部自动接入,无需新建路由或 schema。
+
+### 已完成的脚手架(2026-06-04)
+- ✅ `ProductCategory` enum 加 `'moulds'`
+- ✅ `categoryLabels.moulds = 'Shoe Sole Moulds'`
+- ✅ 3 个种子产品条目:`tpu-sole-mould-rotary` / `one-piece-shoe-mould` / `vertical-injection-sole-mould`(均带 TODO 占位规格)
+- ✅ products 列表页过滤增加 'Moulds' pill
+- ✅ 首页 ProductCategoryGrid 加模具卡片
+- ✅ Header 巨型菜单加第三组 "Moulds"
+- ✅ 5 语种 i18n key(nav + productGrid)
+- ✅ 西语产品翻译(es.json) 3 条
+- ✅ `public/products/moulds/placeholder.svg` 占位图
+- ✅ 02_IA / 03_SEO 文档同步更新
+
+### Mark 需交付的素材(每个模具一份)
+- [ ] 模具型号 / 内部 SKU
+- [ ] 顶视图 + 侧视图照片(纯白底,kebab-case 命名匹配 slug,放 `public/products/moulds/<slug>.jpg`)
+- [ ] 兼容机型清单
+- [ ] 型腔数(2/4/6 cavities)
+- [ ] 适配鞋号范围(EUR 36-46 etc.)
+- [ ] 材质(P20 / S136 / NAK80 / 718H?)
+- [ ] 表面处理(硬铬 / 氮化 / 其他)
+- [ ] 标准交期
+- [ ] (可选)出货价格区间 — 决定是否公开
+
+### 完成标准
+- Lighthouse SEO 仍 100
+- 5 语种 `/products?category=moulds` 均可访问
+- sitemap 自动包含 `/products/<mould-slug>` 各 locale 变体
+- 每个模具产品至少有 1 张纯白底照片(替换 placeholder.svg)
+- 至少 5 个模具型号上线
+
+### 暂不做(后续可再议)
+- 模具页 ↔ 机器页交叉链接(等两边目录都成熟后再说)
+- 专门的 `/products/moulds` landing page(目录满 5+ 条目再考虑)
+- 模具相关博客内容(SEO 加成,但属于 Phase 6 范畴)
+- Chatbot 推荐模具(selection_matrix 暂不扩展)
+
+---
+
 ## Phase 6 · 内容填充 + 后续扩展(异步进行)
 
 这一阶段**不需要 Claude Code 频繁操作**,主要是用户提供素材 + 电饭锅产出内容。

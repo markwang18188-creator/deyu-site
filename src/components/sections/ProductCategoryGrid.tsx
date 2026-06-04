@@ -44,6 +44,15 @@ export default async function ProductCategoryGrid() {
       href: '/products?category=industrial',
     },
     {
+      slug: 'moulds',
+      title: t('moulds_title'),
+      description: t('moulds_desc'),
+      icon: '🛠️',
+      models: 'TPU Rotary · One-Piece · Vertical',
+      image: '/products/moulds/placeholder.svg',
+      href: '/products?category=moulds',
+    },
+    {
       slug: 'equipment',
       title: t('equipment_title'),
       description: t('equipment_desc'),

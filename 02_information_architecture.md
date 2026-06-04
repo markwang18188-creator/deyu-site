@@ -14,6 +14,9 @@ deyusolemachine.com (英文,默认)
 │   ├── /multi-color-rotary-machine
 │   ├── /air-blowing-injection-machine           吹气类
 │   ├── /industrial-parts-machines               工业件(新探索)
+│   ├── /tpu-sole-mould-rotary                   模具品类(Phase 7,2026-06 引入)
+│   ├── /one-piece-shoe-mould
+│   ├── /vertical-injection-sole-mould
 │   └── /[model-slug]                            按型号访问,例: /dy-2216tr-tpu
 │
 ├── /equipment/                                  配套设备
@@ -62,17 +65,17 @@ deyusolemachine.com/ar/               阿拉伯语
 Products 鼠标 hover 出大菜单(Mega Menu):
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│ INJECTION MACHINES        │  AIR BLOWING                 │
-│  · TPU Dual Color         │   · Single Color             │
-│  · PVC Single Color       │   · Dual Color               │
-│  · Multi Color Rotary     │   · Three Color Mixed        │
-│  · Auto Mold Opening      │                              │
-│                            │  INDUSTRIAL PARTS            │
-│  ALL MODELS →             │   · Dumbbells / Plates       │
-│                            │   · Car Seat Cushions       │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│ INJECTION MACHINES   │  INDUSTRIAL PARTS   │  MOULDS              │
+│  · TPU Dual Color    │   · Dumbbells        │   · TPU Rotary Mould │
+│  · PVC Single Color  │   · Car Seat Cushion │   · One-Piece Mould  │
+│  · Multi Color Rotary│                       │   · Vertical Mould   │
+│  · Auto Mold Opening │                       │                       │
+│  ALL MODELS →        │                       │                       │
+└──────────────────────────────────────────────────────────────────┘
 ```
+
+**注 (2026-06-04 更新)**: Phase 7 引入"模具"作为第三组,巨型菜单从 2 列(520px)扩展为 3 列(760px)。模具产品共用 `/products/<slug>` 路由,不开 `/moulds/` 子路径(保持 URL 扁平)。
 
 ### Footer
 

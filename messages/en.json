@@ -10,6 +10,7 @@
     "injection_machines": "INJECTION MACHINES",
     "air_blowing": "AIR BLOWING",
     "industrial_parts": "INDUSTRIAL PARTS",
+    "moulds_catalog": "MOULDS",
     "language": "Language",
     "blog": "Blog",
     "cases": "Cases",
@@ -61,7 +62,9 @@
     "industrial_title": "Industrial Parts",
     "industrial_desc": "Adapted machines for dumbbells, weight plates, and automotive seat cushions.",
     "equipment_title": "Supporting Equipment",
-    "equipment_desc": "Complete turnkey factory solutions: mixers, dryers, crushers, compressors and more."
+    "equipment_desc": "Complete turnkey factory solutions: mixers, dryers, crushers, compressors and more.",
+    "moulds_title": "Shoe Sole Moulds",
+    "moulds_desc": "TPU, PVC and TR sole moulds — rotary, slide and vertical-machine compatible. CNC-machined for precision."
   },
   "whyDeyu": {
     "title": "Why Choose DEYU?",

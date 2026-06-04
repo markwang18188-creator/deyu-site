@@ -20,6 +20,10 @@ const productGroups = [
     key: 'industrial_parts',
     items: products.filter((p) => p.category === 'industrial'),
   },
+  {
+    key: 'moulds_catalog',
+    items: products.filter((p) => p.category === 'moulds').slice(0, 6),
+  },
 ];
 
 export default function Header() {
@@ -122,11 +126,11 @@ export default function Header() {
                   </Link>
 
                   {megaOpen && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-[520px] bg-white text-gray-900 shadow-xl rounded-b-lg border-t-2 border-[#ea580c] p-6 grid grid-cols-2 gap-6">
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-[760px] bg-white text-gray-900 shadow-xl rounded-b-lg border-t-2 border-[#ea580c] p-6 grid grid-cols-3 gap-6">
                       {productGroups.map((group) => (
                         <div key={group.key}>
                           <h3 className="text-xs font-bold text-[#1e3a8a] uppercase tracking-wide mb-3 border-b pb-2">
-                            {t(group.key as 'injection_machines' | 'industrial_parts')}
+                            {t(group.key as 'injection_machines' | 'industrial_parts' | 'moulds_catalog')}
                           </h3>
                           <ul className="space-y-1">
                             {group.items.map((product) => (

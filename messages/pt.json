@@ -10,6 +10,7 @@
     "injection_machines": "MÁQUINAS DE INJEÇÃO",
     "air_blowing": "SOPRO DE AR",
     "industrial_parts": "PEÇAS INDUSTRIAIS",
+    "moulds_catalog": "MOLDES",
     "language": "Idioma",
     "blog": "Blog",
     "cases": "Casos",
@@ -61,7 +62,9 @@
     "industrial_title": "Peças Industriais",
     "industrial_desc": "Máquinas adaptadas para halteres, anilhas e almofadas de assento automotivo.",
     "equipment_title": "Equipamentos de Suporte",
-    "equipment_desc": "Soluções completas turnkey: misturadoras, secadores, trituradores, compressores e mais."
+    "equipment_desc": "Soluções completas turnkey: misturadoras, secadores, trituradores, compressores e mais.",
+    "moulds_title": "Moldes para Solas",
+    "moulds_desc": "Moldes para solas de TPU, PVC e TR — compatíveis com máquinas rotativas, deslizantes e verticais. Usinagem CNC para precisão."
   },
   "whyDeyu": {
     "title": "Por que Escolher a DEYU?",

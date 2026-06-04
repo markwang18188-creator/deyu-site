@@ -10,6 +10,7 @@
     "injection_machines": "ENJEKSİYON MAKİNELERİ",
     "air_blowing": "HAVA ÜFLEME",
     "industrial_parts": "ENDÜSTRİYEL PARÇALAR",
+    "moulds_catalog": "KALIPLAR",
     "language": "Dil",
     "blog": "Blog",
     "cases": "Vakalar",
@@ -61,7 +62,9 @@
     "industrial_title": "Endüstriyel Parçalar",
     "industrial_desc": "Dambıllar, ağırlık plakaları ve otomotiv koltuk minderleri için uyarlanmış makineler.",
     "equipment_title": "Destek Ekipmanları",
-    "equipment_desc": "Eksiksiz anahtar teslim fabrika çözümleri: karıştırıcılar, kurutucular, kırıcılar, kompresörler ve daha fazlası."
+    "equipment_desc": "Eksiksiz anahtar teslim fabrika çözümleri: karıştırıcılar, kurutucular, kırıcılar, kompresörler ve daha fazlası.",
+    "moulds_title": "Taban Kalıpları",
+    "moulds_desc": "TPU, PVC ve TR taban kalıpları — döner, kayar ve dikey makinelere uyumlu. CNC ile hassas işleme."
   },
   "whyDeyu": {
     "title": "Neden DEYU'yu Seçmelisiniz?",

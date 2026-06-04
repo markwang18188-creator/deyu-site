@@ -25,6 +25,33 @@
 | air blowing injection machine | 拖鞋市场 | /products/air-blowing-injection-machine |
 | rotary sole injection machine | 圆盘式询盘 | /products/multi-color-rotary-machine |
 
+### 模具关键词(Phase 7 新开战线,2026-06 引入)
+
+模具品类目标:开辟"配件型订单"流量,客户买完机器后买模具,或单买模具替换。模具关键词搜索量比机器小但转化率高(询盘 → 成交)。
+
+| 关键词 | 搜索意图 | 落地页 |
+|--------|---------|--------|
+| shoe sole mould manufacturer | 通用模具询盘 | /products?category=moulds |
+| TPU sole injection mould | TPU 模具高价值询盘 | /products/tpu-sole-mould-rotary |
+| PVC sole mould China | 价格敏感市场 | /products?category=moulds |
+| one-piece shoe mould | 一模一只 / 一体成型询盘 | /products/one-piece-shoe-mould |
+| vertical injection mould for soles | 立式机配套模具 | /products/vertical-injection-sole-mould |
+| rotary disc mould | 圆盘机配套模具 | /products/tpu-sole-mould-rotary |
+| shoe mould factory Wenzhou | 地理 + 行业 | /products?category=moulds |
+| CNC machined sole mould | 工艺关键词 | 模具系列页 |
+| custom shoe sole mould | 定制询盘 | /products?category=moulds |
+
+**模具博客长尾(Phase 7 + 内容产出后)**:
+```
+- "How to choose the right TPU sole mould for rotary machines"
+- "P20 vs S136 vs NAK80: shoe sole mould steel comparison"
+- "Mould cavity layout: 2 vs 4 vs 6 cavities — production tradeoffs"
+- "One-piece shoe mould design considerations for PVC slippers"
+- "Hard chrome vs nitriding for sole mould surface treatment"
+- "Mould maintenance schedule for high-volume rotary lines"
+- "Lead time expectations for custom shoe sole mould orders"
+```
+
 ### 二级长尾词(博客主战场,Phase 6 用)
 
 例(每个可以扩 10+ 篇):

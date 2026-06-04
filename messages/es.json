@@ -10,6 +10,7 @@
     "injection_machines": "MÁQUINAS DE INYECCIÓN",
     "air_blowing": "SOPLADO DE AIRE",
     "industrial_parts": "PIEZAS INDUSTRIALES",
+    "moulds_catalog": "MOLDES",
     "language": "Idioma",
     "blog": "Blog",
     "cases": "Casos",
@@ -61,7 +62,9 @@
     "industrial_title": "Piezas Industriales",
     "industrial_desc": "Máquinas adaptadas para mancuernas, discos de pesas y cojines de asiento automotriz.",
     "equipment_title": "Equipos de Apoyo",
-    "equipment_desc": "Soluciones completas llave en mano: mezcladoras, secadoras, trituradoras, compresores y más."
+    "equipment_desc": "Soluciones completas llave en mano: mezcladoras, secadoras, trituradoras, compresores y más.",
+    "moulds_title": "Moldes para Suelas",
+    "moulds_desc": "Moldes para suelas de TPU, PVC y TR — compatibles con máquinas rotativas, deslizantes y verticales. Mecanizado CNC para precisión."
   },
   "whyDeyu": {
     "title": "¿Por qué Elegir DEYU?",

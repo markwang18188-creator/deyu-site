@@ -7,7 +7,8 @@ export type ProductCategory =
   | 'single-color'
   | 'dual-color'
   | 'multi-color'
-  | 'industrial';
+  | 'industrial'
+  | 'moulds';
 
 export interface Product {
   slug: string;
@@ -789,6 +790,123 @@ export const products: Product[] = [
     gallery: [],
     youtubeShortsId: 'RURcmgsGn1c',
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // SHOE SOLE MOULDS  —  Phase 7 seed entries
+  // ───────────────────────────────────────────────────────────────
+  // Sub-types are tracked in specifications['Mould Type'] rather than
+  // separate categories. TODO placeholders flag fields awaiting Mark's
+  // input (material grade, cavity counts, photos, lead time).
+  // ═══════════════════════════════════════════════════════════════
+
+  {
+    slug: 'tpu-sole-mould-rotary',
+    modelSlug: 'mould-tpu-rotary',
+    model: 'DEYU TPU Rotary Sole Mould',
+    name: 'TPU Sole Mould for Rotary Disc Injection Machines',
+    category: 'moulds',
+    shortDescription:
+      'CNC-machined TPU sole mould compatible with rotary disc injection machines (DY-1106 / DY-1108 / DY-1112 / DY-1120 platforms). Multi-cavity configurations available. Steel construction with hard-chrome plating for long production life.',
+    features: [
+      'CNC-machined for precise sole detail',
+      'Hard-chrome plated cavity surface (corrosion-resistant)',
+      'Quick-change clamping standard',
+      'Compatible with single-color rotary machines',
+      'Mould material: TODO (Mark to confirm — P20 / S136 / NAK80)',
+      'Cavity count: TODO (typical 2-6 cavities)',
+    ],
+    specifications: {
+      'Mould Type': 'Rotary Disc / Single-Color',
+      'Compatible Machine Class': 'DY-1106 / DY-1108 / DY-1112 / DY-1120',
+      'Material': 'TODO — confirm steel grade',
+      'Cavity Count': 'TODO',
+      'Shoe Size Range': 'TODO (e.g. EUR 36-46)',
+      'Surface Treatment': 'TODO — hard chrome / nitriding / etc.',
+      'Lead Time': 'TODO',
+    },
+    applications: [
+      'TPU sole production',
+      'Sports shoe soles',
+      'Casual footwear soles',
+      'OEM/ODM brand production',
+      'Sample mould development',
+    ],
+    mainImage: img('moulds/placeholder.svg'),
+    gallery: [],
+  },
+
+  {
+    slug: 'one-piece-shoe-mould',
+    modelSlug: 'mould-one-piece',
+    model: 'DEYU One-Piece Shoe Mould',
+    name: 'One-Mould-One-Shoe Injection Mould (一模一只)',
+    category: 'moulds',
+    shortDescription:
+      'Integrated one-piece shoe mould producing a complete shoe in a single injection cycle. Designed for slipper, sandal and casual one-piece footwear lines. Reduces assembly steps versus separate sole + upper production.',
+    features: [
+      'Single-shot full-shoe moulding',
+      'Eliminates separate sole-to-upper bonding step',
+      'CNC-machined cavity for shoe-shape precision',
+      'Cooling-channel optimized for cycle time',
+      'Mould material: TODO (Mark to confirm)',
+      'Suitable for slipper, beach sandal, casual one-piece designs',
+    ],
+    specifications: {
+      'Mould Type': 'One-Piece / Integrated Shoe',
+      'Compatible Machine Class': 'TODO — confirm with Mark (slide or vertical platforms)',
+      'Material': 'TODO',
+      'Cavity Count': 'Typically 1-2 cavities',
+      'Shoe Size Range': 'TODO',
+      'Mould Material Compatibility': 'PVC / TPR / EVA / TPU',
+      'Surface Treatment': 'TODO',
+      'Lead Time': 'TODO',
+    },
+    applications: [
+      'One-piece slippers',
+      'Beach sandals',
+      'Casual one-piece footwear',
+      'Indoor slippers (hotel / hospital)',
+      'EVA / PVC integrated shoe production',
+    ],
+    mainImage: img('moulds/placeholder.svg'),
+    gallery: [],
+  },
+
+  {
+    slug: 'vertical-injection-sole-mould',
+    modelSlug: 'mould-vertical',
+    model: 'DEYU Vertical Sole Mould',
+    name: 'Vertical Injection Sole Mould (立式)',
+    category: 'moulds',
+    shortDescription:
+      'Sole mould designed for vertical-layout injection machines (DY-150 class). Compact mould footprint, optimised for TR/TPU sample-to-small-batch production. Ideal for shoe brands testing new sole designs.',
+    features: [
+      'Compact mould design — fits vertical platform clamping',
+      'Optimised for TR / TPU materials',
+      'Quick mould-change interface',
+      'CNC-machined cavity for clean release',
+      'Mould material: TODO',
+      'Best for sample making, R&D, low-volume runs',
+    ],
+    specifications: {
+      'Mould Type': 'Vertical / Single or Two-Color',
+      'Compatible Machine Class': 'DY-150 (vertical) and similar',
+      'Material': 'TODO',
+      'Cavity Count': 'TODO (typically 1-2 cavities)',
+      'Shoe Size Range': 'TODO',
+      'Mould Material Compatibility': 'TR / TPU / TPR',
+      'Surface Treatment': 'TODO',
+      'Lead Time': 'TODO',
+    },
+    applications: [
+      'TR / TPU sole sampling',
+      'R&D sole prototyping',
+      'Small-batch premium sole production',
+      'Vertical-machine factories',
+    ],
+    mainImage: img('moulds/placeholder.svg'),
+    gallery: [],
+  },
 ];
 
 export const productsByCategory = (category: ProductCategory) =>
@@ -802,6 +920,7 @@ export const categoryLabels: Record<ProductCategory, string> = {
   'dual-color': 'Dual Color Machines',
   'multi-color': 'Multi Color Machines',
   'industrial': 'Industrial Heavy-Duty Machines',
+  'moulds': 'Shoe Sole Moulds',
 };
 
 // ─────────────────────────────────────────────────────────────────────────

@@ -571,5 +571,66 @@
       "Machine Weight": "Peso de la máquina",
       "Oil Capacity": "Capacidad de aceite"
     }
+  },
+  "tpu-sole-mould-rotary": {
+    "name": "Molde de Suela TPU para Máquinas de Inyección de Disco Rotativo",
+    "shortDescription": "Molde de suela TPU mecanizado por CNC, compatible con máquinas de inyección de disco rotativo (plataformas DY-1106 / DY-1108 / DY-1112 / DY-1120). Configuraciones multi-cavidad disponibles. Construcción en acero con cromado duro para una larga vida útil de producción.",
+    "applications": [
+      "Producción de suelas TPU",
+      "Suelas para calzado deportivo",
+      "Suelas para calzado casual",
+      "Producción de marca OEM/ODM",
+      "Desarrollo de moldes de muestra"
+    ],
+    "specLabels": {
+      "Mould Type": "Tipo de Molde",
+      "Compatible Machine Class": "Clase de Máquina Compatible",
+      "Material": "Material",
+      "Cavity Count": "Número de Cavidades",
+      "Shoe Size Range": "Rango de Tallas",
+      "Surface Treatment": "Tratamiento Superficial",
+      "Lead Time": "Plazo de Entrega"
+    }
+  },
+  "one-piece-shoe-mould": {
+    "name": "Molde de Inyección de Zapato de Una Pieza (一模一只)",
+    "shortDescription": "Molde integrado que produce un zapato completo en un solo ciclo de inyección. Diseñado para líneas de pantuflas, sandalias y calzado casual de una pieza. Reduce los pasos de ensamblaje frente a la producción separada de suela + corte.",
+    "applications": [
+      "Pantuflas de una pieza",
+      "Sandalias de playa",
+      "Calzado casual de una pieza",
+      "Pantuflas para hotel / hospital",
+      "Producción integrada de zapato en EVA / PVC"
+    ],
+    "specLabels": {
+      "Mould Type": "Tipo de Molde",
+      "Compatible Machine Class": "Clase de Máquina Compatible",
+      "Material": "Material",
+      "Cavity Count": "Número de Cavidades",
+      "Shoe Size Range": "Rango de Tallas",
+      "Mould Material Compatibility": "Materiales Compatibles",
+      "Surface Treatment": "Tratamiento Superficial",
+      "Lead Time": "Plazo de Entrega"
+    }
+  },
+  "vertical-injection-sole-mould": {
+    "name": "Molde de Suela para Inyección Vertical (立式)",
+    "shortDescription": "Molde de suela diseñado para máquinas de inyección de disposición vertical (clase DY-150). Huella compacta del molde, optimizada para producción de muestras a pequeños lotes en TR/TPU. Ideal para marcas de calzado que prueban nuevos diseños de suela.",
+    "applications": [
+      "Muestreo de suelas TR / TPU",
+      "Prototipado de suelas en I+D",
+      "Producción premium de suelas en lotes pequeños",
+      "Fábricas con máquinas verticales"
+    ],
+    "specLabels": {
+      "Mould Type": "Tipo de Molde",
+      "Compatible Machine Class": "Clase de Máquina Compatible",
+      "Material": "Material",
+      "Cavity Count": "Número de Cavidades",
+      "Shoe Size Range": "Rango de Tallas",
+      "Mould Material Compatibility": "Materiales Compatibles",
+      "Surface Treatment": "Tratamiento Superficial",
+      "Lead Time": "Plazo de Entrega"
+    }
   }
 }
