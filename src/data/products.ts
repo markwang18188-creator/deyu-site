@@ -219,6 +219,7 @@ export const products: Product[] = [
     applications: ['Sports shoes', 'Casual shoes', 'Safety shoes', 'Sandals', 'High-volume PVC production'],
     mainImage: img('dy-1120.jpg'),
     gallery: [],
+    youtubeId: 'vTSj9p3iIz8',
   },
 
   {
