@@ -185,19 +185,18 @@ export const products: Product[] = [
           'Suitable for separate midsole + outsole construction',
           'Servo energy-saving · CE & ISO 9001 certified',
         ],
-        // Specs confirmed by Mark 2026-06-04.
-        // Remaining "On request" fields = not yet provided (machine dimensions etc).
+        // Specs confirmed by Mark 2026-06-04. Keys aligned with the parent
+        // DY-1106 family so they render side-by-side in the comparison table.
         specifications: {
-          'Model': 'DY-1124E',
-          'Stations': '24 (rotary disc)',
-          'Primary Material': 'PP (polypropylene)',
-          'Application': 'Midsole production',
+          'Models': 'DY-1124E',
           'Clamping Force': '80 tons',
+          'Stations': '24 (rotary disc)',
+          'Material': 'PP (polypropylene)',
           'Screw Diameter': 'Φ65 mm',
           'Max Injection Capacity': '660 g/shot',
           'Productivity': '130 pairs/hour',
-          'Machine Weight': '9 tons',
           'Cooling': 'Water-cooling',
+          'Machine Weight': '9 tons',
         },
         applications: [
           'PP midsole production',

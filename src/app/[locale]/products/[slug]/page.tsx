@@ -191,56 +191,69 @@ export default async function ProductDetailPage({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-xl font-bold text-[#0f172a] mb-6">{t('specifications')}</h2>
-              <div className="bg-white rounded-lg border border-[#e2e8f0] overflow-hidden">
-                <table className="w-full text-sm">
-                  <tbody>
-                    {Object.entries(product.specifications).map(([key, value], i) => (
-                      <tr key={key} className={i % 2 === 0 ? 'bg-white' : 'bg-[#f8fafc]'}>
-                        <td className="px-5 py-3 font-medium text-[#334155] w-1/2 border-b border-[#e2e8f0]">
-                          {key}
-                        </td>
-                        <td className="px-5 py-3 text-[#64748b] border-b border-[#e2e8f0]">
-                          {value}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              {(() => {
+                // When variants exist, render a single comparison table: each spec
+                // row shows the value across the primary product + every variant.
+                // Otherwise fall back to the simple single-column spec table.
+                const variants = product.variants ?? [];
+                const hasVariants = variants.length > 0;
 
-              {/* Variant spec tables — closely-related sister models surfaced on the
-                  same product page. Renders inline below the primary spec table. */}
-              {product.variants?.map((v) => (
-                <div key={v.model} className="mt-8">
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
-                    <span className="inline-block text-xs font-semibold text-[#1e3a8a] bg-blue-50 px-2.5 py-1 rounded-full">
-                      {v.model}
-                    </span>
-                    <h3 className="text-base font-bold text-[#0f172a]">{v.name}</h3>
-                  </div>
-                  {v.shortDescription && (
-                    <p className="text-sm text-[#64748b] mb-4 leading-relaxed">
-                      {v.shortDescription}
-                    </p>
-                  )}
+                // Build the row order: primary product's keys first (preserves
+                // author intent), then any variant-only keys appended at the end.
+                const seenKeys = new Set<string>();
+                const orderedKeys: string[] = [];
+                for (const k of Object.keys(product.specifications)) {
+                  if (!seenKeys.has(k)) { seenKeys.add(k); orderedKeys.push(k); }
+                }
+                for (const v of variants) {
+                  for (const k of Object.keys(v.specifications)) {
+                    if (!seenKeys.has(k)) { seenKeys.add(k); orderedKeys.push(k); }
+                  }
+                }
+
+                return (
                   <div className="bg-white rounded-lg border border-[#e2e8f0] overflow-hidden">
                     <table className="w-full text-sm">
-                      <tbody>
-                        {Object.entries(v.specifications).map(([key, value], i) => (
-                          <tr key={key} className={i % 2 === 0 ? 'bg-white' : 'bg-[#f8fafc]'}>
-                            <td className="px-5 py-3 font-medium text-[#334155] w-1/2 border-b border-[#e2e8f0]">
-                              {key}
-                            </td>
-                            <td className="px-5 py-3 text-[#64748b] border-b border-[#e2e8f0]">
-                              {value}
-                            </td>
+                      {hasVariants && (
+                        <thead>
+                          <tr className="bg-[#1e3a8a] text-white">
+                            <th className="px-5 py-3 text-left font-semibold w-1/3 border-b border-[#1e3a8a]">
+                              {/* Empty header for the spec-name column */}
+                            </th>
+                            <th className="px-5 py-3 text-left font-semibold border-b border-[#1e3a8a]">
+                              {product.model}
+                            </th>
+                            {variants.map((v) => (
+                              <th key={v.model} className="px-5 py-3 text-left font-semibold border-b border-[#1e3a8a]">
+                                {v.model}
+                              </th>
+                            ))}
                           </tr>
-                        ))}
+                        </thead>
+                      )}
+                      <tbody>
+                        {orderedKeys
+                          .filter((key) => hasVariants ? key !== 'Models' && key !== 'Model' : true)
+                          .map((key, i) => (
+                            <tr key={key} className={i % 2 === 0 ? 'bg-white' : 'bg-[#f8fafc]'}>
+                              <td className="px-5 py-3 font-medium text-[#334155] border-b border-[#e2e8f0]">
+                                {key}
+                              </td>
+                              <td className="px-5 py-3 text-[#64748b] border-b border-[#e2e8f0]">
+                                {product.specifications[key] ?? '—'}
+                              </td>
+                              {hasVariants && variants.map((v) => (
+                                <td key={v.model} className="px-5 py-3 text-[#64748b] border-b border-[#e2e8f0]">
+                                  {v.specifications[key] ?? '—'}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </div>
-                </div>
-              ))}
+                );
+              })()}
             </div>
 
             <div>
