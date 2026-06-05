@@ -25,7 +25,7 @@ export async function generateMetadata({
   return {
     title: `${product.name} | ${product.model} | DEYU`,
     description: `${product.shortDescription} CE certified. Contact DEYU for pricing and specifications.`,
-    alternates: buildAlternates(`/products/${slug}`),
+    alternates: buildAlternates(`/products/${slug}`, locale),
     openGraph: {
       title: `${product.name} | DEYU`,
       description: product.shortDescription,

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getLocale } from 'next-intl/server';
 import Hero from '@/components/sections/Hero';
 import TrustBar from '@/components/sections/TrustBar';
 import TrustCountriesMarquee from '@/components/sections/TrustCountriesMarquee';
@@ -6,12 +7,13 @@ import ProductCategoryGrid from '@/components/sections/ProductCategoryGrid';
 import CtaSection from '@/components/sections/CtaSection';
 import { buildAlternates } from '@/lib/metadata';
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
   return {
     title: 'Shoe Sole Injection Moulding Machine Manufacturer | DEYU Wenzhou China',
     description:
       'Leading shoe sole injection moulding machine manufacturer in Wenzhou, China. 15+ years experience, ISO 9001 & CE certified. TPU, PVC, dual-color sole machines for global markets. Get a quote today.',
-    alternates: buildAlternates('/'),
+    alternates: buildAlternates('/', locale),
     openGraph: {
       title: 'DEYU – Shoe Sole Injection Moulding Machines',
       description:

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import CtaSection from '@/components/sections/CtaSection';
 import FadeIn from '@/components/ui/FadeIn';
 import { buildAlternates } from '@/lib/metadata';
@@ -17,10 +17,11 @@ const factoryHighlights = [
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('about');
+  const locale = await getLocale();
   return {
     title: `${t('title')} | DEYU`,
     description: t('subtitle'),
-    alternates: buildAlternates('/about'),
+    alternates: buildAlternates('/about', locale),
   };
 }
 

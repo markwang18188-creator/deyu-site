@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { products, categoryLabels, type ProductCategory } from '@/data/products';
 import CtaSection from '@/components/sections/CtaSection';
@@ -9,10 +9,11 @@ import { buildAlternates } from '@/lib/metadata';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('productsPage');
+  const locale = await getLocale();
   return {
     title: `${t('title')} | DEYU`,
     description: t('subtitle'),
-    alternates: buildAlternates('/products'),
+    alternates: buildAlternates('/products', locale),
   };
 }
 

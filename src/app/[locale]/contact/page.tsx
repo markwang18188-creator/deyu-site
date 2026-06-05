@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import { getProductBySlug } from '@/data/products';
 import ContactForm from '@/components/forms/ContactForm';
 import WhatsAppLink from '@/components/analytics/WhatsAppLink';
@@ -11,10 +11,11 @@ interface ContactPageProps {
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('contact');
+  const locale = await getLocale();
   return {
     title: `${t('title')} | DEYU`,
     description: t('subtitle'),
-    alternates: buildAlternates('/contact'),
+    alternates: buildAlternates('/contact', locale),
   };
 }
 

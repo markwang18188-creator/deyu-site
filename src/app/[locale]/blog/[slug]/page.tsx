@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: `${post.title} | DEYU Blog`,
     description: post.description ?? undefined,
-    alternates: buildAlternates(`/blog/${slug}`),
+    alternates: buildAlternates(`/blog/${slug}`, locale),
     openGraph: {
       title: post.title,
       description: post.description ?? undefined,

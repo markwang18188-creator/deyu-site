@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import { buildAlternates } from '@/lib/metadata';
 import CtaSection from '@/components/sections/CtaSection';
 import { gallery, imageUrl, type GalleryImage } from '@/data/gallery';
@@ -8,10 +8,11 @@ import CustomerFactoryGallery, { type FactoryItem } from '@/components/cases/Cus
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('cases');
+  const locale = await getLocale();
   return {
     title: t('meta_title'),
     description: t('meta_desc'),
-    alternates: buildAlternates('/cases'),
+    alternates: buildAlternates('/cases', locale),
   };
 }
 

@@ -7,10 +7,11 @@ import CtaSection from '@/components/sections/CtaSection';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('blog');
+  const locale = await getLocale();
   return {
     title: t('meta_title'),
     description: t('meta_desc'),
-    alternates: buildAlternates('/blog'),
+    alternates: buildAlternates('/blog', locale),
   };
 }
 
