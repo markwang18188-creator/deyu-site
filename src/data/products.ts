@@ -175,27 +175,28 @@ export const products: Product[] = [
         model: 'DY-1124E',
         name: 'PP Midsole Variant — 24-Station Rotary',
         shortDescription:
-          'Higher-station sister model of the DY-1106 family, configured for PP (polypropylene) midsole production. 24-station rotary disc delivers high-volume midsole output for sports footwear, work boots and OEM brand programs that use a separate midsole + outsole construction.',
+          'Higher-station sister model of the DY-1106 family, configured for PP (polypropylene) midsole production. 24-station rotary disc delivers 130 pairs/hour with 80T clamping and Φ65 screw — sized for sports footwear, work boots and OEM brand programs that use a separate midsole + outsole construction.',
         features: [
-          '24-station rotary disc (highest output in the family)',
+          '24-station rotary disc — 130 pairs/hour high output',
+          '80-ton clamping force with Φ65 screw',
+          '660 g/shot max injection capacity',
           'Material: PP (polypropylene) — optimised for midsoles',
+          'Water-cooling system for fast cycle time',
           'Suitable for separate midsole + outsole construction',
-          'Computer-programmed digital control',
-          'Servo energy-saving',
-          'CE & ISO 9001 certified',
+          'Servo energy-saving · CE & ISO 9001 certified',
         ],
-        // INTERNAL TODO (Mark): confirm clamping force, screw diameter, max injection
-        // capacity, productivity, machine dimensions, weight. "On request" placeholders
-        // until specs are confirmed.
+        // Specs confirmed by Mark 2026-06-04.
+        // Remaining "On request" fields = not yet provided (machine dimensions etc).
         specifications: {
           'Model': 'DY-1124E',
           'Stations': '24 (rotary disc)',
           'Primary Material': 'PP (polypropylene)',
           'Application': 'Midsole production',
-          'Clamping Force': 'On request',
-          'Screw Diameter': 'On request',
-          'Max Injection Capacity': 'On request',
-          'Productivity': 'On request',
+          'Clamping Force': '80 tons',
+          'Screw Diameter': 'Φ65 mm',
+          'Max Injection Capacity': '660 g/shot',
+          'Productivity': '130 pairs/hour',
+          'Machine Weight': '9 tons',
           'Cooling': 'Water-cooling',
         },
         applications: [
