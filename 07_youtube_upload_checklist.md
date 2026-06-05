@@ -146,6 +146,7 @@ Whether you produce slippers, sandals, sports shoes or work boots, DEYU can matc
 
 | 视频文件 | YouTube ID | 产品 slug | 类型 |
 |---|---|---|---|
+| DY-1124E PP Midsole Machine | `n0mbghmU3Oo` | pvc-six-station-rotary-machine (variant) | 横屏 |
 | DY-1120A 20-station PVC demo (IMG_1212) | `vTSj9p3iIz8` | pvc-single-color-rotary-machine | 横屏 |
 | 2工位打TPU箱包把手 (DY-1102 应用) | `jH8xowcRFqQ` | two-station-slide-sole-machine (applicationVideos) | 横屏 |
 | DY1102-H (1102-S 工业压机) | `ni0HpHWiJ6U` | industrial-parts-two-station-machine | Shorts |

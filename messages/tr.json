@@ -109,7 +109,10 @@
     "datasheet_desc": "İçin tam teknik veri sayfasını ve kişiselleştirilmiş fiyat teklifini alın",
     "datasheet_cta": "Veri Sayfası ve Teklif İste",
     "other_applications_title": "Diğer Uygulamalar",
-    "other_applications_subtitle": "Birincil kullanımın ötesinde — aynı makinenin farklı ürünler ürettiğini izleyin."
+    "other_applications_subtitle": "Birincil kullanımın ötesinde — aynı makinenin farklı ürünler ürettiğini izleyin.",
+    "variants_title": "Varyantlar ve İlgili Modeller",
+    "variants_subtitle": "Aynı aileden yakın ilişkili makineler — farklı istasyonlar, malzemeler veya uygulamalar.",
+    "features_label": "Özellikler"
   },
   "about": {
     "title": "Wenzhou Deyu Machinery Hakkında",

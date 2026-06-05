@@ -35,6 +35,11 @@ export interface Product {
   /** Additional application videos — alternative use cases for the same machine.
    *  Rendered in an "Other Applications" section on the product page, below the main demo. */
   applicationVideos?: ApplicationVideo[];
+  /** Related machine variants surfaced on the same product page.
+   *  Use for closely-related sister models (e.g., a PP midsole variant of a PVC outsole
+   *  family) that don't justify a separate product page but should be discoverable here.
+   *  Each variant's youtubeId, if present, also gets a thumbnail in the top media switcher. */
+  variants?: ProductVariant[];
   brochurePdfUrl?: string;
 }
 
@@ -45,6 +50,23 @@ export interface ApplicationVideo {
   label: string;
   /** Optional 1-2 sentence description shown under the embed. */
   description?: string;
+}
+
+export interface ProductVariant {
+  /** Model code, e.g. "DY-1124E". */
+  model: string;
+  /** Short name describing the variant's positioning, e.g. "PP Midsole Variant". */
+  name: string;
+  /** 1-3 sentence positioning paragraph. */
+  shortDescription: string;
+  /** Bullet points highlighting variant-specific features. */
+  features: string[];
+  /** Spec table — flexible KV pairs. Use "On request" for values pending input. */
+  specifications: Record<string, string>;
+  /** Application pill tags. */
+  applications: string[];
+  /** YouTube video ID (horizontal). If present, appears as a thumbnail in the top media switcher. */
+  youtubeId?: string;
 }
 
 /** Build a privacy-enhanced YouTube embed URL from an 11-char video ID. */
@@ -148,6 +170,44 @@ export const products: Product[] = [
     gallery: [],
     youtubeId: 'ydUyUriENNc',
     youtubeShortsId: 'YBxiP73CjEY',
+    variants: [
+      {
+        model: 'DY-1124E',
+        name: 'PP Midsole Variant — 24-Station Rotary',
+        shortDescription:
+          'Higher-station sister model of the DY-1106 family, configured for PP (polypropylene) midsole production. 24-station rotary disc delivers high-volume midsole output for sports footwear, work boots and OEM brand programs that use a separate midsole + outsole construction.',
+        features: [
+          '24-station rotary disc (highest output in the family)',
+          'Material: PP (polypropylene) — optimised for midsoles',
+          'Suitable for separate midsole + outsole construction',
+          'Computer-programmed digital control',
+          'Servo energy-saving',
+          'CE & ISO 9001 certified',
+        ],
+        // INTERNAL TODO (Mark): confirm clamping force, screw diameter, max injection
+        // capacity, productivity, machine dimensions, weight. "On request" placeholders
+        // until specs are confirmed.
+        specifications: {
+          'Model': 'DY-1124E',
+          'Stations': '24 (rotary disc)',
+          'Primary Material': 'PP (polypropylene)',
+          'Application': 'Midsole production',
+          'Clamping Force': 'On request',
+          'Screw Diameter': 'On request',
+          'Max Injection Capacity': 'On request',
+          'Productivity': 'On request',
+          'Cooling': 'Water-cooling',
+        },
+        applications: [
+          'PP midsole production',
+          'Sports footwear midsoles',
+          'Work boot midsoles',
+          'Midsole + outsole two-stage manufacturing',
+          'OEM brand midsole programs',
+        ],
+        youtubeId: 'n0mbghmU3Oo',
+      },
+    ],
   },
 
   {

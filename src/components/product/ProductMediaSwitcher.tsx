@@ -3,11 +3,26 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
+export type MediaVideo = {
+  /** YouTube embed URL (privacy-enhanced — youtube-nocookie). */
+  embedUrl: string;
+  /** 11-char YouTube ID — used to build the hqdefault thumbnail URL. */
+  youtubeId: string;
+  /** Optional label, e.g. "DY-1124E PP Midsole Demo". Falls back to the image alt. */
+  label?: string;
+};
+
 /**
  * Product detail media gallery: vertical thumbnail strip on the left, large
  * media area on the right (stacks to thumb-strip-below on mobile). Hovering
- * or clicking a thumbnail swaps the main view. The video thumbnail carries a
- * play-icon overlay so visitors can tell at a glance there's a demo to watch.
+ * or clicking a thumbnail swaps the main view.
+ *
+ * Supports an image plus N videos. Each video shows a play-icon overlay so
+ * visitors can tell at a glance there's a demo to watch. When multiple
+ * videos are passed, each gets its own thumbnail in the strip.
+ *
+ * Backward compatible: legacy single-video props (videoEmbedUrl + videoYoutubeId)
+ * still work; the `videos[]` prop, if provided, takes precedence.
  */
 export default function ProductMediaSwitcher({
   image,
@@ -15,25 +30,40 @@ export default function ProductMediaSwitcher({
   videoEmbedUrl,
   videoYoutubeId,
   videoTitle,
+  videos,
 }: {
   image: string;
   alt: string;
+  /** @deprecated Use `videos` for multi-video support. */
   videoEmbedUrl?: string | null;
+  /** @deprecated Use `videos` for multi-video support. */
   videoYoutubeId?: string | null;
   videoTitle?: string;
+  /** Array of videos. Order = thumbnail order. */
+  videos?: MediaVideo[];
 }) {
   type Item =
     | { type: 'image'; src: string }
-    | { type: 'video'; embed: string; thumb: string };
+    | { type: 'video'; embed: string; thumb: string; label: string };
 
   const items: Item[] = [{ type: 'image', src: image }];
-  if (videoEmbedUrl && videoYoutubeId) {
+
+  // Resolve videos: prefer the new `videos[]` array; fall back to legacy single video.
+  const resolvedVideos: MediaVideo[] = videos && videos.length > 0
+    ? videos
+    : videoEmbedUrl && videoYoutubeId
+      ? [{ embedUrl: videoEmbedUrl, youtubeId: videoYoutubeId, label: videoTitle }]
+      : [];
+
+  for (const v of resolvedVideos) {
     items.push({
       type: 'video',
-      embed: videoEmbedUrl,
-      thumb: `https://i.ytimg.com/vi/${videoYoutubeId}/hqdefault.jpg`,
+      embed: v.embedUrl,
+      thumb: `https://i.ytimg.com/vi/${v.youtubeId}/hqdefault.jpg`,
+      label: v.label ?? videoTitle ?? alt,
     });
   }
+
   const [active, setActive] = useState(0);
   const current = items[active];
 
@@ -48,7 +78,7 @@ export default function ProductMediaSwitcher({
               type="button"
               onClick={() => setActive(i)}
               onMouseEnter={() => setActive(i)}
-              aria-label={it.type === 'video' ? 'Watch demo video' : 'View photo'}
+              aria-label={it.type === 'video' ? `Watch ${it.label}` : 'View photo'}
               aria-pressed={active === i}
               className={`relative w-16 h-16 rounded-md overflow-hidden border-2 transition shrink-0 ${
                 active === i
@@ -88,8 +118,9 @@ export default function ProductMediaSwitcher({
       >
         {current.type === 'video' ? (
           <iframe
+            key={current.embed}
             src={`${current.embed}${current.embed.includes('?') ? '&' : '?'}autoplay=1`}
-            title={videoTitle ?? alt}
+            title={current.label}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="absolute inset-0 w-full h-full bg-black"
