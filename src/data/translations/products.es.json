@@ -573,22 +573,22 @@
     }
   },
   "tpu-sole-mould-rotary": {
-    "name": "Molde de Suela TPU para Máquinas de Inyección de Disco Rotativo",
-    "shortDescription": "Molde de suela TPU mecanizado por CNC, compatible con máquinas de inyección de disco rotativo (plataformas DY-1106 / DY-1108 / DY-1112 / DY-1120). Configuraciones multi-cavidad disponibles. Construcción en acero con cromado duro para una larga vida útil de producción.",
+    "name": "Molde de Suela Monocolor para Máquinas de Disco Rotativo (PVC / TPR / TPU)",
+    "shortDescription": "El molde de suela monocolor más común — una cavidad de suela por molde (un molde, una pieza). Mecanizado por CNC en aluminio, compatible con máquinas de inyección de disco rotativo, siendo la DY-1120 la coincidencia típica. También funciona en las plataformas DY-1106 / DY-1108 / DY-1112. Apto para suelas de PVC, TPR y TPU.",
     "applications": [
-      "Producción de suelas TPU",
-      "Suelas para calzado deportivo",
+      "Producción de suelas monocolor de PVC / TPR / TPU",
       "Suelas para calzado casual",
+      "Suelas para calzado deportivo",
       "Producción de marca OEM/ODM",
       "Desarrollo de moldes de muestra"
     ],
     "specLabels": {
       "Mould Type": "Tipo de Molde",
-      "Compatible Machine Class": "Clase de Máquina Compatible",
+      "Typical Machine": "Máquina Típica",
+      "Also Compatible": "También Compatible",
       "Material": "Material",
       "Cavity Count": "Número de Cavidades",
       "Shoe Size Range": "Rango de Tallas",
-      "Surface Treatment": "Tratamiento Superficial",
       "Lead Time": "Plazo de Entrega"
     }
   },
