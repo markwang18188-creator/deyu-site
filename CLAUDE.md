@@ -99,6 +99,7 @@ feature branch → PR → Vercel preview deployment → review → merge to main
 - 用户技术水平:能看懂代码,会用 Claude Code bypass mode,但不擅长复杂调试
 - **遇到错误**:用户更喜欢 Claude Code 自己尝试解决,而不是把错误丢回给用户
 - **遇到设计选择**:用户喜欢 Claude Code 给 2-3 个方案 + 推荐,而不是单方面决定
+- **品牌对外口径**:网站和 AI 客服前台必须以 DEYU 公司品牌为主,不要突出 "Mark" 个人。对客文案统一使用 "DEYU sales team" / "our team" / "DEYU engineering team"; Mark 只可出现在内部注释、内部文档、飞书/邮件收件人等不对客户展示的位置。
 
 ## 报告语言
 

@@ -68,7 +68,7 @@ export const chatbotTools: OpenAI.Chat.Completions.ChatCompletionTool[] = [
     function: {
       name: 'capture_lead',
       description:
-        'Save the qualified lead to the database and notify the DEYU sales team. Only call this at step 9 of the playbook, after collecting all required customer info AND technical requirements. The conversation should end with the customer being told Mark will follow up within 24 hours.',
+        'Save the qualified lead to the database and notify the DEYU sales team. Only call this at step 9 of the playbook, after collecting customer name, email, WhatsApp/phone, country, materials, colors, product category, recommended model(s), and a clear technical summary. The conversation should end with the customer being told the DEYU sales team will follow up within 24 hours.',
       parameters: {
         type: 'object',
         properties: {
@@ -84,15 +84,29 @@ export const chatbotTools: OpenAI.Chat.Completions.ChatCompletionTool[] = [
           tonnage_recommendation: { type: 'string' },
           recommended_models: { type: 'array', items: { type: 'string' } },
           upgrades_discussed: { type: 'array', items: { type: 'string' } },
-          cooling_preference: { type: 'string' },
+          cooling_preference: {
+            type: 'string',
+            description:
+              'Cooling option discussed or recommended: air cooling/oil radiator, water cooling tower, or industrial water chiller. Chiller is the highest-end option for best hydraulic oil temperature stability.',
+          },
           port: { type: 'string' },
           payment_preference: { type: 'string' },
           full_summary: {
             type: 'string',
-            description: 'Comprehensive plain-English summary of the requirement for Mark to read.',
+            description: 'Comprehensive plain-English summary of the requirement for the DEYU sales team to read.',
           },
         },
-        required: ['customer_name', 'customer_email', 'full_summary'],
+        required: [
+          'customer_name',
+          'customer_email',
+          'customer_phone',
+          'country',
+          'materials',
+          'colors',
+          'product_category',
+          'recommended_models',
+          'full_summary',
+        ],
       },
     },
   },
@@ -162,7 +176,7 @@ export async function executeTool(
         ...data,
         session_id: ctx.sessionId,
         language: ctx.language,
-        country: data.country || ctx.visitorCountry,
+        country: data.country || ctx.visitorCountry || '',
         source_page: ctx.referrerPage,
       });
       if (!res.success) {
@@ -170,7 +184,9 @@ export async function executeTool(
       }
       return JSON.stringify({
         success: true,
-        message: `Lead captured. Tell the customer: "Thank you! Mark from DEYU will personally follow up within 24 hours via email and WhatsApp."`,
+        lead_id: res.id,
+        notification: res.notification,
+        message: `Lead captured. Tell the customer: "Thank you! The DEYU sales team will follow up within 24 hours via email and WhatsApp."`,
       });
     }
 

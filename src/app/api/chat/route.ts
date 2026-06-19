@@ -17,6 +17,7 @@ interface ChatRequest {
   message: string;
   history?: Array<{ role: 'user' | 'assistant'; content: string }>;
   referrerPage?: string;
+  locale?: string;
 }
 
 function serviceClient() {
@@ -39,7 +40,7 @@ export async function POST(req: Request) {
   }
 
   const body = (await req.json()) as ChatRequest;
-  const { message, history = [], referrerPage } = body;
+  const { message, history = [], referrerPage, locale } = body;
   let { sessionId } = body;
 
   if (!message || typeof message !== 'string') {
@@ -62,6 +63,7 @@ export async function POST(req: Request) {
         visitor_country: visitorCountry,
         referrer_page: referrerPage,
         user_agent: userAgent,
+        language: locale,
       })
       .select('id')
       .single();
@@ -73,7 +75,7 @@ export async function POST(req: Request) {
   } else {
     supabase
       .from('chatbot_sessions')
-      .update({ last_activity_at: new Date().toISOString() })
+      .update({ last_activity_at: new Date().toISOString(), language: locale })
       .eq('id', sessionId)
       .then(({ error }) => {
         if (error) console.error('[api/chat] session update failed:', error.message);
@@ -102,6 +104,7 @@ export async function POST(req: Request) {
   const toolCtx: ToolContext = {
     sessionId: sessionId || '',
     visitorCountry,
+    language: locale,
     referrerPage,
   };
 
@@ -195,6 +198,17 @@ export async function POST(req: Request) {
             }
             const output = await executeTool(call.function.name, parsedArgs, toolCtx);
             toolCallLog.push({ name: call.function.name, input: parsedArgs, output });
+            let parsedOutput: unknown = output;
+            try {
+              parsedOutput = JSON.parse(output);
+            } catch {
+              // Keep raw output when a tool intentionally returns plain text.
+            }
+            send('tool_result', {
+              name: call.function.name,
+              id: call.id,
+              output: parsedOutput,
+            });
             messages.push({
               role: 'tool',
               tool_call_id: call.id,

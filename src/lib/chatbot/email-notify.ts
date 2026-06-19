@@ -1,5 +1,12 @@
 import type { ChatbotLeadData } from '@/app/actions/submit-chatbot-lead';
 
+export interface NotifyResult {
+  ok: boolean;
+  channel: 'email';
+  skipped?: boolean;
+  error?: string;
+}
+
 /**
  * 备份邮件通知 —— 飞书机器人挂了 / 没看到 / 切了网络的兜底。
  *
@@ -13,21 +20,23 @@ import type { ChatbotLeadData } from '@/app/actions/submit-chatbot-lead';
  */
 export async function notifyEmail(
   lead: ChatbotLeadData & { id?: string }
-): Promise<void> {
+): Promise<NotifyResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_EMAIL_TO || 'markwang18188@gmail.com';
   const from = process.env.LEAD_EMAIL_FROM || 'DEYU Website <leads@deyusolemachine.com>';
 
   if (!apiKey) {
     console.warn('[email-notify] RESEND_API_KEY not set — skipping email backup');
-    return;
+    return { ok: false, channel: 'email', skipped: true, error: 'api_key_not_configured' };
   }
 
-  const whatsappNumber = process.env.DEYU_WHATSAPP_NUMBER || '8613615778781';
+  const customerWhatsApp = buildCustomerWhatsAppUrl(lead);
   const greeting = encodeURIComponent(
-    `Hi ${lead.customer_name}, this is Mark from DEYU. I saw your enquiry about ${(lead.recommended_models || []).join(', ') || 'our machines'}. Happy to discuss your project.`
+    `Hi ${lead.customer_name}, this is the DEYU sales team. We saw your enquiry about ${(lead.recommended_models || []).join(', ') || 'our machines'}. Happy to discuss your project.`
   );
-  const waUrl = `https://wa.me/${whatsappNumber}?text=${greeting}`;
+  const waUrl = customerWhatsApp
+    ? `${customerWhatsApp}${customerWhatsApp.includes('?') ? '&' : '?'}text=${greeting}`
+    : null;
 
   const subject = `🎯 新询盘 · ${lead.country || '未知国家'} · ${lead.customer_name}`;
 
@@ -64,7 +73,7 @@ export async function notifyEmail(
         </div>` : ''}
 
         <div style="margin-top:24px; text-align:center;">
-          <a href="${waUrl}" style="display:inline-block; background:#10b981; color:#fff; padding:11px 22px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; margin:0 4px;">💬 WhatsApp 联系</a>
+          ${waUrl ? `<a href="${waUrl}" style="display:inline-block; background:#10b981; color:#fff; padding:11px 22px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; margin:0 4px;">💬 WhatsApp 联系</a>` : ''}
           <a href="mailto:${escapeAttr(lead.customer_email)}" style="display:inline-block; background:#1e3a8a; color:#fff; padding:11px 22px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; margin:0 4px;">📧 回邮件</a>
         </div>
 
@@ -94,10 +103,18 @@ export async function notifyEmail(
       }),
     });
     if (!res.ok) {
-      console.error('[email-notify] resend returned', res.status, await res.text());
+      const text = await res.text();
+      console.error('[email-notify] resend returned', res.status, text);
+      return { ok: false, channel: 'email', error: `http_${res.status}` };
     }
+    return { ok: true, channel: 'email' };
   } catch (err) {
     console.error('[email-notify] resend failed:', err);
+    return {
+      ok: false,
+      channel: 'email',
+      error: err instanceof Error ? err.message : 'unknown_error',
+    };
   }
 }
 
@@ -118,4 +135,15 @@ function escapeHtml(s: string): string {
 
 function escapeAttr(s: string): string {
   return escapeHtml(s);
+}
+
+function buildCustomerWhatsAppUrl(lead: ChatbotLeadData): string | null {
+  const raw = lead.customer_phone?.trim();
+  if (!raw) return null;
+  const normalized = raw.replace(/[^\d+]/g, '');
+  const digits = normalized.startsWith('+')
+    ? normalized.slice(1).replace(/\D/g, '')
+    : normalized.replace(/\D/g, '');
+  if (digits.length < 8) return null;
+  return `https://wa.me/${digits}`;
 }

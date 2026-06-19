@@ -2,9 +2,9 @@
  * DEYU 选型矩阵 — 给 AI 客服用的决策表
  *
  * 知识来源:
- *   - sales_playbook.xml: 9 步销售剧本(Gemini + Mark 共同设计)
+ *   - sales_playbook.xml: 9 步销售剧本(DEYU 业务知识沉淀)
  *   - products.ts: 19 个标准型号(目录配置, 可定制)
- *   - Mark 口授知识: 工位数规则、机头结构、TPU 重定位、南美偏好等
+ *   - DEYU 业务知识: 工位数规则、机头结构、TPU 重定位、南美偏好等
  *
  * 维护: 有新型号/新规则,在这里改 mapping + recommendModels() 逻辑
  *
@@ -26,7 +26,7 @@
  *
  * 5. ⚠ 3+ 色机器没有"一模一双"配置, 只有"一模一只"
  *
- * 6. 目录是标准配置, 非标的吨位/工位可以定制 (走 Mark 报价)
+ * 6. 目录是标准配置, 非标的吨位/工位可以定制 (走 DEYU 销售团队报价)
  *
  * 7. 区域偏好:
  *      南美 (委内瑞拉、哥伦比亚): 偏好一模一双
@@ -69,7 +69,15 @@ export interface SelectionResult {
   /** 销售备注 (AI 可以转述给客户) */
   notes: string[];
   /** 应该提示的可选升级 */
-  upgrades: ('triangle-mold' | 'spacer-plates' | 'air-cooling' | 'water-cooling' | 'auto-open' | 'external-robot')[];
+  upgrades: (
+    | 'triangle-mold'
+    | 'spacer-plates'
+    | 'air-cooling'
+    | 'water-cooling-tower'
+    | 'industrial-water-chiller'
+    | 'auto-open'
+    | 'external-robot'
+  )[];
 }
 
 /**
@@ -184,17 +192,25 @@ export function recommendModels(criteria: SelectionCriteria): SelectionResult {
 
   // ── 销售备注 ──
   const notes: string[] = [];
+  if (moldConfig === '1-pair-per-mold') {
+    const forbiddenSlug = 'pvc-single-color-rotary-machine';
+    const idx = productSlugs.indexOf(forbiddenSlug);
+    if (idx !== -1) productSlugs.splice(idx, 1);
+    notes.push('Do not recommend DY-1120A for 1-pair-per-mold: DY-1120A is 20-station and 1-piece-per-mold only.');
+  }
   notes.push(`Recommended clamping force: ${tonnage}T`);
   notes.push(`Recommended mold height: ${moldHeight}mm`);
   notes.push(`Machine head type: ${headStructure === 'column' ? 'column-type (>100T)' : 'gooseneck (≤100T)'}`);
   if (colors >= 3) notes.push('Note: 3+ color machines only support 1-piece-per-mold configuration.');
-  if (isTPUorTR && isOutsole) notes.push('TPU outsoles require water-cooling + 150T (premium config).');
+  if (isTPUorTR && isOutsole) {
+    notes.push('TPU outsoles require 150T plus stable water cooling; chiller is preferred for hot climates or high-duty production.');
+  }
 
   // ── 升级建议 ──
   const upgrades: SelectionResult['upgrades'] = [];
   if (productCategory === 'complete-shoe') upgrades.push('triangle-mold');
   if (productCategory === 'sole-only' && moldHeight !== 180) upgrades.push('spacer-plates');
-  upgrades.push('air-cooling', 'water-cooling');
+  upgrades.push('air-cooling', 'water-cooling-tower', 'industrial-water-chiller');
   if (productCategory === 'sole-only' && moldConfig === 'flat-sheet') upgrades.push('auto-open');
 
   return { productSlugs, tonnage, moldHeight, headStructure, notes, upgrades };
@@ -209,9 +225,11 @@ export const upgradeDescriptions = {
   'spacer-plates':
     'Spacer Plates — recommended if you plan to run both shoes (tall molds) and pure soles (short molds) on one machine. Reduces cycle time when switching.',
   'air-cooling':
-    'Air Cooling — plug-and-play, compact, low setup cost. Note: blows heat into workshop (not ideal for hot climates).',
-  'water-cooling':
-    'Water Cooling Tower — more stable, no workshop heat emission, longer-lasting. Requires plumbing infrastructure to install.',
+    'Air Cooling / Oil Radiator — hydraulic oil passes through a finned radiator with a fan. Simple and compact, but blows heat into the workshop and is weaker in hot climates or high-duty production.',
+  'water-cooling-tower':
+    'Water Cooling Tower — stable middle option for normal production when the factory has water infrastructure. Requires plumbing and regular water-system maintenance.',
+  'industrial-water-chiller':
+    'Industrial Water Chiller — highest-end cooling option. Best cooling stability for hydraulic oil, especially in hot climates, long-hour production, fast cycle times, remote regions, or customers who want the lowest after-sales risk.',
   'auto-open':
     'Built-in Auto-Open mechanism — perfect for flat soles. Simple and reliable mechanical sequence.',
   'external-robot':

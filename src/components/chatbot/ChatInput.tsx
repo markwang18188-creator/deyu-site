@@ -48,7 +48,7 @@ export default function ChatInput({ onSend, disabled }: Props) {
         </button>
       </div>
       <p className="text-[10px] text-slate-400 mt-2 text-center">
-        AI advisor · Mark personally follows up within 24h
+        AI advisor · DEYU sales team follows up within 24h
       </p>
     </div>
   );

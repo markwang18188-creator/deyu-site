@@ -252,9 +252,10 @@ export const products: Product[] = [
     name: 'Full Automatic Rotary Type One Color Plastic Rubber Soles Injection Moulding Machine',
     category: 'single-color',
     shortDescription:
-      'High-output 20-station rotary single-color machine for PVC/TPR/TPU. 180 pairs/hour, large Φ75 screw. The DEYU workhorse for high-volume PVC sole production.',
+      'High-output 20-station rotary single-color machine for PVC/TPR/TPU. 1-piece-per-mold only. 180 pairs/hour, large Φ75 screw. The DEYU workhorse for high-volume PVC sole production.',
     features: [
       '20 stations rotary disc',
+      '1-piece-per-mold only — not suitable for 1-pair-per-mold production',
       'Production: 180 pairs/hour (high volume)',
       'Large Φ75 screw — high injection volume per shot',
       'Materials: PVC / TPR / TPU (foamed or non-foamed)',
@@ -265,6 +266,7 @@ export const products: Product[] = [
     specifications: {
       'Model': 'DY-1120A',
       'Stations': '20',
+      'Mold Configuration': '1-piece-per-mold only',
       'Screw Diameter': 'Φ75 mm',
       'Max Injection Capacity': '880 cm³/shot',
       'Clamping Force': '55 tons',

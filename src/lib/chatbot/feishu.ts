@@ -1,19 +1,41 @@
 import type { ChatbotLeadData } from '@/app/actions/submit-chatbot-lead';
 
+export interface NotifyResult {
+  ok: boolean;
+  channel: 'feishu';
+  skipped?: boolean;
+  error?: string;
+}
+
 export async function notifyFeishu(
   lead: ChatbotLeadData & { id?: string; session_id?: string }
-): Promise<void> {
+): Promise<NotifyResult> {
   const webhook = process.env.FEISHU_LEAD_WEBHOOK;
   if (!webhook) {
     console.warn('[feishu] FEISHU_LEAD_WEBHOOK not set — skipping notification');
-    return;
+    return { ok: false, channel: 'feishu', skipped: true, error: 'webhook_not_configured' };
   }
 
-  const whatsappNumber = process.env.DEYU_WHATSAPP_NUMBER || '8613615778781';
-  const greeting = encodeURIComponent(
-    `Hi ${lead.customer_name}, this is Mark from DEYU. I saw your enquiry about ${(lead.recommended_models || []).join(', ') || 'our machines'}. Happy to discuss your project.`
+  const customerWhatsApp = buildCustomerWhatsAppUrl(lead);
+  const emailUrl = `mailto:${lead.customer_email}`;
+  const followUpText = encodeURIComponent(
+    `Hi ${lead.customer_name}, this is the DEYU sales team. We saw your enquiry about ${(lead.recommended_models || []).join(', ') || 'our machines'}. Happy to discuss your project.`
   );
-  const waUrl = `https://wa.me/${whatsappNumber}?text=${greeting}`;
+  const actions = [];
+  if (customerWhatsApp) {
+    actions.push({
+      tag: 'button',
+      text: { tag: 'plain_text', content: '💬 WhatsApp 联系客户' },
+      url: `${customerWhatsApp}${customerWhatsApp.includes('?') ? '&' : '?'}text=${followUpText}`,
+      type: 'primary',
+    });
+  }
+  actions.push({
+    tag: 'button',
+    text: { tag: 'plain_text', content: '📧 发邮件' },
+    url: emailUrl,
+    type: customerWhatsApp ? 'default' : 'primary',
+  });
 
   const card = {
     msg_type: 'interactive',
@@ -49,20 +71,7 @@ export async function notifyFeishu(
         },
         {
           tag: 'action',
-          actions: [
-            {
-              tag: 'button',
-              text: { tag: 'plain_text', content: '💬 WhatsApp 联系客户' },
-              url: waUrl,
-              type: 'primary',
-            },
-            {
-              tag: 'button',
-              text: { tag: 'plain_text', content: '📧 发邮件' },
-              url: `mailto:${lead.customer_email}`,
-              type: 'default',
-            },
-          ],
+          actions,
         },
       ],
     },
@@ -75,9 +84,28 @@ export async function notifyFeishu(
       body: JSON.stringify(card),
     });
     if (!res.ok) {
-      console.error('[feishu] webhook returned', res.status, await res.text());
+      const text = await res.text();
+      console.error('[feishu] webhook returned', res.status, text);
+      return { ok: false, channel: 'feishu', error: `http_${res.status}` };
     }
+    return { ok: true, channel: 'feishu' };
   } catch (err) {
     console.error('[feishu] webhook failed:', err);
+    return {
+      ok: false,
+      channel: 'feishu',
+      error: err instanceof Error ? err.message : 'unknown_error',
+    };
   }
+}
+
+function buildCustomerWhatsAppUrl(lead: ChatbotLeadData): string | null {
+  const raw = lead.customer_phone?.trim();
+  if (!raw) return null;
+  const normalized = raw.replace(/[^\d+]/g, '');
+  const digits = normalized.startsWith('+')
+    ? normalized.slice(1).replace(/\D/g, '')
+    : normalized.replace(/\D/g, '');
+  if (digits.length < 8) return null;
+  return `https://wa.me/${digits}`;
 }

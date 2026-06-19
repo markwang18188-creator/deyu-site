@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { X, RotateCcw } from 'lucide-react';
+import { useEffect, useState, type FormEvent } from 'react';
+import { useLocale } from 'next-intl';
+import { X, RotateCcw, UserRound } from 'lucide-react';
 import { useChatStream } from './useChatStream';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
 import WhatsAppLink from '@/components/analytics/WhatsAppLink';
-import { trackChatbotStart } from '@/lib/analytics';
+import { submitQuickChatLead } from '@/app/actions/submit-quick-chat-lead';
+import { trackChatbotStart, trackLeadSubmit } from '@/lib/analytics';
 
 const OPEN_EVENT = 'open-deyu-chat';
 
@@ -63,8 +65,10 @@ function SalesAvatar({ className = '' }: { className?: string }) {
 }
 
 export default function ChatWidget() {
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [showQuickContact, setShowQuickContact] = useState(false);
   const [hasFiredStartEvent, setHasFiredStartEvent] = useState(false);
   const { messages, streaming, send, reset } = useChatStream();
 
@@ -87,7 +91,7 @@ export default function ChatWidget() {
 
   const handleSend = (text: string) => {
     const referrerPage = typeof window !== 'undefined' ? window.location.pathname : undefined;
-    send(text, referrerPage);
+    send(text, referrerPage, locale);
   };
 
   return (
@@ -151,7 +155,10 @@ export default function ChatWidget() {
             <div className="flex items-center gap-1">
               {messages.length > 0 && (
                 <button
-                  onClick={reset}
+                  onClick={() => {
+                    setShowQuickContact(false);
+                    reset();
+                  }}
                   className="p-2 rounded-full hover:bg-blue-700 transition-colors"
                   aria-label="Start new conversation"
                   title="Start new conversation"
@@ -169,7 +176,19 @@ export default function ChatWidget() {
             </div>
           </header>
 
-          <ChatMessages messages={messages} streaming={streaming} />
+          <ChatProgress messages={messages} onQuickContact={() => setShowQuickContact(true)} />
+
+          {showQuickContact ? (
+            <QuickContactPanel
+              locale={locale}
+              onClose={() => setShowQuickContact(false)}
+              onSubmitted={() => {
+                trackLeadSubmit({ source: 'website_chat_quick_contact' });
+              }}
+            />
+          ) : (
+            <ChatMessages messages={messages} streaming={streaming} />
+          )}
 
           <WhatsAppLink
             location="chatbot"
@@ -179,9 +198,189 @@ export default function ChatWidget() {
             💬 Prefer a human? Chat on WhatsApp
           </WhatsAppLink>
 
-          <ChatInput onSend={handleSend} disabled={streaming} />
+          <ChatInput onSend={handleSend} disabled={streaming || showQuickContact} />
         </div>
       )}
     </>
+  );
+}
+
+function ChatProgress({
+  messages,
+  onQuickContact,
+}: {
+  messages: ReturnType<typeof useChatStream>['messages'];
+  onQuickContact: () => void;
+}) {
+  const userTurns = messages.filter((m) => m.role === 'user').length;
+  const usedRecommendation = messages.some((m) => m.toolNames?.includes('recommend_models'));
+  const capturedLead = messages.some((m) => m.toolNames?.includes('capture_lead'));
+
+  let step = 1;
+  let label = 'Product fit';
+  if (capturedLead) {
+    step = 4;
+    label = 'Contact saved';
+  } else if (usedRecommendation || userTurns >= 3) {
+    step = 3;
+    label = 'Options';
+  } else if (userTurns >= 1) {
+    step = 2;
+    label = 'Mold setup';
+  }
+
+  const percent = (step / 4) * 100;
+
+  return (
+    <div className="shrink-0 border-b border-slate-200 bg-white px-4 py-2.5">
+      <div className="flex items-center justify-between gap-3">
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center justify-between text-[11px] text-slate-500">
+            <span>
+              Step {step} of 4 · {label}
+            </span>
+            <span>{step < 4 ? '2-3 min left' : 'Done'}</span>
+          </div>
+          <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-100">
+            <div className="h-full rounded-full bg-orange-500 transition-all" style={{ width: `${percent}%` }} />
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={onQuickContact}
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-orange-200 bg-orange-50 px-2.5 py-1.5 text-[11px] font-semibold text-orange-700 hover:bg-orange-100"
+        >
+          <UserRound className="h-3.5 w-3.5" />
+          Leave contact
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function QuickContactPanel({
+  locale,
+  onClose,
+  onSubmitted,
+}: {
+  locale: string;
+  onClose: () => void;
+  onSubmitted: () => void;
+}) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [country, setCountry] = useState('');
+  const [message, setMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const inputClass =
+    'w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100';
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setError(null);
+
+    const result = await submitQuickChatLead({
+      name,
+      email,
+      phone,
+      country,
+      message,
+      language: locale,
+      source_page: typeof window !== 'undefined' ? window.location.pathname : undefined,
+    });
+
+    setSubmitting(false);
+    if (!result.success) {
+      setError('Please enter your name, email, and WhatsApp number.');
+      return;
+    }
+
+    setSubmitted(true);
+    onSubmitted();
+  };
+
+  if (submitted) {
+    return (
+      <div className="flex-1 overflow-y-auto bg-slate-50 p-4">
+        <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-900">
+          Thanks. The DEYU sales team will contact you within 24 hours.
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-1 overflow-y-auto bg-slate-50 p-4">
+      <form onSubmit={handleSubmit} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="mb-4">
+          <h4 className="text-sm font-semibold text-slate-900">Leave your contact</h4>
+          <p className="mt-1 text-xs leading-relaxed text-slate-500">
+            Skip the full questionnaire. The DEYU sales team will review your note and follow up.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name"
+            className={inputClass}
+            required
+          />
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            type="email"
+            className={inputClass}
+            required
+          />
+          <input
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="WhatsApp / phone"
+            className={inputClass}
+            required
+          />
+          <input
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            placeholder="Country"
+            className={inputClass}
+          />
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="What machine or product are you interested in?"
+            rows={3}
+            className={`${inputClass} resize-none`}
+          />
+        </div>
+
+        {error && <p className="mt-3 text-xs text-red-600">{error}</p>}
+
+        <div className="mt-4 flex gap-2">
+          <button
+            type="submit"
+            disabled={submitting}
+            className="flex-1 rounded-lg bg-orange-600 px-3 py-2 text-sm font-semibold text-white hover:bg-orange-700 disabled:bg-orange-300"
+          >
+            {submitting ? 'Sending...' : 'Ask DEYU to contact me'}
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50"
+          >
+            Back
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }

@@ -9,12 +9,21 @@ export interface ChatMessage {
   toolNames?: string[];
 }
 
+interface ToolResultEvent {
+  success?: boolean;
+  lead_id?: string;
+  notification?: {
+    ok: boolean;
+    channels?: Array<{ channel: string; ok: boolean; skipped?: boolean; error?: string }>;
+  };
+}
+
 const SESSION_KEY = 'deyu_chat_session_id';
 const HISTORY_KEY = 'deyu_chat_history';
 const HISTORY_LIMIT = 20;
 
 export function useChatStream() {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>(() => readStoredHistory());
   const [streaming, setStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const sessionIdRef = useRef<string | null>(null);
@@ -24,15 +33,6 @@ export function useChatStream() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     sessionIdRef.current = localStorage.getItem(SESSION_KEY);
-    const raw = localStorage.getItem(HISTORY_KEY);
-    if (raw) {
-      try {
-        const parsed = JSON.parse(raw) as ChatMessage[];
-        if (Array.isArray(parsed)) setMessages(parsed);
-      } catch {
-        /* ignore */
-      }
-    }
   }, []);
 
   // Persist history
@@ -43,7 +43,7 @@ export function useChatStream() {
   }, [messages]);
 
   const send = useCallback(
-    async (text: string, referrerPage?: string) => {
+    async (text: string, referrerPage?: string, locale?: string) => {
       if (!text.trim() || streaming) return;
       setError(null);
 
@@ -68,6 +68,7 @@ export function useChatStream() {
               content: m.content,
             })),
             referrerPage,
+            locale,
           }),
         });
 
@@ -105,10 +106,10 @@ export function useChatStream() {
             const event = parseSseChunk(chunk);
             if (!event) continue;
 
-            if (event.event === 'session' && event.data?.sessionId) {
+            if (event.event === 'session' && typeof event.data.sessionId === 'string') {
               sessionIdRef.current = event.data.sessionId;
               localStorage.setItem(SESSION_KEY, event.data.sessionId);
-            } else if (event.event === 'delta' && event.data?.text) {
+            } else if (event.event === 'delta' && typeof event.data.text === 'string') {
               setMessages((prev) => {
                 const next = [...prev];
                 const last = next[next.length - 1];
@@ -118,23 +119,23 @@ export function useChatStream() {
                 };
                 return next;
               });
-            } else if (event.event === 'tool_use' && event.data?.name) {
+            } else if (event.event === 'tool_use' && typeof event.data.name === 'string') {
               toolNames.push(event.data.name);
               setMessages((prev) => {
                 const next = [...prev];
                 next[next.length - 1] = { ...next[next.length - 1], toolNames: [...toolNames] };
                 return next;
               });
-              // Conversion event — when the bot calls `capture_lead` the lead
-              // was saved server-side (the SSE stream only carries name+id,
-              // not the call arguments, but the bot only invokes this tool
-              // after all required fields are collected so it's a reliable
-              // proxy for "lead created").
-              if (event.data.name === 'capture_lead') {
+            } else if (event.event === 'tool_result' && event.data?.name === 'capture_lead') {
+              const output = event.data.output as ToolResultEvent | undefined;
+              if (output?.success) {
                 trackLeadSubmit({ source: 'website_chatbot' });
               }
             } else if (event.event === 'error') {
-              const msg = event.data?.message || 'Something went wrong.';
+              const msg =
+                typeof event.data.message === 'string'
+                  ? event.data.message
+                  : 'Something went wrong.';
               setError(msg);
               setMessages((prev) => {
                 const next = [...prev];
@@ -171,7 +172,28 @@ export function useChatStream() {
   return { messages, streaming, error, send, reset };
 }
 
-function parseSseChunk(chunk: string): { event: string; data: { [key: string]: any } } | null {
+function readStoredHistory(): ChatMessage[] {
+  if (typeof window === 'undefined') return [];
+  const raw = localStorage.getItem(HISTORY_KEY);
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (Array.isArray(parsed)) {
+      return parsed.filter(
+        (m): m is ChatMessage =>
+          typeof m === 'object' &&
+          m !== null &&
+          ((m as ChatMessage).role === 'user' || (m as ChatMessage).role === 'assistant') &&
+          typeof (m as ChatMessage).content === 'string'
+      );
+    }
+  } catch {
+    /* ignore */
+  }
+  return [];
+}
+
+function parseSseChunk(chunk: string): { event: string; data: Record<string, unknown> } | null {
   const lines = chunk.split('\n');
   let event = 'message';
   let dataStr = '';

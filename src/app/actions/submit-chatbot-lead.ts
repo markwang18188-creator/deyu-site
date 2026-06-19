@@ -8,15 +8,15 @@ import { notifyEmail } from '@/lib/chatbot/email-notify';
 const ChatbotLeadSchema = z.object({
   customer_name: z.string().min(1),
   customer_email: z.string().email(),
-  customer_phone: z.string().optional(),
+  customer_phone: z.string().min(5),
   company: z.string().optional(),
-  country: z.string().optional(),
-  materials: z.array(z.string()).optional(),
-  colors: z.number().int().optional(),
+  country: z.string().min(2),
+  materials: z.array(z.string()).min(1),
+  colors: z.number().int().min(1).max(4),
   mold_config: z.string().optional(),
-  product_category: z.string().optional(),
+  product_category: z.string().min(1),
   tonnage_recommendation: z.string().optional(),
-  recommended_models: z.array(z.string()).optional(),
+  recommended_models: z.array(z.string()).min(1),
   upgrades_discussed: z.array(z.string()).optional(),
   cooling_preference: z.string().optional(),
   port: z.string().optional(),
@@ -39,7 +39,15 @@ function serviceClient() {
 
 export async function submitChatbotLead(
   data: ChatbotLeadData
-): Promise<{ success: boolean; error?: string; id?: string }> {
+): Promise<{
+  success: boolean;
+  error?: string;
+  id?: string;
+  notification?: {
+    ok: boolean;
+    channels: Array<{ channel: string; ok: boolean; skipped?: boolean; error?: string }>;
+  };
+}> {
   const parsed = ChatbotLeadSchema.safeParse(data);
   if (!parsed.success) {
     console.error('[submit-chatbot-lead] validation failed:', parsed.error.flatten());
@@ -90,13 +98,27 @@ export async function submitChatbotLead(
       .eq('id', d.session_id);
   }
 
-  // 双通道通知:飞书机器人(主) + 邮件备份(兜底)。任一失败都不阻塞主流程。
-  notifyFeishu({ ...d, id: inserted?.id }).catch((err) =>
-    console.error('[submit-chatbot-lead] feishu notify failed:', err)
-  );
-  notifyEmail({ ...d, id: inserted?.id }).catch((err) =>
-    console.error('[submit-chatbot-lead] email notify failed:', err)
-  );
+  // 双通道通知:飞书机器人(主) + 邮件备份(兜底)。这里要等待结果,
+  // 否则客户侧显示成功,但销售团队可能完全没收到提醒。
+  const notificationResults = await Promise.all([
+    notifyFeishu({ ...d, id: inserted?.id }),
+    notifyEmail({ ...d, id: inserted?.id }),
+  ]);
+  const notificationOk = notificationResults.some((r) => r.ok);
 
-  return { success: true, id: inserted?.id };
+  if (!notificationOk) {
+    console.error('[submit-chatbot-lead] lead saved but all notifications failed/skipped', {
+      leadId: inserted?.id,
+      notificationResults,
+    });
+  }
+
+  return {
+    success: true,
+    id: inserted?.id,
+    notification: {
+      ok: notificationOk,
+      channels: notificationResults,
+    },
+  };
 }
