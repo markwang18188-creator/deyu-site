@@ -714,6 +714,8 @@ export const products: Product[] = [
     ],
     mainImage: img('dy-1124-vac.png'),
     gallery: [],
+    youtubeShortsId: 'XLn7mLkxExU',
+    videoUploadDate: '2026-09-07',
   },
 
   {
