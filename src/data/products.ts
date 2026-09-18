@@ -67,6 +67,8 @@ export interface ProductVariant {
   applications: string[];
   /** YouTube video ID (horizontal). If present, appears as a thumbnail in the top media switcher. */
   youtubeId?: string;
+  /** Additional YouTube video IDs for alternate demonstrations of the same variant. */
+  additionalYoutubeIds?: string[];
 }
 
 /** Build a privacy-enhanced YouTube embed URL from an 11-char video ID. */
@@ -206,6 +208,7 @@ export const products: Product[] = [
           'OEM brand midsole programs',
         ],
         youtubeId: 'n0mbghmU3Oo',
+        additionalYoutubeIds: ['IIl3qOWgB-I'],
       },
     ],
   },

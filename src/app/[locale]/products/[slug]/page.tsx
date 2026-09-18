@@ -67,6 +67,13 @@ export default async function ProductDetailPage({
         label: `${v.model} — ${v.name}`,
       });
     }
+    for (const youtubeId of v.additionalYoutubeIds ?? []) {
+      switcherVideos.push({
+        embedUrl: youtubeEmbedUrl(youtubeId),
+        youtubeId,
+        label: `${v.model} — Production Demo`,
+      });
+    }
   }
 
   const productSchema = {
