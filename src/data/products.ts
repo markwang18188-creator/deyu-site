@@ -53,7 +53,7 @@ export interface ApplicationVideo {
 }
 
 export interface ProductVariant {
-  /** Model code, e.g. "DY-1124E". */
+  /** Model code, e.g. "DY-1124-PP". */
   model: string;
   /** Short name describing the variant's positioning, e.g. "PP Midsole Variant". */
   name: string;
@@ -174,12 +174,12 @@ export const products: Product[] = [
     youtubeShortsId: 'YBxiP73CjEY',
     variants: [
       {
-        model: 'DY-1124E',
+        model: 'DY-1124-PP',
         name: 'PP Midsole Variant — 24-Station Rotary',
         shortDescription:
-          'Higher-station sister model of the DY-1106 family, configured for PP (polypropylene) midsole production. 24-station rotary disc delivers 130 pairs/hour with 80T clamping and Φ65 screw — sized for sports footwear, work boots and OEM brand programs that use a separate midsole + outsole construction.',
+          'Higher-station sister model of the DY-1106 family, configured for PP (polypropylene) midsole production. Its 24-station rotary disc delivers 280-400 pairs/hour under suitable production conditions, with 80T clamping and a Φ65 screw — sized for sports footwear, work boots and repeat OEM programs that use a separate midsole and outsole construction.',
         features: [
-          '24-station rotary disc — 130 pairs/hour high output',
+          '24-station rotary disc — 280-400 pairs/hour under suitable production conditions',
           '80-ton clamping force with Φ65 screw',
           '660 g/shot max injection capacity',
           'Material: PP (polypropylene) — optimised for midsoles',
@@ -190,13 +190,13 @@ export const products: Product[] = [
         // Specs confirmed by Mark 2026-06-04. Keys aligned with the parent
         // DY-1106 family so they render side-by-side in the comparison table.
         specifications: {
-          'Models': 'DY-1124E',
+          'Models': 'DY-1124-PP',
           'Clamping Force': '80 tons',
           'Stations': '24 (rotary disc)',
           'Material': 'PP (polypropylene)',
           'Screw Diameter': 'Φ65 mm',
           'Max Injection Capacity': '660 g/shot',
-          'Productivity': '130 pairs/hour',
+          'Productivity': '280-400 pairs/hour',
           'Cooling': 'Water-cooling',
           'Machine Weight': '9 tons',
         },
