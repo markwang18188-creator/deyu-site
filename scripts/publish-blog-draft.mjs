@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Publish one existing blog draft by exact slug and language.
+ * Publish one existing blog draft through the protected production endpoint.
  *
  *   node scripts/publish-blog-draft.mjs pp-midsole-vs-cardboard-insole-board en
  */
@@ -34,54 +34,26 @@ if (!/^[a-z]{2}$/.test(language)) {
 }
 
 const env = loadEnv();
-const url = env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-const key = env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (!url || !key) {
-  console.error('NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is missing.');
+const secret = env.CONTENT_CRON_SECRET || env.CRON_SECRET || process.env.CONTENT_CRON_SECRET || process.env.CRON_SECRET;
+const siteUrl = (process.argv[4] || 'https://deyusolemachine.com').replace(/\/$/, '');
+if (!secret) {
+  console.error('CONTENT_CRON_SECRET or CRON_SECRET is missing.');
   process.exit(1);
 }
 
-const headers = {
-  apikey: key,
-  Authorization: `Bearer ${key}`,
-  'Content-Type': 'application/json',
-};
-const now = new Date().toISOString();
-const query = new URLSearchParams({
-  slug: `eq.${slug}`,
-  language: `eq.${language}`,
-  status: 'eq.draft',
+const response = await fetch(`${siteUrl}/api/content/publish`, {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${secret}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ slug, language }),
 });
 
-const publishResponse = await fetch(`${url}/rest/v1/blog_posts?${query}`, {
-  method: 'PATCH',
-  headers: { ...headers, Prefer: 'return=representation' },
-  body: JSON.stringify({
-    status: 'published',
-    published_at: now,
-    updated_at: now,
-  }),
-});
-
-if (!publishResponse.ok) {
-  console.error(`Publish failed (${publishResponse.status}): ${await publishResponse.text()}`);
+if (!response.ok) {
+  console.error(`Publish failed (${response.status}): ${await response.text()}`);
   process.exit(1);
 }
 
-const published = await publishResponse.json();
-if (published.length !== 1) {
-  console.error(`Expected one matching draft, found ${published.length}. Nothing was published.`);
-  process.exit(1);
-}
-
-const topicQuery = new URLSearchParams({ blog_post_id: `eq.${published[0].id}` });
-const topicResponse = await fetch(`${url}/rest/v1/content_topics?${topicQuery}`, {
-  method: 'PATCH',
-  headers,
-  body: JSON.stringify({ status: 'published', updated_at: now }),
-});
-if (!topicResponse.ok) {
-  console.warn(`Article published, but topic status update failed (${topicResponse.status}).`);
-}
-
-console.log(`Published: ${slug} (${language}) at ${now}`);
+const result = await response.json();
+console.log(`Published: ${result.published.slug} (${result.published.language}) at ${result.published.published_at}`);
