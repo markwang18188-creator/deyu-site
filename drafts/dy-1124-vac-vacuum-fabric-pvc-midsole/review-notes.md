@@ -2,11 +2,13 @@
 
 ## Publication Status
 
-- Status: Approved and archived as the next monthly Blog release
+- Status: Published
 - Approved by user: 2026-10-03
 - Scheduled release: 2026-10-05 09:30 Asia/Shanghai
+- Published: 2026-10-05 18:12 Asia/Shanghai
+- Public URL: https://www.deyusolemachine.com/blog/vacuum-fabric-pvc-midsole-production-dy-1124-vac
 - Monthly cadence: the 5th day of each month at 09:30 Asia/Shanghai
-- Publication note: run a final image, product-link and layout check before publishing; this draft does not require another content approval unless the preflight check reveals a material issue
+- Publication check: production build passed; article, product link and all five public images verified after release
 
 ## Core Positioning
 
