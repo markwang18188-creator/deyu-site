@@ -21,6 +21,14 @@ export async function generateMetadata(): Promise<Metadata> {
       url: 'https://deyusolemachine.com',
       siteName: 'DEYU Shoe Machinery',
       type: 'website',
+      images: [
+        {
+          url: '/og-image-v2.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'DEYU shoe sole injection moulding machines',
+        },
+      ],
     },
   };
 }
@@ -34,11 +42,11 @@ const organizationSchema = {
   url: 'https://deyusolemachine.com',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://deyusolemachine.com/deyu-logo.png',
-    width: 975,
-    height: 507,
+    url: 'https://deyusolemachine.com/deyu-logo-v2.png',
+    width: 734,
+    height: 304,
   },
-  image: 'https://deyusolemachine.com/og-image.png',
+  image: 'https://deyusolemachine.com/og-image-v2.jpg',
   description:
     'Leading shoe sole injection moulding machine manufacturer in Wenzhou, China. 15+ years of experience, ISO 9001 & CE certified, exported to 30+ countries.',
   foundingDate: '2009',

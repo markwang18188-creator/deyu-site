@@ -22,6 +22,7 @@ export async function generateMetadata({
   const { slug, locale } = await params;
   const product = getLocalizedProduct(slug, locale);
   if (!product) return {};
+  const socialImage = `/og/products/${product.slug}-v2.jpg`;
   return {
     title: `${product.name} | ${product.model} | DEYU`,
     description: `${product.shortDescription} CE certified. Contact DEYU for pricing and specifications.`,
@@ -31,6 +32,20 @@ export async function generateMetadata({
       description: product.shortDescription,
       url: `https://deyusolemachine.com/products/${slug}`,
       type: 'website',
+      images: [
+        {
+          url: socialImage,
+          width: 1200,
+          height: 630,
+          alt: `${product.model} — ${product.name}`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${product.name} | DEYU`,
+      description: product.shortDescription,
+      images: [socialImage],
     },
   };
 }
@@ -82,6 +97,7 @@ export default async function ProductDetailPage({
     name: product.name,
     description: product.shortDescription,
     model: product.model,
+    image: `https://deyusolemachine.com${product.mainImage}`,
     brand: { '@type': 'Brand', name: 'DEYU' },
     manufacturer: {
       '@type': 'Organization',
@@ -358,7 +374,7 @@ export default async function ProductDetailPage({
                 name: 'Wenzhou Deyu Machinery Co., Ltd',
                 logo: {
                   '@type': 'ImageObject',
-                  url: 'https://deyusolemachine.com/deyu-logo.png',
+                  url: 'https://deyusolemachine.com/deyu-logo-v2.png',
                 },
               },
             }),

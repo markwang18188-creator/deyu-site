@@ -54,7 +54,7 @@ export const metadata: Metadata = {
       'PVC · TPR · TPU · TR sole machines from Wenzhou, China. ISO 9001 & CE certified. 15+ years exporting to 30+ countries.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image-v2.jpg',
         width: 1200,
         height: 630,
         alt: 'DEYU — Shoe Sole Injection Moulding Machines, Made in Wenzhou, China',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: 'DEYU — Shoe Sole Injection Moulding Machine Manufacturer',
     description:
       'PVC · TPR · TPU · TR sole machines from Wenzhou, China. Exported to 30+ countries.',
-    images: ['/og-image.png'],
+    images: ['/og-image-v2.jpg'],
   },
   robots: {
     index: true,
