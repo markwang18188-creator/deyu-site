@@ -10,6 +10,13 @@ type NotificationKey =
   | 'insider_increase'
   | 'fund_self_purchase'
   | 'major_state_funds'
+  | 'domestic_monetary_policy'
+  | 'fiscal_politburo_policy'
+  | 'capital_market_rules'
+  | 'domestic_macro_turning_points'
+  | 'global_policy_geopolitical'
+  | 'systemic_risk'
+  | 'etf_bottom_radar'
   | 'system_failure_alerts';
 
 type Settings = Record<NotificationKey, boolean>;
@@ -67,6 +74,55 @@ const ROWS: Array<{
     description: '央行、汇金、国家队及长期资金3000亿元以上安排',
     frequency: '每 5 分钟',
     level: '最高',
+  },
+  {
+    key: 'domestic_monetary_policy',
+    name: '国内重大货币政策',
+    description: '降准、降息、LPR变化、超常规流动性投放及央行稳市工具',
+    frequency: '政策发布时',
+    level: '最高',
+  },
+  {
+    key: 'fiscal_politburo_policy',
+    name: '财政及政治局增量政策',
+    description: '特别国债、地方化债、房地产托底、消费刺激及大规模财政安排',
+    frequency: '政策发布时',
+    level: '最高',
+  },
+  {
+    key: 'capital_market_rules',
+    name: '资本市场重大制度变化',
+    description: '融资保证金、印花税、IPO、再融资、减持、退市及中长期资金新规',
+    frequency: '规则发布时',
+    level: '最高',
+  },
+  {
+    key: 'domestic_macro_turning_points',
+    name: '国内经济数据拐点',
+    description: 'PMI、社融、M1、PPI、工业利润和房地产数据出现趋势性变化',
+    frequency: '数据发布后',
+    level: '重要',
+  },
+  {
+    key: 'global_policy_geopolitical',
+    name: '海外政策与地缘冲击',
+    description: '美联储、美国通胀就业、对华关税限制及重大地缘事件',
+    frequency: '重大事件时',
+    level: '最高',
+  },
+  {
+    key: 'systemic_risk',
+    name: '国内外系统性风险',
+    description: '大型房企或金融机构风险、地方债、油价及人民币异常波动',
+    frequency: '风险出现时',
+    level: '最高',
+  },
+  {
+    key: 'etf_bottom_radar',
+    name: 'ETF底部雷达',
+    description: '综合估值分位、市场宽度、成交额、ETF资金流和股债收益差',
+    frequency: '每日收盘后',
+    level: '重要',
   },
   {
     key: 'system_failure_alerts',
