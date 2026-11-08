@@ -3,6 +3,7 @@ import { createAdminClient } from '@/lib/supabase/admin';
 export const NOTIFICATION_KEYS = [
   'daily_world_news',
   'boc_usd_rate',
+  'google_calendar_today',
   'company_buyback',
   'insider_increase',
   'fund_self_purchase',
@@ -34,6 +35,7 @@ export function defaultNotificationSettings(): NotificationSettingsDocument {
     settings: {
       daily_world_news: true,
       boc_usd_rate: true,
+      google_calendar_today: true,
       company_buyback: true,
       insider_increase: true,
       fund_self_purchase: true,

@@ -6,6 +6,7 @@ import { BellRing, Check, LoaderCircle, LockKeyhole, LogOut, Save, X } from 'luc
 type NotificationKey =
   | 'daily_world_news'
   | 'boc_usd_rate'
+  | 'google_calendar_today'
   | 'company_buyback'
   | 'insider_increase'
   | 'fund_self_purchase'
@@ -44,6 +45,13 @@ const ROWS: Array<{
     key: 'boc_usd_rate',
     name: '中国银行美元现汇买入价',
     description: '中行官方报价、发布时间及现汇卖出价',
+    frequency: '每天 07:30',
+    level: '常规',
+  },
+  {
+    key: 'google_calendar_today',
+    name: 'Google Calendar 今日事项',
+    description: '主日历中今天的全天事项、会议及日程时间',
     frequency: '每天 07:30',
     level: '常规',
   },
