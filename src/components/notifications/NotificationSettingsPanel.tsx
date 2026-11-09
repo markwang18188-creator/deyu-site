@@ -7,6 +7,7 @@ type NotificationKey =
   | 'daily_world_news'
   | 'boc_usd_rate'
   | 'google_calendar_today'
+  | 'service_renewal_reminders'
   | 'company_buyback'
   | 'insider_increase'
   | 'fund_self_purchase'
@@ -54,6 +55,13 @@ const ROWS: Array<{
     description: '主日历中今天的全天事项、会议及日程时间',
     frequency: '每天 07:30',
     level: '常规',
+  },
+  {
+    key: 'service_renewal_reminders',
+    name: '订阅到期与续费提醒',
+    description: '代理节点、VPS及重要在线服务到期前分阶段提醒',
+    frequency: '提前 30/14/7/3/1 天',
+    level: '重要',
   },
   {
     key: 'company_buyback',
