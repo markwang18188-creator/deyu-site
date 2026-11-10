@@ -11,6 +11,7 @@ type NotificationKey =
   | 'company_buyback'
   | 'insider_increase'
   | 'fund_self_purchase'
+  | 'fund_low_monitor_024749'
   | 'major_state_funds'
   | 'domestic_monetary_policy'
   | 'fiscal_politburo_policy'
@@ -82,6 +83,13 @@ const ROWS: Array<{
     name: '基金公司自购',
     description: '公募或基金公司使用自有资金申购旗下基金、ETF',
     frequency: '每 5 分钟',
+    level: '重要',
+  },
+  {
+    key: 'fund_low_monitor_024749',
+    name: '024749 基金低位监控',
+    description: '博时中证卫星产业指数C每日净值、涨跌及较大回调提示',
+    frequency: '每天 21:00',
     level: '重要',
   },
   {
