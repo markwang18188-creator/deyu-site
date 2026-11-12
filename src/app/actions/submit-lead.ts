@@ -2,7 +2,7 @@
 
 import { z } from 'zod';
 import { headers } from 'next/headers';
-import { createClient } from '@/lib/supabase/server';
+import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { notifyFeishu } from '@/lib/chatbot/feishu';
 import { notifyEmail } from '@/lib/chatbot/email-notify';
 
@@ -21,6 +21,14 @@ const LeadSchema = z.object({
 
 export type LeadFormData = z.infer<typeof LeadSchema>;
 
+function serviceClient() {
+  return createSupabaseClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { auth: { persistSession: false } }
+  );
+}
+
 export async function submitLead(
   data: LeadFormData
 ): Promise<{ success: boolean; error?: string }> {
@@ -32,7 +40,7 @@ export async function submitLead(
   const headersList = await headers();
   const countryIso = headersList.get('cf-ipcountry') ?? undefined;
 
-  const supabase = createClient();
+  const supabase = serviceClient();
   const { data: inserted, error } = await supabase
     .from('leads')
     .insert({
