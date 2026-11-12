@@ -30,126 +30,54 @@ interface SettingsResponse {
 }
 
 const ROWS: Array<{
-  key: NotificationKey;
+  keys: NotificationKey[];
   name: string;
   description: string;
   frequency: string;
   level: '常规' | '重要' | '最高';
 }> = [
   {
-    key: 'daily_world_news',
-    name: '世界财经与重大新闻早报',
-    description: '前一日世界财经、国际重大新闻及中文摘要',
+    keys: ['boc_usd_rate', 'google_calendar_today'],
+    name: '今日安排',
+    description: '当天 Google Calendar 待办、会议与中国银行美元现汇买入价',
     frequency: '每天 07:30',
     level: '常规',
   },
   {
-    key: 'boc_usd_rate',
-    name: '中国银行美元现汇买入价',
-    description: '中行官方报价、发布时间及现汇卖出价',
-    frequency: '每天 07:30',
-    level: '常规',
+    keys: [
+      'daily_world_news',
+      'company_buyback',
+      'insider_increase',
+      'fund_self_purchase',
+      'major_state_funds',
+      'domestic_monetary_policy',
+      'fiscal_politburo_policy',
+      'capital_market_rules',
+      'domestic_macro_turning_points',
+      'global_policy_geopolitical',
+      'systemic_risk',
+    ],
+    name: '财经投资综合分析',
+    description: '整合政策、宏观、海外风险、国家级资金、公司回购、股东增持及基金自购信号',
+    frequency: '每天 14:00',
+    level: '重要',
   },
   {
-    key: 'google_calendar_today',
-    name: 'Google Calendar 今日事项',
-    description: '主日历中今天的全天事项、会议及日程时间',
-    frequency: '每天 07:30',
-    level: '常规',
+    keys: ['fund_low_monitor_024749', 'etf_bottom_radar'],
+    name: '市场与重点基金复盘',
+    description: 'A股当日盘面、市场风格与博时中证卫星产业指数C（024749）行情走势',
+    frequency: '每天 21:00',
+    level: '重要',
   },
   {
-    key: 'service_renewal_reminders',
+    keys: ['service_renewal_reminders'],
     name: '订阅到期与续费提醒',
     description: '代理节点、VPS及重要在线服务到期前分阶段提醒',
     frequency: '提前 30/14/7/3/1 天',
     level: '重要',
   },
   {
-    key: 'company_buyback',
-    name: '上市公司股份回购',
-    description: '回购方案、首次实施、金额调整及完成公告',
-    frequency: '每 5 分钟',
-    level: '重要',
-  },
-  {
-    key: 'insider_increase',
-    name: '高管及重要股东增持',
-    description: '董事、高管、控股股东和实际控制人增持',
-    frequency: '每 5 分钟',
-    level: '重要',
-  },
-  {
-    key: 'fund_self_purchase',
-    name: '基金公司自购',
-    description: '公募或基金公司使用自有资金申购旗下基金、ETF',
-    frequency: '每 5 分钟',
-    level: '重要',
-  },
-  {
-    key: 'fund_low_monitor_024749',
-    name: '024749 基金低位监控',
-    description: '博时中证卫星产业指数C每日净值、涨跌及较大回调提示',
-    frequency: '每天 21:00',
-    level: '重要',
-  },
-  {
-    key: 'major_state_funds',
-    name: '国家级大资金入市',
-    description: '央行、汇金、国家队及长期资金3000亿元以上安排',
-    frequency: '每 5 分钟',
-    level: '最高',
-  },
-  {
-    key: 'domestic_monetary_policy',
-    name: '国内重大货币政策',
-    description: '降准、降息、LPR变化、超常规流动性投放及央行稳市工具',
-    frequency: '政策发布时',
-    level: '最高',
-  },
-  {
-    key: 'fiscal_politburo_policy',
-    name: '财政及政治局增量政策',
-    description: '特别国债、地方化债、房地产托底、消费刺激及大规模财政安排',
-    frequency: '政策发布时',
-    level: '最高',
-  },
-  {
-    key: 'capital_market_rules',
-    name: '资本市场重大制度变化',
-    description: '融资保证金、印花税、IPO、再融资、减持、退市及中长期资金新规',
-    frequency: '规则发布时',
-    level: '最高',
-  },
-  {
-    key: 'domestic_macro_turning_points',
-    name: '国内经济数据拐点',
-    description: 'PMI、社融、M1、PPI、工业利润和房地产数据出现趋势性变化',
-    frequency: '数据发布后',
-    level: '重要',
-  },
-  {
-    key: 'global_policy_geopolitical',
-    name: '海外政策与地缘冲击',
-    description: '美联储、美国通胀就业、对华关税限制及重大地缘事件',
-    frequency: '重大事件时',
-    level: '最高',
-  },
-  {
-    key: 'systemic_risk',
-    name: '国内外系统性风险',
-    description: '大型房企或金融机构风险、地方债、油价及人民币异常波动',
-    frequency: '风险出现时',
-    level: '最高',
-  },
-  {
-    key: 'etf_bottom_radar',
-    name: 'ETF底部雷达',
-    description: '综合估值分位、市场宽度、成交额、ETF资金流和股债收益差',
-    frequency: '每日收盘后',
-    level: '重要',
-  },
-  {
-    key: 'system_failure_alerts',
+    keys: ['system_failure_alerts'],
     name: '系统运行失败告警',
     description: '数据源、摘要或发送服务连续失败时提醒',
     frequency: '异常时',
@@ -208,9 +136,12 @@ export default function NotificationSettingsPanel() {
   }
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored) void loadWithPassword(stored);
-    else setLoading(false);
+    const timer = window.setTimeout(() => {
+      const stored = window.localStorage.getItem(STORAGE_KEY);
+      if (stored) void loadWithPassword(stored);
+      else setLoading(false);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
@@ -324,10 +255,12 @@ export default function NotificationSettingsPanel() {
 
         <div className="divide-y divide-slate-100">
           {ROWS.map((row) => {
-            const enabled = settings[row.key];
+            const enabledCount = row.keys.filter((key) => settings[key]).length;
+            const enabled = enabledCount === row.keys.length;
+            const partiallyEnabled = enabledCount > 0 && !enabled;
             return (
               <label
-                key={row.key}
+                key={row.name}
                 className="grid cursor-pointer grid-cols-[1fr_auto] gap-4 px-5 py-5 transition hover:bg-slate-50 sm:grid-cols-[minmax(0,1fr)_130px_110px] sm:items-center sm:px-8"
               >
                 <span>
@@ -338,6 +271,9 @@ export default function NotificationSettingsPanel() {
                     </span>
                   </span>
                   <span className="mt-1 block text-sm leading-5 text-slate-500">{row.description}</span>
+                  {partiallyEnabled && (
+                    <span className="mt-2 block text-xs font-semibold text-amber-600">当前为部分开启，点击后将统一开启全部内容</span>
+                  )}
                   <span className="mt-2 block text-xs font-medium text-slate-400 sm:hidden">{row.frequency}</span>
                 </span>
                 <span className="hidden text-sm font-medium text-slate-600 sm:block">{row.frequency}</span>
@@ -346,7 +282,11 @@ export default function NotificationSettingsPanel() {
                     type="checkbox"
                     className="peer sr-only"
                     checked={enabled}
-                    onChange={() => setSettings({ ...settings, [row.key]: !enabled })}
+                    onChange={() => {
+                      const next = { ...settings };
+                      for (const key of row.keys) next[key] = !enabled;
+                      setSettings(next);
+                    }}
                   />
                   <span className={`flex size-11 items-center justify-center rounded-xl border-2 transition ${enabled ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-slate-300 bg-white text-slate-400'}`}>
                     {enabled ? <Check className="size-6 stroke-[3]" /> : <X className="size-6" />}
@@ -377,7 +317,7 @@ export default function NotificationSettingsPanel() {
         </div>
       </div>
       <p className="mt-5 text-center text-xs leading-5 text-slate-400">
-        关闭某类提醒后，系统仍会记录已发现事件；重新开启时不会补发关闭期间的旧消息。
+        投资类细项已合并为综合栏目；一个开关会同步控制该栏目下的全部内容。
       </p>
     </div>
   );
