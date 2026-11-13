@@ -93,7 +93,7 @@ export async function POST(req: Request) {
 
   const client = createDeepSeek();
 
-  const systemPrompt = buildSystemPrompt();
+  const systemPrompt = await buildSystemPrompt();
 
   const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
     { role: 'system', content: systemPrompt },
